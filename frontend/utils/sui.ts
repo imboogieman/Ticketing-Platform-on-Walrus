@@ -21,17 +21,23 @@ export function createEventTransaction(
 ): Transaction {
   const tx = new Transaction();
   
+  // Convert strings to byte vectors for Move
+  const nameBytes = Array.from(new TextEncoder().encode(name));
+  const descriptionBytes = Array.from(new TextEncoder().encode(description));
+  const locationBytes = Array.from(new TextEncoder().encode(location));
+  const walrusBlobIdBytes = Array.from(new TextEncoder().encode(walrusBlobId));
+  
   tx.moveCall({
     target: `${PACKAGE_ID}::event::create_event`,
     arguments: [
-      tx.pure.string(name),
-      tx.pure.string(description),
-      tx.pure.string(location),
+      tx.pure(nameBytes),
+      tx.pure(descriptionBytes),
+      tx.pure(locationBytes),
       tx.pure.u64(startTime),
       tx.pure.u64(endTime),
       tx.pure.u64(ticketSupply),
       tx.pure.u64(ticketPrice * 1_000_000_000), // Convert SUI to MIST
-      tx.pure.string(walrusBlobId)
+      tx.pure(walrusBlobIdBytes)
     ],
   });
 

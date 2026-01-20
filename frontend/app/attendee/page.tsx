@@ -4,6 +4,7 @@ import { useCurrentAccount, useSignAndExecuteTransaction } from '@mysten/dapp-ki
 import { Transaction } from '@mysten/sui/transactions';
 import { useState } from 'react';
 import Link from 'next/link';
+import { PACKAGE_ID } from '@/utils/constants';
 
 export default function AttendeePage() {
   const account = useCurrentAccount();
@@ -53,7 +54,7 @@ export default function AttendeePage() {
       const encryptedData = new TextEncoder().encode('encrypted_ticket_data');
       
       tx.moveCall({
-        target: `${process.env.NEXT_PUBLIC_PACKAGE_ID}::ticket::purchase_ticket`,
+        target: `${PACKAGE_ID}::ticket::purchase_ticket`,
         arguments: [
           tx.object(eventId),
           coin,

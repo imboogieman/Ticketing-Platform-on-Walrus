@@ -5,6 +5,8 @@ import { Transaction } from '@mysten/sui/transactions';
 import { useState } from 'react';
 import Link from 'next/link';
 
+import { PACKAGE_ID } from '@/utils/constants';
+
 export default function OrganizerDashboard() {
   const account = useCurrentAccount();
   const { mutate: signAndExecute } = useSignAndExecuteTransaction();
@@ -35,17 +37,23 @@ export default function OrganizerDashboard() {
       const startTimestamp = new Date(eventForm.startTime).getTime();
       const endTimestamp = new Date(eventForm.endTime).getTime();
       
+      // Convert strings to byte vectors for Move
+      const nameBytes = Array.from(new TextEncoder().encode(eventForm.name));
+      const descriptionBytes = Array.from(new TextEncoder().encode(eventForm.description));
+      const locationBytes = Array.from(new TextEncoder().encode(eventForm.location));
+      const walrusBlobIdBytes = Array.from(new TextEncoder().encode(eventForm.walrusBlobId));
+      
       tx.moveCall({
-        target: `${process.env.NEXT_PUBLIC_PACKAGE_ID}::event::create_event`,
+        target: `${PACKAGE_ID}::event::create_event`,
         arguments: [
-          tx.pure.string(eventForm.name),
-          tx.pure.string(eventForm.description),
-          tx.pure.string(eventForm.location),
+          tx.pure(nameBytes),
+          tx.pure(descriptionBytes),
+          tx.pure(locationBytes),
           tx.pure.u64(startTimestamp),
           tx.pure.u64(endTimestamp),
           tx.pure.u64(parseInt(eventForm.ticketSupply)),
-          tx.pure.u64(parseInt(eventForm.ticketPrice) * 1000000000), // Convert to MIST
-          tx.pure.string(eventForm.walrusBlobId)
+          tx.pure.u64(parseFloat(eventForm.ticketPrice) * 1000000000), // Convert to MIST
+          tx.pure(walrusBlobIdBytes)
         ],
       });
 

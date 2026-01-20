@@ -131,7 +131,8 @@ module ticketing_platform::event {
         
         let amount = balance::value(&event.balance);
         if (amount > 0) {
-            let withdrawn = coin::take(&mut event.balance, amount, ctx);
+            let withdrawn_balance = balance::split(&mut event.balance, amount);
+            let withdrawn = coin::from_balance(withdrawn_balance, ctx);
             transfer::public_transfer(withdrawn, event.organizer);
         };
     }
