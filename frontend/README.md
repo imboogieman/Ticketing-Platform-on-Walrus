@@ -81,7 +81,7 @@ frontend/
 
 ## Technologies
 
-- **Next.js 14**: React framework with App Router
+- **Next.js 14**: React framework with App Router (v14.2.35 - includes security patches)
 - **TypeScript**: Type-safe development
 - **Tailwind CSS**: Utility-first CSS
 - **@mysten/dapp-kit**: Sui wallet integration
