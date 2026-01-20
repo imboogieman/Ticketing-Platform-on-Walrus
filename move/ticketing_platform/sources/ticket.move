@@ -48,14 +48,17 @@ module ticketing_platform::ticket {
         clock: &Clock,
         ctx: &mut TxContext
     ) {
-        // Process payment through event module
+        // Process payment through event module (this increments tickets_sold)
         event::process_ticket_purchase(event, payment, clock, ctx);
+
+        // Get the ticket number AFTER incrementing (tickets_sold is now the current count)
+        let ticket_number = event::get_tickets_sold(event);
 
         let ticket = Ticket {
             id: object::new(ctx),
             event_id: event::get_event_id(event),
             owner: tx_context::sender(ctx),
-            ticket_number: event::get_tickets_sold(event),
+            ticket_number,
             purchase_time: clock::timestamp_ms(clock),
             is_used: false,
             encrypted_data

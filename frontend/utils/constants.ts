@@ -6,7 +6,10 @@
 export const NETWORK = process.env.NEXT_PUBLIC_NETWORK || 'testnet';
 
 // Contract addresses
-export const PACKAGE_ID = process.env.NEXT_PUBLIC_PACKAGE_ID || '0x0';
+export const PACKAGE_ID = process.env.NEXT_PUBLIC_PACKAGE_ID || (() => {
+  console.warn('NEXT_PUBLIC_PACKAGE_ID is not configured. Please set it in .env.local');
+  return '';
+})();
 
 // Sui constants
 export const SUI_DECIMALS = 9;

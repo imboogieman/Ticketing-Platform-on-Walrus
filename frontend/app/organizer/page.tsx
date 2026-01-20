@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { PACKAGE_ID } from '@/utils/constants';
+import { parseSuiAmount } from '@/utils/sui';
 
 export default function OrganizerDashboard() {
   const account = useCurrentAccount();
@@ -43,6 +44,9 @@ export default function OrganizerDashboard() {
       const locationBytes = Array.from(new TextEncoder().encode(eventForm.location));
       const walrusBlobIdBytes = Array.from(new TextEncoder().encode(eventForm.walrusBlobId));
       
+      // Convert ticket price to MIST using utility function
+      const ticketPriceInMist = parseSuiAmount(eventForm.ticketPrice);
+      
       tx.moveCall({
         target: `${PACKAGE_ID}::event::create_event`,
         arguments: [
@@ -52,7 +56,7 @@ export default function OrganizerDashboard() {
           tx.pure.u64(startTimestamp),
           tx.pure.u64(endTimestamp),
           tx.pure.u64(parseInt(eventForm.ticketSupply)),
-          tx.pure.u64(parseFloat(eventForm.ticketPrice) * 1000000000), // Convert to MIST
+          tx.pure.u64(Number(ticketPriceInMist)),
           tx.pure(walrusBlobIdBytes)
         ],
       });
