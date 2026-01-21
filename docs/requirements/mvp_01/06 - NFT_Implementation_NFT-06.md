@@ -17,9 +17,13 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ## 14.1.2. Feature: Dynamic QR Code Generation (NFT-14.1.2)
 
+**⚠️ CROSS-REFERENCE:** This is a documentation reference only. The actual implementation is in **TS-18.1.1** (QR Code Generation).
+
+**Estimate:** 0 hours (implementation covered by TS-18.1.1)
+
 | User Story Title | User Story Body |
 | --- | --- |
-| 14.1.2. Feature: Dynamic QR Code Generation (NFT-14.1.2) | User Story: As an attendee, I want my ticket to generate a dynamic QR code that refreshes periodically, so that my ticket cannot be stolen via screenshot or shared fraudulently.<br><br>Actions:<br>- QR Payload: Generate a client-side QR code containing a signed payload of TicketID + UserAddress + Timestamp + One-Time-Salt using the attendee's wallet signature.<br>- Auto-Refresh: Configure the mobile dApp to refresh the QR payload every 30 seconds with a new timestamp and salt, ensuring only "live" tickets are valid.<br>- Cryptographic Binding: The QR signature must be verifiable on-chain using the ticket owner's public key to prevent forgery.<br>- Scan Integration: When scanned at venue, the QR triggers the redeem_ticket function (see AM-3.1.1) which validates ownership and marks attendance.<br>- Cross-Reference: QR scanning workflow detailed in AM-3.1.1 (Check-in Procedures) and AM-3.4.2 (QR Code Scanning).<br><br>Deliverable: A dynamic, fraud-proof QR generation library integrated into the ticket holder's mobile wallet UI. |
+| 14.1.2. Feature: Dynamic QR Code Generation (NFT-14.1.2) - REFERENCE ONLY | **Implementation:** See [TS-18.1.1 - QR Code Generation](08 - Ticketing_System_TS-08.md#1811-feature-qr-code-generation-ts-1811) for the primary implementation.<br><br>User Story: As an attendee, I want my ticket NFT to display a dynamic QR code that refreshes periodically, so that my ticket cannot be stolen via screenshot or shared fraudulently.<br><br>**Primary Implementation (TS-18.1.1):**<br>- QR Payload: Generate a client-side QR code containing a signed payload of TicketID + UserAddress + Timestamp + One-Time-Salt using the attendee's wallet signature.<br>- Auto-Refresh: Configure the mobile dApp to refresh the QR payload every 30 seconds with a new timestamp and salt, ensuring only "live" tickets are valid.<br>- Cryptographic Binding: The QR signature must be verifiable on-chain using the ticket owner's public key to prevent forgery.<br>- Scan Integration: When scanned at venue, the QR triggers the redeem_ticket function (see AM-3.1.1) which validates ownership and marks attendance.<br><br>**Cross-References:**<br>- Primary Implementation: TS-18.1.1 (QR Code Generation)<br>- Scanning Workflow: AM-3.1.1 (Check-in Procedures) and AM-3.4.2 (QR Code Scanning)<br>- Related: NFT Display uses QR code as visual component<br><br>Deliverable: Dynamic QR code functionality integrated into ticket NFT display (implementation via TS-18.1.1). |
 
 ---
 
