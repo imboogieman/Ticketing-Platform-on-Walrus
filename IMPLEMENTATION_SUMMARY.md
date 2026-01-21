@@ -281,28 +281,66 @@ The platform is ready to deploy:
 
 ## 📈 Next Steps for Production
 
-1. **Smart Contracts**
+### 1. Advanced NFT Implementation (NFT-14)
+
+Based on the newly documented NFT-14 requirements:
+
+- **NFT-14.1**: Implement Sui Object-Centric Ticket Model
+  - Define optimized `Ticket` struct with `key, store` abilities
+  - Implement AdminCap for controlled minting
+  - Enable PTB-based parallel ticket drops
+
+- **NFT-14.2**: Metadata Standards (SIP-16/Display)
+  - Create Display<Ticket> object in module init
+  - Map display fields (name, image_url, description, project_url)
+  - Implement attribute vectors for marketplace filtering
+
+- **NFT-14.5**: Encrypted Metadata (Sui Seal Integration)
+  - Implement seal_approve_access function for ownership verification
+  - Store encrypted ciphertext blobs on Walrus
+  - Integrate Seal SDK for decryption fragment requests
+
+- **NFT-14.6**: Dynamic Updates (Mutable State)
+  - Add is_redeemed boolean to Ticket struct
+  - Implement redeem_ticket function with ScannerCap
+  - Emit MetadataUpdate events for UI refreshes
+
+- **NFT-14.8 & 14.9**: Soulbound Token Standards
+  - Define sbt_standard module with consistent interface
+  - Implement non-transferable Badge struct (key only, no store)
+  - Add revocation mechanism for issuers
+
+- **NFT-14.10**: Attendance Proof Burn Mechanisms
+  - Implement atomic Ticket-to-Badge conversion
+  - Reclaim storage rebates for cost optimization
+
+- **NFT-14.11**: zkLogin Address Derivation
+  - Deploy HSM-backed Salt Service
+  - Integrate jwtToAddress from @mysten/sui/zklogin SDK
+  - Implement ZK Proof generation via Proving Service
+
+### 2. Smart Contracts
    - Deploy to Sui testnet for testing
    - Conduct security audit
    - Deploy to mainnet
 
-2. **Walrus Integration**
+3. **Walrus Integration**
    - Implement full Walrus SDK integration
    - Test with actual event assets
    - Optimize storage usage
 
-3. **Seal Integration**
+4. **Seal Integration**
    - Implement actual Seal encryption library
    - Test encryption/decryption flow
    - Secure key management
 
-4. **Frontend**
+5. **Frontend**
    - Deploy to Walrus Sites
    - Configure custom domain
    - Performance optimization
    - Add analytics
 
-5. **Testing**
+6. **Testing**
    - Complete E2E testing
    - Load testing
    - Security testing
