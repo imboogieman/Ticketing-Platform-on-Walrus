@@ -27,54 +27,7 @@ The Developer Platform module provides APIs, webhooks, SDKs, and documentation f
 
 **Deliverable:** A "Developer Portal" where a user can generate an API Key (or OAuth2 token), test in the sandbox, and successfully curl a JSON list of active events.
 
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" (Optional/Extended Features)
-- Enables third-party calendar integrations extending "Upon successful registration, users receive a verifiable confirmation, confirmation includes an optional ICS calendar file" (Event Creation)
-- Supports "Event participation becomes composable data for airdrops, loyalty, and engagement insights" (Enables for Ecosystems)
-- Required for "Open-source repository (frontend + contracts)" (Deliverables) to be developer-friendly
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| GraphQL API & Integrations | DEV-06.1.1 | ✅ Aligned | Optional Features: Integration points for event apps |
-
----
-
-## High-Level Alignment Analysis
-
-### ✅ Strongly Aligned
-
-The Developer API & Webhooks feature directly addresses multiple RFP requirements:
-
-1. **Integration Points:** The RFP explicitly calls for "Integration points for event apps, sponsor activations, or loyalty programs"
-
-2. **Composable Data:** The RFP states "Event participation becomes composable data for airdrops, loyalty, and engagement insights" - this requires standardized API access
-
-3. **Open-Source Ecosystem:** The RFP deliverables include "Open-source repository (frontend + contracts)" - a Developer Portal with SDK and docs maximizes ecosystem adoption
-
-4. **Calendar Integration:** The RFP mentions "ICS calendar file" - a webhook system enables deeper calendar app integrations (Google Calendar, Outlook, etc.)
-
-**Key Components:**
-- **GraphQL Indexer:** Aggregates on-chain Move events into queryable schemas
-- **Webhook Dispatcher:** Real-time event notifications to external systems
-- **API Gateway:** Rate limiting and authentication for enterprise use
-- **OAuth2 Provider:** Delegated access for enterprise integrations
-- **SDK Generation:** TypeScript/Python wrappers for rapid development
-- **Integration Templates:** Pre-built examples (Zapier, Stripe, Slack, Google Calendar)
-- **Developer Portal:** Self-service API key generation, sandbox, and documentation
-
 > **Note:** This feature consolidates OE-1.10 (Integration with External Services) which has been merged into this document.
-
----
-
-## Dependencies
-
-| Feature | Depends On |
-|---------|-----------|
-| DEV-06.1.1 | INF-05 (Infrastructure), All MVP 01 modules (data sources), EMS-07 (Event data), TS-08 (Ticket data), AM-03 (Attendance data) |
 
 ---
 
@@ -116,29 +69,6 @@ The Developer API & Webhooks feature directly addresses multiple RFP requirement
 - API integration for real-time agenda sync
 - Push notification system
 - Post-event survey tools
-
-**RFP Alignment:** ✅ **Direct Match**
-- Directly implements "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" (Optional/Extended Features)
-- Extends "Upon successful registration, users receive a verifiable confirmation" to mobile app experience
-- Supports "Optional integration notifications (reminders, updates, confirmations)" via push notifications
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| GraphQL API & Integrations | DEV-06.1.1 | ✅ Aligned | Optional Features: Integration points for event apps |
-| White-Label Event App | DEV-06.2.1 | ✅ Direct Match | Optional Features: Integration points for event apps |
-
----
-
-## Dependencies
-
-| Feature | Depends On |
-|---------|-----------|
-| DEV-06.1.1 | INF-05 (Infrastructure), All MVP 01 modules (data sources), EMS-07 (Event data), TS-08 (Ticket data), AM-03 (Attendance data) |
-| DEV-06.2.1 | DEV-06.1.1 (APIs), CM-01 (Notifications), EMS-07 (Event data), AM-03 (Attendance), LRW-04 (Loyalty) |
 
 ---
 

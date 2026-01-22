@@ -36,23 +36,6 @@ MVP 02 features have been decomposed into the following thematic modules:
 
 ---
 
-## RFP Alignment Summary
-
-All MVP 02 modules align with the RFP's "Optional / Extended Features" and core platform enablers:
-
-### Direct RFP References
-
-| RFP Statement | Supporting Modules |
-|---------------|-------------------|
-| "Optional integration notifications (reminders, updates, confirmations, event chat)" | CM-01, CNT-02 |
-| "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" | LRW-04, DEV-06 |
-| "Lead capture and networking capabilities, such as opt-in profile sharing, wallet-based reputation links, or post-event follow-ups" | CM-01, GMK-05 |
-| "Payment integrations and discount code management" | FEX-03, LRW-04 |
-| "Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems" | LRW-04, GMK-05 |
-| "Ticket holders gain access to a full Walrus Site containing event-specific content (agenda, speakers, media, announcements)" | CNT-02 |
-
----
-
 ## Dependencies on MVP 01
 
 | MVP 02 Module | Depends on MVP 01 Modules |

@@ -23,10 +23,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 
 **Deliverable:** A secure, high-priority broadcast system that allows organizers to reach 100% of attendees within sub-second finality.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Optional integration notifications (reminders, updates, confirmations)" (Communications)
-- Enables real-time attendee communication with guaranteed delivery
-
 ---
 
 ### 1.1.2. Feature: Schedule Changes (CM-01.1.2)
@@ -44,10 +40,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 
 **Deliverable:** A dynamic, real-time schedule synchronization engine that ensures attendee itineraries are always up-to-date with the on-chain state.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Optional integration notifications (reminders, updates, confirmations)" (Communications)
-- Enables dynamic event management with real-time sync
-
 ---
 
 ### 1.1.3. Feature: Event Notifications (CM-01.1.3)
@@ -64,10 +56,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 | Delivery Logging | Log the `notification_hash` on-chain to allow users to verify the authenticity of messages received via off-chain channels like email or push. |
 
 **Deliverable:** A personalized, category-based notification system that maintains a high signal-to-noise ratio for attendees.
-
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Optional integration notifications (reminders, updates, confirmations)" (Communications)
-- Supports personalized, category-based notification delivery
 
 ---
 
@@ -88,11 +76,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 
 **Deliverable:** A private, end-to-end encrypted chat interface within the dApp, restricted to verified event participants.
 
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Optional integration notifications (reminders, updates, confirmations, event chat)" (Communications)
-- Supports "Lead capture and networking capabilities" (Optional/Extended Features)
-- Leverages Seal encryption for secure, token-gated messaging
-
 ---
 
 ### 1.2.2. Feature: Schedule Updates (CM-01.2.2)
@@ -110,10 +93,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 
 **Deliverable:** A real-time, on-chain schedule management system that keeps 100% of attendees synchronized with the live event state.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Optional integration notifications (reminders, updates)" (Communications)
-- Enables "Optional dynamic updates (status, RSVP, attendance)" (NFT Ticketing)
-
 ---
 
 ### 1.2.3. Feature: Attendee List (CM-01.2.3)
@@ -130,10 +109,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 | Search Optimization | Build a frontend filter to sort the list by "Hacker," "Sponsor," or "Speaker" roles based on ticket metadata. |
 
 **Deliverable:** A privacy-first attendee directory that balances community discovery with cryptographic identity protection.
-
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Lead capture and networking capabilities, such as opt-in profile sharing, wallet-based reputation links" (Optional/Extended Features)
-- Maintains privacy-first approach with opt-in visibility
 
 ---
 
@@ -154,10 +129,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 
 **Deliverable:** A time-aware reminder engine that automates pre-event engagement by linking network time to attendee wallet addresses.
 
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Communications: Optional integration for email or wallet notifications (reminders, updates, confirmations)" (Communications)
-- Extends "Upon successful registration, users receive a verifiable confirmation" (Event Creation)
-
 ---
 
 ### 1.3.2. Feature: Important Announcements (CM-01.3.2)
@@ -175,10 +146,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 
 **Deliverable:** A high-integrity "Emergency Broadcast" tool that uses cryptographic signatures to prove authenticity and Seal encryption to gate access.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Optional integration notifications (reminders, updates, confirmations)" (Communications)
-- Uses Seal encryption for authenticated, secure broadcasts
-
 ---
 
 ### 1.3.3. Feature: Personalized Communications (CM-01.3.3)
@@ -195,26 +162,6 @@ The Communication and Engagement module provides comprehensive notification, ale
 | Encryption Policy | Apply a Seal Policy that allows different tiers of ticket holders to decrypt different sub-channels within the same broadcast stream. |
 
 **Deliverable:** A granular communication engine that delivers a customized "Concierge-level" experience to different attendee segments without sacrificing user privacy.
-
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Multi-track or multi-flow registration support for larger events with different ticket tiers" (Optional/Extended Features)
-- Enables tier-based personalized engagement
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Broadcast Alerts | CM-01.1.1 | ✅ Aligned | Communications: Optional integration notifications |
-| Schedule Changes | CM-01.1.2 | ✅ Aligned | Communications: Optional integration notifications |
-| Event Notifications | CM-01.1.3 | ✅ Aligned | Communications: Optional integration notifications |
-| Event Chat Functionality | CM-01.2.1 | ✅ Aligned | Communications: Event chat |
-| Schedule Updates | CM-01.2.2 | ✅ Aligned | NFT Ticketing: Optional dynamic updates |
-| Attendee List | CM-01.2.3 | ✅ Aligned | Optional Features: Lead capture and networking |
-| Event Reminders | CM-01.3.1 | ✅ Aligned | Communications: Wallet notifications (reminders) |
-| Important Announcements | CM-01.3.2 | ✅ Aligned | Communications: Optional integration notifications |
-| Personalized Communications | CM-01.3.3 | ✅ Aligned | Optional Features: Multi-track/multi-tier support |
 
 ---
 

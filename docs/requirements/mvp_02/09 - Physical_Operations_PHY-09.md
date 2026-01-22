@@ -40,10 +40,6 @@ The Physical Operations module provides hardware and physical access capabilitie
 - On-site kiosk printing integration
 - Design templates and customization UI
 
-**RFP Alignment:** ✅ **Direct Match**
-- Directly implements "Badge printing and check-in support for in-person events, including QR or NFC-based access validation" (Optional/Extended Features)
-- Extends "Upon successful registration, users receive a verifiable confirmation" with physical credentials
-
 ---
 
 ### 9.1.2. Feature: QR-Based Access Validation (PHY-09.1.2)
@@ -77,10 +73,6 @@ The Physical Operations module provides hardware and physical access capabilitie
 - Offline validation with local caching
 - Real-time attendance sync
 - Fraud detection and alerting
-
-**RFP Alignment:** ✅ **Direct Match**
-- Directly implements "Badge printing and check-in support for in-person events, including QR or NFC-based access validation" (Optional/Extended Features)
-- Supports "At check-in, the user's NFT ticket is redeemed and the SBT (attendance badge) is minted" (Attendance Verification)
 
 ---
 
@@ -118,25 +110,7 @@ The Physical Operations module provides hardware and physical access capabilitie
 - Challenge-response security protocol
 - Security best practices documentation
 
-**RFP Alignment:** ✅ **Direct Match**
-- Directly implements "Badge printing and check-in support for in-person events, including QR or NFC-based access validation" (Optional/Extended Features)
-- Supports "At check-in, the user's NFT ticket is redeemed" with contactless tap-to-enter
-
 ---
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Badge Generation System | PHY-09.1.1 | ✅ Direct Match | Optional Features: Badge printing and check-in |
-| QR-Based Access Validation | PHY-09.1.2 | ✅ Direct Match | Optional Features: QR-based access validation |
-| NFC Badge System | PHY-09.2.1 | ✅ Direct Match | Optional Features: NFC-based access validation |
-
----
-
-## High-Level Alignment Analysis
-
-### ✅ Directly Aligned
 
 The Physical Operations features are explicitly called out in the RFP:
 

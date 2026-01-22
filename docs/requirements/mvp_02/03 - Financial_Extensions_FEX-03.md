@@ -24,47 +24,9 @@ The Financial Extensions module provides advanced payment mechanisms including e
 
 **Deliverable:** A test scenario where an event is marked "Cancelled," and multiple users successfully execute `claim_refund` to retrieve their SUI.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Payment integrations" (Event Creation & Registration)
-- Enables trustless transactions aligned with decentralized platform principles
-- Supports "Users retain control over their Walrus-stored data" principle extended to funds
-- Addresses implicit requirement for buyer protection in a decentralized system
-
 **Notes:**
 - While not explicitly stated in the RFP, escrow mechanisms are essential for a trustworthy decentralized ticketing platform
-- Aligns with the RFP's goal of removing intermediaries while maintaining financial integrity
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Escrow Vault | FEX-03.1.1 | ✅ Aligned | Payment integrations + Decentralized trust model |
-
----
-
-## High-Level Alignment Analysis
-
-### ✅ Aligned (with Implicit RFP Support)
-
-The Refund & Escrow Mechanism addresses a critical gap in the explicit RFP requirements. While the RFP states:
-
-> "This project seeks to build a decentralized event and ticketing platform... where tickets, confirmations, and event details are managed by intermediaries" [are replaced]
-
-The removal of intermediaries necessitates trustless escrow mechanisms to protect buyers. This feature:
-
-1. **Replaces Centralized Trust:** Traditional platforms (Eventbrite, Luma) hold funds as intermediaries. Our escrow smart contract replaces this with on-chain logic.
-2. **Supports Cancellation Flows:** The RFP doesn't explicitly mention refunds, but any production ticketing system requires them.
-3. **Enables Transparent Financial Operations:** Aligns with "Transparent, verifiable event data" for organizers.
-
----
-
-## Dependencies
-
-| Feature | Depends On |
-|---------|-----------|
-| FEX-03.1.1 | FIN-09 (Financial Operations), EMS-07 (Event status/cancellation), TS-08 (Ticket ownership) |
+- Addresses buyer protection requirements in a decentralized system
 
 ---
 
@@ -108,11 +70,6 @@ The removal of intermediaries necessitates trustless escrow mechanisms to protec
 - Price change event emission
 - Admin interface for pricing management
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Payment integrations and discount code management" (Event Creation & Registration)
-- Extends "Each ticket is a unique, non-fungible record" with tier-specific pricing
-- Supports "different ticket tiers" mentioned in Multi-track events (Optional/Extended Features)
-
 ---
 
 ### 3.2.2. Feature: User-Initiated Refunds (FEX-03.2.2)
@@ -149,31 +106,6 @@ The removal of intermediaries necessitates trustless escrow mechanisms to protec
 - Pro-rata refund calculation logic
 - Refund processing from escrow vault
 - Refund analytics and tracking dashboard
-
-**RFP Alignment:** ✅ **Aligned**
-- Extends "Payment integrations" with refund capabilities
-- Supports trustless financial operations without intermediaries
-- Aligns with "Users retain control over their Walrus-stored data" principle extended to funds
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Escrow Vault | FEX-03.1.1 | ✅ Aligned | Payment integrations + Decentralized trust model |
-| Multi-Tier Pricing Engine | FEX-03.2.1 | ✅ Aligned | Payment integrations, discount code management |
-| User-Initiated Refunds | FEX-03.2.2 | ✅ Aligned | Decentralized trust, buyer protection |
-
----
-
-## Dependencies
-
-| Feature | Depends On |
-|---------|-----------|
-| FEX-03.1.1 | FIN-09 (Financial Operations), EMS-07 (Event status/cancellation), TS-08 (Ticket ownership) |
-| FEX-03.2.1 | FIN-09 (Payments), TS-08 (Ticket purchase), NFT-06 (Partner NFT verification) |
-| FEX-03.2.2 | FEX-03.1.1 (Escrow Vault), TS-08 (Ticket ownership), EMS-07 (Event dates) |
 
 ---
 

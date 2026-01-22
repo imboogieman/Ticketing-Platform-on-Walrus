@@ -24,47 +24,6 @@ The Growth and Marketing module provides tools for influencer marketing, referra
 
 **Deliverable:** A dashboard view for promoters showing "Total Clicks," "Total Sales," and "SUI Earned," backed by on-chain event data.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems" (Attendance Verification)
-- Extends "Payment integrations and discount code management" (Event Creation & Registration) with referral tracking
-- Supports "Lead capture and networking capabilities, such as opt-in profile sharing, wallet-based reputation links, or post-event follow-ups" (Optional/Extended Features)
-- Enables "Event participation becomes composable data for airdrops, loyalty, and engagement insights" (Enables for Ecosystems)
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Referral Links & Commissions | GMK-05.1.1 | ✅ Aligned | Optional Features: Lead capture, follow-up campaigns |
-
----
-
-## High-Level Alignment Analysis
-
-### ✅ Aligned (with Extended Scope)
-
-The Decentralized Referral System extends several RFP concepts:
-
-1. **Follow-up Campaigns:** The RFP mentions "follow-up campaigns" - referral systems are a key growth mechanism for event platforms.
-
-2. **Wallet-Based Reputation:** The RFP states "wallet-based reputation links" - referral earnings create a verifiable track record for promoters.
-
-3. **Payment Integrations:** Extends payment flow with automated commission splits.
-
-4. **Transparent & Verifiable:** Aligns with "Transparent, verifiable event data" - all referral commissions are on-chain and auditable.
-
-**Key Innovation:**
-- Traditional referral systems rely on centralized tracking. This feature uses on-chain events (`CommissionPaid`) to create a trustless, transparent affiliate system.
-
----
-
-## Dependencies
-
-| Feature | Depends On |
-|---------|-----------|
-| GMK-05.1.1 | FIN-09 (Payment processing), TS-08 (buy_ticket function), ID-01 (User addresses) |
-
 ---
 
 ---
@@ -105,10 +64,6 @@ The Decentralized Referral System extends several RFP concepts:
 - Networking matching algorithm
 - Lead export and CRM integration APIs
 
-**RFP Alignment:** ✅ **Direct Match**
-- Directly implements "Lead capture and networking capabilities, such as opt-in profile sharing, wallet-based reputation links, or post-event follow-ups" (Optional/Extended Features)
-- Supports "Proof of attendance can later be used for airdrops, follow-up campaigns" via lead capture
-
 ---
 
 ## 5.3. Feature: Sponsor Activation (GMK-05.3)
@@ -147,27 +102,7 @@ The Decentralized Referral System extends several RFP concepts:
 - Gamification framework (raffles, challenges)
 - Sponsor analytics dashboard
 
-**RFP Alignment:** ✅ **Direct Match**
-- Directly implements "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" (Optional/Extended Features)
-- Supports lead capture capabilities extended to sponsor use cases
-
 ---
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Referral Links & Commissions | GMK-05.1.1 | ✅ Aligned | Optional Features: Lead capture, follow-up campaigns |
-| Opt-In Profile Sharing | GMK-05.2.1 | ✅ Direct Match | Optional Features: Lead capture and networking |
-| Sponsor Management | GMK-05.3.1 | ✅ Direct Match | Optional Features: Sponsor activations |
-
----
-
-## Dependencies
-
-| Feature | Depends On |
-|---------|-----------|
-| GMK-05.1.1 | FIN-09 (Payment processing), TS-08 (buy_ticket function), ID-01 (User addresses) |
 | GMK-05.2.1 | UPS-02 (User Profiles), ID-01 (Authentication), DAT-04 (Walrus storage) |
 | GMK-05.3.1 | GMK-05.2.1 (Lead Capture), AM-03 (Attendance), EMS-07 (Event data) |
 
