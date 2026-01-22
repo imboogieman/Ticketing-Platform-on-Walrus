@@ -70,7 +70,7 @@ Showcase Attendance Record & Earn Rewards
 
 ## 🎨 Design Philosophy
 
-This project embraces **creative flexibility**. While this RFP outlines recommended features and integrations, applicants and contributors are encouraged to propose alternative architectures, flows, or solutions that may better achieve the intended goals. Creative approaches that challenge or improve upon these specifications are welcome, provided they align with Sui and Walrus capabilities.
+This project embraces **creative flexibility**. While this documentation outlines recommended features and integrations, developers and contributors are encouraged to propose alternative architectures, flows, or solutions that may better achieve the intended goals. Creative approaches that challenge or improve upon these specifications are welcome, provided they align with Sui and Walrus capabilities.
 
 ## 📊 Core Capabilities
 

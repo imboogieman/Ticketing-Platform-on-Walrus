@@ -12,7 +12,7 @@ This document provides a comprehensive estimation of all features and user stori
 | Best Case Multiplier | 20 hrs | Optimal conditions, no blockers |
 | Worst Case Multiplier | 32 hrs | Unforeseen challenges, dependencies |
 | Complexity Scale | 1-6 | 1=Simple, 6=Highly Complex |
-| AI Assistance Factor | 20-40% | Time reduction for AI code generation (Copilot, Cursor, v0.dev) |
+| AI Assistance Factor | 10-20% | Time reduction for AI code generation (Copilot, Cursor, v0.dev) |
 | SDK Reuse Factor | 30-50% | Time reduction for well-documented SDKs (Sui, Walrus, zkLogin) |
 | Internal Code Reuse | 50% | Conservative time reduction leveraging existing smart contract infrastructure from prior firm development |
 
@@ -20,11 +20,11 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Factor | Description | Examples | AI/Library Impact |
 |--------|-------------|----------|-------------------|
-| 1 | Simple, well-defined, minimal dependencies | Basic UI components, simple CRUD | 40-50% reduction with AI templates |
-| 2 | Straightforward with minor complexity | Standard integrations, basic smart contracts | 30-40% reduction with SDKs |
-| 3 | Moderate complexity, some dependencies | Multi-component features, API integrations | 20-30% reduction with AI assistance |
-| 4 | Complex, multiple dependencies, new patterns | Encryption, complex smart contracts | 15-25% reduction with examples |
-| 5 | Highly complex, significant research needed | ZK integrations, cross-system orchestration | 10-15% reduction, limited AI help |
+| 1 | Simple, well-defined, minimal dependencies | Basic UI components, simple CRUD | 15-20% reduction with AI templates |
+| 2 | Straightforward with minor complexity | Standard integrations, basic smart contracts | 12-18% reduction with SDKs |
+| 3 | Moderate complexity, some dependencies | Multi-component features, API integrations | 10-15% reduction with AI assistance |
+| 4 | Complex, multiple dependencies, new patterns | Encryption, complex smart contracts | 8-12% reduction with examples |
+| 5 | Highly complex, significant research needed | ZK integrations, cross-system orchestration | 5-10% reduction, limited AI help |
 | 6 | Very complex, cutting-edge, high uncertainty | Novel cryptographic patterns, protocol innovations | Minimal AI benefit, requires expertise |
 
 ---
@@ -113,7 +113,6 @@ This document provides a comprehensive estimation of all features and user stori
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
 | **6.0** | **NFT-06: NFT Implementation Module** | - | **128** | **112** | **160** | SBT infrastructure reusable (15% savings on badge patterns) | - | - | - |
 | 6.1.1 | NFT-14.1.1: Ticket NFT Move Contract | 3 | 32 | 28 | 40 | Move struct (AI-generated), capability pattern, basic ownership | 12% | Senior | Beta |
-| 6.1.2 | NFT-14.1.2: Dynamic QR Code (Cross-ref to TS-18.1.1) | 0 | 0 | 0 | 0 | See TS-18.1.1 for implementation - this is documentation only | 0% | - | Beta |
 | 6.2.1 | NFT-14.2.1: Metadata Display (SIP-16) | 2 | 16 | 12 | 24 | Display standard (SDK pattern), template mapping | 8% | Junior | Beta |
 | 6.3.1 | NFT-14.3.1: Transfer Logic | 2 | 24 | 20 | 32 | Transfer flag toggle, basic transfer function | 10% | Senior | Beta |
 | 6.5.1 | NFT-14.5.1: Encrypted Metadata | 2 | 24 | 20 | 32 | Seal integration (already implemented in 1.1.1), NFT-specific usage | 10% | Senior | Beta |
@@ -233,13 +232,13 @@ This document provides a comprehensive estimation of all features and user stori
 | 12.1.2 | CM-01.1.2: Schedule Changes | 3 | 72 | 60 | 96 | Mutable state update, event-driven triggers, conflict detection | 15% | Senior | RC |
 | 12.1.3 | CM-01.1.3: Event Notifications | 3 | 72 | 60 | 96 | Subscription management, time-gated execution, personalized routing | 15% | Mid | RC |
 | 12.2 | CM-01.2: Communication Platform | - | - | - | - | - | - | - | - |
-| 12.2.1 | CM-01.2.1: Event Chat Functionality | 4 | 96 | 80 | 128 | Sui Stack Messaging SDK, Seal encryption for group keys, moderation | 25% | Senior | RC |
+| 12.2.1 | CM-01.2.1: Event Chat Functionality | 4 | 96 | 80 | 128 | Sui Stack Messaging SDK, Seal encryption for group keys, moderation | 25% | Lead | RC |
 | 12.2.2 | CM-01.2.2: Schedule Updates | 3 | 72 | 60 | 96 | Object mutation, event-driven push, frontend hot-reload | 15% | Senior | RC |
 | 12.2.3 | CM-01.2.3: Attendee List | 3 | 72 | 60 | 96 | Privacy toggle, selective indexing, contact gating | 15% | Mid | RC |
 | 12.3 | CM-01.3: Notification System | - | - | - | - | - | - | - | - |
 | 12.3.1 | CM-01.3.1: Event Reminders | 3 | 72 | 60 | 96 | Cron-style trigger, PTB automation, deep linking | 15% | Senior | RC |
 | 12.3.2 | CM-01.3.2: Important Announcements | 3 | 72 | 60 | 96 | Admin gating, Seal encryption for broadcasts, SDK broadcasting | 15% | Senior | RC |
-| 12.3.3 | CM-01.3.3: Personalized Communications | 4 | 96 | 80 | 128 | Tier-based filtering, direct 1:1 channels, encryption policy | 20% | Senior | RC |
+| 12.3.3 | CM-01.3.3: Personalized Communications | 4 | 96 | 80 | 128 | Tier-based filtering, direct 1:1 channels, encryption policy | 20% | Lead | RC |
 
 ---
 
@@ -251,7 +250,7 @@ This document provides a comprehensive estimation of all features and user stori
 | 13.1 | CNT-02.1: Material Sharing | - | - | - | - | - | - | - | - |
 | 13.1.1 | CNT-02.1.1: Speaker Material Upload | 3 | 72 | 60 | 96 | Speaker portal, Walrus blob linking, in-app viewer | 15% | Mid | Beta |
 | 13.2 | CNT-02.2: Presentation Access | - | - | - | - | - | - | - | - |
-| 13.2.1 | CNT-02.2.1: Tier-Gated Content | 4 | 96 | 80 | 128 | Tier-based gating, Seal-policy gating, dynamic content release | 25% | Senior | RC |
+| 13.2.1 | CNT-02.2.1: Tier-Gated Content | 4 | 96 | 80 | 128 | Tier-based gating, Seal-policy gating, dynamic content release | 25% | Lead | RC |
 
 ---
 
@@ -263,8 +262,8 @@ This document provides a comprehensive estimation of all features and user stori
 | 14.1 | FEX-03.1: Refund & Escrow | - | - | - | - | - | - | - | - |
 | 14.1.1 | FEX-03.1.1: Escrow Vault | 5 | 120 | 100 | 160 | Vault shared object, release conditions, claim refund, dispute resolution | 30% | Lead | Beta |
 | 14.2 | FEX-03.2: Dynamic Pricing & Tiers | - | - | - | - | - | - | - | - |
-| 14.2.1 | FEX-03.2.1: Multi-Tier Pricing Engine | 4 | 96 | 80 | 128 | PriceTier object, time-based pricing, partner NFT discounts | 20% | Senior | Beta |
-| 14.2.2 | FEX-03.2.2: User-Initiated Refunds | 4 | 96 | 80 | 128 | RefundPolicy struct, pro-rata logic, admin override, refund history | 20% | Senior | RC |
+| 14.2.1 | FEX-03.2.1: Multi-Tier Pricing Engine | 4 | 96 | 80 | 128 | PriceTier object, time-based pricing, partner NFT discounts | 20% | Lead | Beta |
+| 14.2.2 | FEX-03.2.2: User-Initiated Refunds | 4 | 96 | 80 | 128 | RefundPolicy struct, pro-rata logic, admin override, refund history | 20% | Lead | RC |
 
 ---
 
@@ -284,11 +283,11 @@ This document provides a comprehensive estimation of all features and user stori
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
 | **16.0** | **GMK-05: Growth and Marketing Module** | - | **288** | **240** | **384** | - | - | - | - |
 | 16.1 | GMK-05.1: Decentralized Referral System | - | - | - | - | - | - | - | - |
-| 16.1.1 | GMK-05.1.1: Referral Links & Commissions | 4 | 96 | 80 | 128 | Link generation, on-chain tracking, split payment, anti-sybil | 20% | Senior | Release |
+| 16.1.1 | GMK-05.1.1: Referral Links & Commissions | 4 | 96 | 80 | 128 | Link generation, on-chain tracking, split payment, anti-sybil | 20% | Lead | Release |
 | 16.2 | GMK-05.2: Lead Capture & Networking | - | - | - | - | - | - | - | - |
-| 16.2.1 | GMK-05.2.1: Opt-In Profile Sharing | 4 | 96 | 80 | 128 | Profile sharing opt-in, lead capture forms, CRM export | 20% | Senior | Release |
+| 16.2.1 | GMK-05.2.1: Opt-In Profile Sharing | 4 | 96 | 80 | 128 | Profile sharing opt-in, lead capture forms, CRM export | 20% | Lead | Release |
 | 16.3 | GMK-05.3: Sponsor Activation | - | - | - | - | - | - | - | - |
-| 16.3.1 | GMK-05.3.1: Sponsor Management & Engagement | 4 | 96 | 80 | 128 | Sponsor registry, booth check-in, gamification, analytics | 20% | Senior | Release |
+| 16.3.1 | GMK-05.3.1: Sponsor Management & Engagement | 4 | 96 | 80 | 128 | Sponsor registry, booth check-in, gamification, analytics | 20% | Lead | Release |
 
 ---
 
@@ -320,10 +319,10 @@ This document provides a comprehensive estimation of all features and user stori
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
 | **19.0** | **PHY-09: Physical Operations Module** | - | **288** | **240** | **384** | - | - | - | - |
 | 19.1 | PHY-09.1: Badge Printing & QR Access | - | - | - | - | - | - | - | - |
-| 19.1.1 | PHY-09.1.1: Badge Generation System | 4 | 96 | 80 | 128 | Badge template engine, QR encoding, batch processing | 20% | Senior | Release |
-| 19.1.2 | PHY-09.1.2: QR-Based Access Validation | 4 | 96 | 80 | 128 | Scanner app, on-chain verification, offline mode, fraud detection | 20% | Senior | Release |
+| 19.1.1 | PHY-09.1.1: Badge Generation System | 4 | 96 | 80 | 128 | Badge template engine, QR encoding, batch processing | 20% | Lead | Release |
+| 19.1.2 | PHY-09.1.2: QR-Based Access Validation | 4 | 96 | 80 | 128 | Scanner app, on-chain verification, offline mode, fraud detection | 20% | Lead | Release |
 | 19.2 | PHY-09.2: NFC-Based Access | - | - | - | - | - | - | - | - |
-| 19.2.1 | PHY-09.2.1: NFC Badge System | 4 | 96 | 80 | 128 | NFC encoding, reader integration, security layer | 25% | Senior | Release |
+| 19.2.1 | PHY-09.2.1: NFC Badge System | 4 | 96 | 80 | 128 | NFC encoding, reader integration, security layer | 25% | Lead | Release |
 
 ---
 

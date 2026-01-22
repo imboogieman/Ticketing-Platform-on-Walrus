@@ -10,92 +10,25 @@ This document defines the foundational technical infrastructure requirements for
 
 ### INF-05.1.1 Feature: Sui Network Foundation
 
-**User Story:** As a system architect, I want to leverage Sui's object-centric model and parallel execution, so that our platform can handle high-concurrency ticket sales with near-instant finality.
-
-**Actions:**
-
-- **Object-Centric Modeling:** Design all assets (Tickets, Events, Profiles) as independent objects to enable parallel processing and bypass the sequential bottleneck of global consensus
-- **Consensus Optimization:** Distinguish between owned objects (fast-path validation for check-ins) and shared objects (consensus-based logic for ticket pools) to minimize latency
-- **Environment Configuration:** Set up cross-environment configurations for Devnet, Testnet, and Mainnet using the Sui CLI and Client SDK
-- **Storage Fund Strategy:** Implement logic to manage upfront storage fees, ensuring long-term data persistence while taking advantage of Sui's storage rebate mechanism for deleted objects
-
-**Acceptance Criteria:**
-
-- All platform assets are designed as Sui objects with appropriate ownership models
-- Owned vs shared object strategy is documented and implemented
-- Development environment supports Devnet, Testnet, and Mainnet configurations
-- Storage fee management logic handles upfront costs and rebate mechanisms
-- Architecture supports parallel execution for high-concurrency operations
-
-**Deliverables:**
-
-- Documented architecture map showing the flow of objects across the Sui Network
-- Configured development environment with cross-network support
-- Smart contract implementation using object-centric design patterns
-- Storage fund management utilities
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.1.1 Feature: Sui Network Foundation | User Story: As a system architect, I want to leverage Sui's object-centric model and parallel execution, so that our platform can handle high-concurrency ticket sales with near-instant finality.<br><br>Actions:<br>- Object-Centric Modeling: Design all assets (Tickets, Events, Profiles) as independent objects to enable parallel processing and bypass the sequential bottleneck of global consensus<br>- Consensus Optimization: Distinguish between owned objects (fast-path validation for check-ins) and shared objects (consensus-based logic for ticket pools) to minimize latency<br>- Environment Configuration: Set up cross-environment configurations for Devnet, Testnet, and Mainnet using the Sui CLI and Client SDK<br>- Storage Fund Strategy: Implement logic to manage upfront storage fees, ensuring long-term data persistence while taking advantage of Sui's storage rebate mechanism for deleted objects<br><br>Acceptance Criteria:<br>- All platform assets are designed as Sui objects with appropriate ownership models<br>- Owned vs shared object strategy is documented and implemented<br>- Development environment supports Devnet, Testnet, and Mainnet configurations<br>- Storage fee management logic handles upfront costs and rebate mechanisms<br>- Architecture supports parallel execution for high-concurrency operations<br><br>Deliverables:<br>- Documented architecture map showing the flow of objects across the Sui Network<br>- Configured development environment with cross-network support<br>- Smart contract implementation using object-centric design patterns<br>- Storage fund management utilities | Not Started |
 
 ---
 
 ### INF-05.1.2 Feature: Gas Fee Optimization
 
-**User Story:** As a product manager, I want to minimize transaction costs and abstract gas away from the user, so that the onboarding experience via ZkLogin is indistinguishable from a Web2 application.
-
-**Actions:**
-
-- **Sponsored Transactions:** Implement a Gas Station service using the Sui TypeScript SDK to pay gas fees on behalf of users for critical onboarding actions like profile creation and ticket claims
-- **PTB Batching:** Chain multiple operations (e.g., buy_ticket + transfer + tag) into a single Programmable Transaction Block (PTB) to reduce execution overhead and storage costs
-- **Storage Fund Strategy:** Design objects to be "burned" or transitioned to Attendance NFTs post-event to reclaim storage fees for the organizer
-
-**Acceptance Criteria:**
-
-- Gas Station service successfully sponsors transactions for new users
-- Critical onboarding flows (profile creation, first ticket purchase) are gasless for users
-- PTB batching reduces transaction costs by at least 30% compared to individual operations
-- Storage fee reclamation mechanism is implemented and tested
-- Cost analysis demonstrates measurable gas savings
-
-**Deliverables:**
-
-- Functional Gas Station service with sponsored transaction capability
-- PTB batching implementation for common workflows
-- Cost reduction report demonstrating PTB efficiency gains
-- Storage fee reclamation utilities for post-event cleanup
-- Documentation on gas optimization strategies
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.1.2 Feature: Gas Fee Optimization | User Story: As a product manager, I want to minimize transaction costs and abstract gas away from the user, so that the onboarding experience via ZkLogin is indistinguishable from a Web2 application.<br><br>Actions:<br>- Sponsored Transactions: Implement a Gas Station service using the Sui TypeScript SDK to pay gas fees on behalf of users for critical onboarding actions like profile creation and ticket claims<br>- PTB Batching: Chain multiple operations (e.g., buy_ticket + transfer + tag) into a single Programmable Transaction Block (PTB) to reduce execution overhead and storage costs<br>- Storage Fund Strategy: Design objects to be "burned" or transitioned to Attendance NFTs post-event to reclaim storage fees for the organizer<br><br>Acceptance Criteria:<br>- Gas Station service successfully sponsors transactions for new users<br>- Critical onboarding flows (profile creation, first ticket purchase) are gasless for users<br>- PTB batching reduces transaction costs by at least 30% compared to individual operations<br>- Storage fee reclamation mechanism is implemented and tested<br>- Cost analysis demonstrates measurable gas savings<br><br>Deliverables:<br>- Functional Gas Station service with sponsored transaction capability<br>- PTB batching implementation for common workflows<br>- Cost reduction report demonstrating PTB efficiency gains<br>- Storage fee reclamation utilities for post-event cleanup<br>- Documentation on gas optimization strategies | Not Started |
 
 ---
 
 ### INF-05.1.3 Feature: High-Fidelity Transaction Validation
 
-**User Story:** As a security officer, I want rigorous on-chain and off-chain validation of every transaction, so that malicious calls are rejected and platform integrity is maintained.
-
-**Actions:**
-
-- **Move Bytecode Verifier:** Leverage Sui's native bytecode verifier to prevent reentrancy attacks, resource duplication, and unauthorized memory access at the compiler level
-- **Hot Potato Pattern:** Implement "Hot Potato" objects (objects without drop or store abilities) to enforce that critical workflows (like payment) are completed within the same transaction block
-- **Pre-Execution Simulation:** Use `sui_dryRunTransactionBlock` on the frontend to predict success/failure and gas costs before prompting the user for a signature
-- **Integrity Assertions:** Add granular `assert!` checks for every state transition (e.g., verifying capacity limits, price accuracy, and signature validity)
-
-**Acceptance Criteria:**
-
-- All smart contracts pass Move bytecode verification
-- Hot Potato pattern is implemented for critical payment and transfer flows
-- Frontend implements dry-run simulation before all user-signed transactions
-- Comprehensive assertion checks cover all state transitions
-- Security audit confirms protection against common attack vectors
-
-**Deliverables:**
-
-- Smart contracts with Hot Potato pattern implementation
-- Frontend transaction simulation integration
-- Comprehensive test suite covering 100+ "sad path" scenarios
-- Security documentation detailing validation mechanisms
-- Assertion coverage report for all state transitions
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.1.3 Feature: High-Fidelity Transaction Validation | User Story: As a security officer, I want rigorous on-chain and off-chain validation of every transaction, so that malicious calls are rejected and platform integrity is maintained.<br><br>Actions:<br>- Move Bytecode Verifier: Leverage Sui's native bytecode verifier to prevent reentrancy attacks, resource duplication, and unauthorized memory access at the compiler level<br>- Hot Potato Pattern: Implement "Hot Potato" objects (objects without drop or store abilities) to enforce that critical workflows (like payment) are completed within the same transaction block<br>- Pre-Execution Simulation: Use `sui_dryRunTransactionBlock` on the frontend to predict success/failure and gas costs before prompting the user for a signature<br>- Integrity Assertions: Add granular `assert!` checks for every state transition (e.g., verifying capacity limits, price accuracy, and signature validity)<br><br>Acceptance Criteria:<br>- All smart contracts pass Move bytecode verification<br>- Hot Potato pattern is implemented for critical payment and transfer flows<br>- Frontend implements dry-run simulation before all user-signed transactions<br>- Comprehensive assertion checks cover all state transitions<br>- Security audit confirms protection against common attack vectors<br><br>Deliverables:<br>- Smart contracts with Hot Potato pattern implementation<br>- Frontend transaction simulation integration<br>- Comprehensive test suite covering 100+ "sad path" scenarios<br>- Security documentation detailing validation mechanisms<br>- Assertion coverage report for all state transitions | Not Started |
 
 ---
 
@@ -103,31 +36,9 @@ This document defines the foundational technical infrastructure requirements for
 
 ### INF-05.2.1 Feature: Content Addressing
 
-**User Story:** As a developer, I want to utilize Walrus Blob IDs for all platform assets, so that data integrity is cryptographically guaranteed and assets are retrievable based on their content.
-
-**Actions:**
-
-- **Hashing Pipeline:** Implement a pre-upload process using the Walrus SDK to generate unique Blob IDs for every asset, including images, PDFs, and JSON metadata
-- **Immutable Linking:** Map Sui Move object attributes directly to Walrus Blob IDs, preventing "metadata spoofing" post-sale
-- **Resolution Layer:** Build a frontend resolver that fetches content directly from Walrus storage nodes using the content-addressed ID
-
-**Acceptance Criteria:**
-
-- All platform assets receive unique Blob IDs before upload
-- Sui Move objects store Blob IDs as primary content references
-- Frontend successfully retrieves content using Blob IDs
-- Content integrity is verifiable through cryptographic hashing
-- No metadata can be modified post-upload without changing Blob ID
-
-**Deliverables:**
-
-- Standardized Walrus hashing utility for content addressing
-- Sui Move schema with Blob ID storage fields
-- Frontend content resolver for Walrus retrieval
-- Content verification utilities
-- Documentation on content addressing architecture
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.2.1 Feature: Content Addressing | User Story: As a developer, I want to utilize Walrus Blob IDs for all platform assets, so that data integrity is cryptographically guaranteed and assets are retrievable based on their content.<br><br>Actions:<br>- Hashing Pipeline: Implement a pre-upload process using the Walrus SDK to generate unique Blob IDs for every asset, including images, PDFs, and JSON metadata<br>- Immutable Linking: Map Sui Move object attributes directly to Walrus Blob IDs, preventing "metadata spoofing" post-sale<br>- Resolution Layer: Build a frontend resolver that fetches content directly from Walrus storage nodes using the content-addressed ID<br><br>Acceptance Criteria:<br>- All platform assets receive unique Blob IDs before upload<br>- Sui Move objects store Blob IDs as primary content references<br>- Frontend successfully retrieves content using Blob IDs<br>- Content integrity is verifiable through cryptographic hashing<br>- No metadata can be modified post-upload without changing Blob ID<br><br>Deliverables:<br>- Standardized Walrus hashing utility for content addressing<br>- Sui Move schema with Blob ID storage fields<br>- Frontend content resolver for Walrus retrieval<br>- Content verification utilities<br>- Documentation on content addressing architecture | Not Started |
 
 **Cross-Reference:** Implements storage mechanism for DAT-04.1 (Decentralized Media Storage)
 
@@ -135,31 +46,9 @@ This document defines the foundational technical infrastructure requirements for
 
 ### INF-05.2.2 Feature: Seal-Based Access Encryption
 
-**User Story:** As a user, I want my sensitive event details (location, QR codes) to be locked via Seal encryption, so that only the rightful holder can decrypt and view the information.
-
-**Actions:**
-
-- **Policy Definition:** Define a Sui Move policy struct that specifies the conditions (e.g., ticket ownership) under which a holder is authorized to request decryption
-- **Seal Wrapping:** Use the Seal SDK to wrap sensitive attributes into ciphertext blobs anchored to the user's on-chain ticket object
-- **Threshold Request:** Configure the dApp to request "decryption fragments" from Sui key servers, which only succeed if on-chain ownership is verified via the Move policy
-
-**Acceptance Criteria:**
-
-- Seal policies are defined for ticket-based access control
-- Sensitive data is encrypted before storage on Walrus
-- Only ticket owners can successfully decrypt their ticket details
-- Encryption is anchored to on-chain ticket ownership
-- Decryption requests are validated against Move policies
-
-**Deliverables:**
-
-- Seal policy implementation in Move smart contracts
-- Seal SDK integration for encryption/decryption
-- Cryptographically gated storage system
-- Decryption request handling in frontend
-- Security documentation for Seal integration
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.2.2 Feature: Seal-Based Access Encryption | User Story: As a user, I want my sensitive event details (location, QR codes) to be locked via Seal encryption, so that only the rightful holder can decrypt and view the information.<br><br>Actions:<br>- Policy Definition: Define a Sui Move policy struct that specifies the conditions (e.g., ticket ownership) under which a holder is authorized to request decryption<br>- Seal Wrapping: Use the Seal SDK to wrap sensitive attributes into ciphertext blobs anchored to the user's on-chain ticket object<br>- Threshold Request: Configure the dApp to request "decryption fragments" from Sui key servers, which only succeed if on-chain ownership is verified via the Move policy<br><br>Acceptance Criteria:<br>- Seal policies are defined for ticket-based access control<br>- Sensitive data is encrypted before storage on Walrus<br>- Only ticket owners can successfully decrypt their ticket details<br>- Encryption is anchored to on-chain ticket ownership<br>- Decryption requests are validated against Move policies<br><br>Deliverables:<br>- Seal policy implementation in Move smart contracts<br>- Seal SDK integration for encryption/decryption<br>- Cryptographically gated storage system<br>- Decryption request handling in frontend<br>- Security documentation for Seal integration | Not Started |
 
 **Cross-Reference:** Implements ID-1.1.1 (Seal Encryption Integration) and DAT-04.2 (Seal Encryption for Ticket Metadata)
 
@@ -169,32 +58,9 @@ This document defines the foundational technical infrastructure requirements for
 
 ### INF-05.3.1 Feature: Session Controls
 
-**User Story:** As a user, I want a frictionless login process using my social accounts that manages my sessions securely without manual seed phrases.
-
-**Actions:**
-
-- **ZkLogin Integration:** Integrate Sui's ZkLogin flow to allow users to authenticate via Google or Twitch while maintaining a non-custodial wallet link
-- **Ephemeral Keypairs:** Utilize ZkLogin ephemeral keypairs valid only for specific Sui epochs to automate session management and revocation
-- **Session Caching:** Securely cache ephemeral private keys in session storage to allow the user to sign multiple transactions without re-logging during the event
-
-**Acceptance Criteria:**
-
-- Users can authenticate using Google, Twitch, or Apple accounts
-- ZkLogin flow creates non-custodial wallet connections
-- Ephemeral keys are properly scoped to Sui epochs
-- Session storage securely manages temporary credentials
-- Users can sign multiple transactions within a session without re-authentication
-- Sessions automatically expire based on epoch transitions
-
-**Deliverables:**
-
-- ZkLogin integration with multiple OAuth providers
-- Ephemeral keypair management system
-- Session storage implementation with security best practices
-- Session lifecycle management (creation, renewal, expiration)
-- Seamless social login experience without seed phrase management
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.3.1 Feature: Session Controls | User Story: As a user, I want a frictionless login process using my social accounts that manages my sessions securely without manual seed phrases.<br><br>Actions:<br>- ZkLogin Integration: Integrate Sui's ZkLogin flow to allow users to authenticate via Google or Twitch while maintaining a non-custodial wallet link<br>- Ephemeral Keypairs: Utilize ZkLogin ephemeral keypairs valid only for specific Sui epochs to automate session management and revocation<br>- Session Caching: Securely cache ephemeral private keys in session storage to allow the user to sign multiple transactions without re-logging during the event<br><br>Acceptance Criteria:<br>- Users can authenticate using Google, Twitch, or Apple accounts<br>- ZkLogin flow creates non-custodial wallet connections<br>- Ephemeral keys are properly scoped to Sui epochs<br>- Session storage securely manages temporary credentials<br>- Users can sign multiple transactions within a session without re-authentication<br>- Sessions automatically expire based on epoch transitions<br><br>Deliverables:<br>- ZkLogin integration with multiple OAuth providers<br>- Ephemeral keypair management system<br>- Session storage implementation with security best practices<br>- Session lifecycle management (creation, renewal, expiration)<br>- Seamless social login experience without seed phrase management | Not Started |
 
 **Cross-Reference:** Implements ID-1.2.2 (Social Login Integration) and RC-1.2 (ZkLogin Support for User Onboarding)
 
@@ -204,32 +70,9 @@ This document defines the foundational technical infrastructure requirements for
 
 ### INF-05.4.1 Feature: Walrus Site Static Hosting
 
-**User Story:** As a platform owner, I want to host the marketplace and event pages on Walrus Sites, so that the user interface is decentralized and censorship-resistant.
-
-**Actions:**
-
-- **Site Deployment:** Use the Walrus Site-builder CLI to upload the React/Next.js static export to Walrus, generating a decentralized URL
-- **Sui Object Rooting:** Root the entire marketplace site in a Sui object, allowing for versioned updates by modifying a single field on-chain
-- **SuiNS Integration:** Link human-readable domains (e.g., tickets.walrus.sui) to the Walrus Site object ID for easy user access
-
-**Acceptance Criteria:**
-
-- Static frontend is successfully deployed to Walrus Sites
-- Decentralized URL is accessible and fully functional
-- Site is rooted in a Sui object for versioning
-- SuiNS domain resolves to Walrus Site
-- Site updates can be managed through on-chain object modifications
-- Hosting is censorship-resistant and decentralized
-
-**Deliverables:**
-
-- Fully deployed decentralized frontend at a .walrus.site address
-- Walrus Site-builder deployment scripts
-- Sui object for site versioning and updates
-- SuiNS domain configuration
-- Deployment documentation and procedures
-
-**Status:** Not Started
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| INF-05.4.1 Feature: Walrus Site Static Hosting | User Story: As a platform owner, I want to host the marketplace and event pages on Walrus Sites, so that the user interface is decentralized and censorship-resistant.<br><br>Actions:<br>- Site Deployment: Use the Walrus Site-builder CLI to upload the React/Next.js static export to Walrus, generating a decentralized URL<br>- Sui Object Rooting: Root the entire marketplace site in a Sui object, allowing for versioned updates by modifying a single field on-chain<br>- SuiNS Integration: Link human-readable domains (e.g., tickets.walrus.sui) to the Walrus Site object ID for easy user access<br><br>Acceptance Criteria:<br>- Static frontend is successfully deployed to Walrus Sites<br>- Decentralized URL is accessible and fully functional<br>- Site is rooted in a Sui object for versioning<br>- SuiNS domain resolves to Walrus Site<br>- Site updates can be managed through on-chain object modifications<br>- Hosting is censorship-resistant and decentralized<br><br>Deliverables:<br>- Fully deployed decentralized frontend at a .walrus.site address<br>- Walrus Site-builder deployment scripts<br>- Sui object for site versioning and updates<br>- SuiNS domain configuration<br>- Deployment documentation and procedures | Not Started |
 
 **Cross-Reference:** Implements DAT-04.5 (Decentralized Platform Hosting) and DAT-04.6 (Per-Event Walrus Sites Infrastructure)
 

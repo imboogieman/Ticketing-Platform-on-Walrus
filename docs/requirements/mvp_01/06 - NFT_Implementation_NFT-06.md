@@ -15,18 +15,6 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ---
 
-## 14.1.2. Feature: Dynamic QR Code Generation (NFT-14.1.2)
-
-**⚠️ CROSS-REFERENCE:** This is a documentation reference only. The actual implementation is in **TS-18.1.1** (QR Code Generation).
-
-**Estimate:** 0 hours (implementation covered by TS-18.1.1)
-
-| User Story Title | User Story Body |
-| --- | --- |
-| 14.1.2. Feature: Dynamic QR Code Generation (NFT-14.1.2) - REFERENCE ONLY | **Implementation:** See [TS-18.1.1 - QR Code Generation](08 - Ticketing_System_TS-08.md#1811-feature-qr-code-generation-ts-1811) for the primary implementation.<br><br>User Story: As an attendee, I want my ticket NFT to display a dynamic QR code that refreshes periodically, so that my ticket cannot be stolen via screenshot or shared fraudulently.<br><br>**Primary Implementation (TS-18.1.1):**<br>- QR Payload: Generate a client-side QR code containing a signed payload of TicketID + UserAddress + Timestamp + One-Time-Salt using the attendee's wallet signature.<br>- Auto-Refresh: Configure the mobile dApp to refresh the QR payload every 30 seconds with a new timestamp and salt, ensuring only "live" tickets are valid.<br>- Cryptographic Binding: The QR signature must be verifiable on-chain using the ticket owner's public key to prevent forgery.<br>- Scan Integration: When scanned at venue, the QR triggers the redeem_ticket function (see AM-3.1.1) which validates ownership and marks attendance.<br><br>**Cross-References:**<br>- Primary Implementation: TS-18.1.1 (QR Code Generation)<br>- Scanning Workflow: AM-3.1.1 (Check-in Procedures) and AM-3.4.2 (QR Code Scanning)<br>- Related: NFT Display uses QR code as visual component<br><br>Deliverable: Dynamic QR code functionality integrated into ticket NFT display (implementation via TS-18.1.1). |
-
----
-
 ## 14.2. Feature: Metadata Standards (SIP-16/Display) (NFT-14.2)
 
 ### 14.2.1. Feature: Metadata Standards (SIP-16/Display) (NFT-14.2.1)
@@ -112,7 +100,6 @@ This document outlines the advanced NFT implementation requirements for the Tick
 | Feature | ID | Status |
 |---------|----|----|
 | Ticket NFTs on Sui (Base Object) | NFT-14.1.1 | Not Started |
-| Dynamic QR Code Generation | NFT-14.1.2 | Not Started |
 | Metadata Standards (SIP-16/Display) | NFT-14.2.1 | Not Started |
 | Ticket Transfer Logic | NFT-14.3.1 | Not Started |
 | Encrypted Metadata (Sui Seal Integration) | NFT-14.5.1 | Not Started |
@@ -150,11 +137,11 @@ This document outlines the advanced NFT implementation requirements for the Tick
 This module integrates with:
 - **Identity & Authentication (ID-01)**: zkLogin integration for Web2 user onboarding (NFT-14.11)
 - **Attendance Management (AM-03)**: 
-  - QR code scanning and check-in procedures (AM-3.1.1, AM-3.4.2) triggered by NFT-14.1.2
+  - QR code scanning and check-in procedures (AM-3.1.1, AM-3.4.2) using dynamic QR from TS-18.1.1
   - Ticket redemption and SBT badge minting (AM-3.2.1) using NFT-14.10
   - Timestamped verification (AM-3.5.1) for attendance tracking
 - **Event Access & Validation (EA-1)**:
-  - QR-based validation (EA-1.2) consumes dynamic QR from NFT-14.1.2
+  - QR-based validation (EA-1.2) consumes dynamic QR from TS-18.1.1
   - Wallet-based validation (EA-1.3) uses ticket ownership proof from NFT-14.1.1
   - Ticket ownership verification (EA-1.4) validates on-chain ownership
 - **Data Preservation & Storage (DAT-04)**: Walrus blob storage for NFT metadata and encrypted content

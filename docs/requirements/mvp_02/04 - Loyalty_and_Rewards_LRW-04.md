@@ -27,43 +27,6 @@ The Loyalty and Rewards module provides gamification, points systems, and reward
 
 **Deliverable:** A complete loop: User scans ticket → Balance increases → Tier updates → User "spends" balance → User receives 20% off coupon + achievement unlocked.
 
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" (Optional/Extended Features)
-- Supports "Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems" (Attendance Verification)
-- Enables "Event participation becomes composable data for airdrops, loyalty, and engagement insights" (Enables for Ecosystems)
-- Supports "True ownership of tickets, private encrypted access, and reputation-building through attendance" (Enables for Users)
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Loyalty Token System | LRW-04.1.1 | ✅ Aligned | Optional Features: Loyalty programs leveraging on-chain attendance |
-
----
-
-## High-Level Alignment Analysis
-
-### ✅ Strongly Aligned
-
-The Loyalty Points & Rewards feature is explicitly called out in the RFP:
-
-> "Integration points for event apps, sponsor activations, or **loyalty programs that leverage on-chain attendance data**"
-
-> "Proof of attendance can later be used for airdrops, follow-up campaigns, or **reputation systems**"
-
-This feature directly implements:
-
-1. **Attendance-Triggered Rewards:** Points minted upon ticket redemption (gate scan)
-2. **On-Chain Composability:** `Coin<LOYALTY>` follows Sui standards, enabling ecosystem integration
-3. **Tier System:** Bronze → Silver → Gold → Platinum progression with tier-specific perks
-4. **Tier Multipliers:** VIP SBT holders receive bonus points, creating tiered engagement
-5. **Gamification:** Badges, streaks, and achievements incentivize repeat attendance
-6. **Redemption Marketplace:** Converts loyalty into tangible value (discounts, merchandise)
-
-> **Note:** This feature consolidates OE-1.7 (Loyalty Program & Reward Tiers) which has been merged into this document.
-
 ---
 
 ## Dependencies

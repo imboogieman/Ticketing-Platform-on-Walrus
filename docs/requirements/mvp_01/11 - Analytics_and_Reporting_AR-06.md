@@ -23,11 +23,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **Deliverable:** A professional, downloadable Event Summary Report that provides a detailed 360-degree view of the event's performance.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Organizers can export anonymized attendance data for analytics" (Post-Event Interaction)
-- Supports "Ticket sales reports for tax" (Post-Event Interaction)
-- Enables "Transparent, verifiable event data and participant history" (Enables for Organizers)
-
 ---
 
 ### 6.1.2. Feature: On-Chain Loyalty History (AR-6.1.2)
@@ -44,11 +39,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 | UI Ranking | Display a "Top Fans" leaderboard in the organizer's dashboard to facilitate targeted outreach. |
 
 **Deliverable:** An immutable, cross-event loyalty tracking system that mathematically identifies and ranks the most engaged community members.
-
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems" (Attendance Verification)
-- Supports "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" (Optional/Extended Features)
-- Enables "Event participation becomes composable data for airdrops, loyalty, and engagement insights" (Enables for Ecosystems)
 
 ---
 
@@ -67,11 +57,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **Deliverable:** A granular No-Show Analytics module that helps organizers minimize wasted capacity and maximize revenue.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Transparent, verifiable event data and participant history" (Enables for Organizers)
-- Supports "Attendance tracking and participation proof on-chain" (Event Access & Validation)
-- Leverages on-chain ticket redemption data for analytics
-
 ---
 
 ### 6.1.4. Feature: Get Event Attendance Data (AR-6.1.4)
@@ -88,11 +73,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 | Rate Limiting | Apply API keys and rate limits to the endpoint to protect the indexing infrastructure from excessive external queries. |
 
 **Deliverable:** A high-performance, developer-friendly API that serves as the "Digital Pulse" of the event for external integrations.
-
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Organizers can export anonymized attendance data for analytics" (Post-Event Interaction)
-- Enables "Event participation becomes composable data for airdrops, loyalty, and engagement insights" (Enables for Ecosystems)
-- Supports "Integration points for event apps, sponsor activations, or loyalty programs" (Optional/Extended Features)
 
 ---
 
@@ -113,11 +93,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **Deliverable:** A master "Platform Health" dashboard for administrators featuring real-time aggregated throughput and performance KPIs.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Transparent, verifiable event data and participant history" (Enables for Organizers)
-- Enables platform-wide monitoring for Sui network health and performance
-- Supports scalability requirements for the decentralized platform
-
 ---
 
 ## 6.3. Feature: Sales Analytics (AR-6.3)
@@ -137,11 +112,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **Deliverable:** An automated sales reporting module that provides a real-time, auditor-ready view of all event-related inflows.
 
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Ticket sales reports for tax" (Post-Event Interaction)
-- Supports "Payment integrations and discount code management" (Event Creation & Registration)
-- Enables "Transparent, verifiable event data" (Enables for Organizers)
-
 ---
 
 ### 6.3.2. Feature: Discount Code Usage Counts (AR-6.3.2)
@@ -158,11 +128,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 | Automated Expiry | Trigger a notification when a limited-use code (e.g., "First 100 uses") is nearing its redemption limit. |
 
 **Deliverable:** A "Promotion Analytics" dashboard that ranks all marketing campaigns by their net revenue and conversion performance.
-
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Payment integrations and discount code management" (Event Creation & Registration)
-- Enables marketing ROI tracking for organizers
-- Supports "Transparent, verifiable event data" (Enables for Organizers)
 
 ---
 
@@ -183,11 +148,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **Deliverable:** A secure data export tool that provides high-utility business intelligence while remaining 100% compliant with 2026 global privacy standards.
 
-**RFP Alignment:** ✅ **Aligned**
-- Directly supports "Organizers can export anonymized attendance data for analytics" (Post-Event Interaction)
-- Supports "Users retain control over their Walrus-stored data and may delete or revoke access to their encrypted blobs while on-chain proofs remain intact" (Post-Event Interaction)
-- Aligns with Seal encryption and privacy-first architecture
-
 ---
 
 ### 6.4.2. Feature: Success Metrics (AR-6.4.2)
@@ -204,58 +164,6 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 | Benchmarking Dashboard | Provide organizers with a "Platform Average" comparison for their event's success metrics to help them gauge their relative performance. |
 
 **Deliverable:** A platform-wide "Success Dashboard" that utilizes ZK-aggregation to provide deep insights into user satisfaction and retention.
-
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems" (Attendance Verification)
-- Supports "True ownership of tickets, private encrypted access, and reputation-building through attendance" (Enables for Users)
-- Enables platform improvement while maintaining user sovereignty
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Generate Event Report | AR-6.1.1 | ✅ Aligned | Post-Event Interaction: Export attendance data, Sales reports for tax |
-| On-Chain Loyalty History | AR-6.1.2 | ✅ Aligned | Attendance Verification: Proof for loyalty programs |
-| No-Show Rates | AR-6.1.3 | ✅ Aligned | Event Access & Validation: Attendance tracking |
-| Get Event Attendance Data | AR-6.1.4 | ✅ Aligned | Post-Event Interaction: Export attendance data |
-| Aggregated Insights | AR-6.2.1 | ✅ Aligned | Enables: Transparent, verifiable event data |
-| Ticket Sales Reports | AR-6.3.1 | ✅ Aligned | Post-Event Interaction: Ticket sales reports for tax |
-| Discount Code Usage Counts | AR-6.3.2 | ✅ Aligned | Event Creation: Discount code management |
-| Anonymized Data Export | AR-6.4.1 | ✅ Aligned | Post-Event Interaction: Export anonymized attendance data |
-| Success Metrics | AR-6.4.2 | ✅ Aligned | Enables: Reputation-building through attendance |
-
----
-
-## High-Level Alignment Analysis
-
-### ✅ Strongly Aligned Features
-
-All proposed user stories in AR-06 align with the RFP's stated goals:
-
-1. **Post-Event Interaction Requirements:**
-   - "Organizers can export anonymized attendance data for analytics" → AR-6.1.4, AR-6.4.1
-   - "Ticket sales reports for tax" → AR-6.3.1
-   - "Event data remains verifiable on Walrus" → AR-6.1.1, AR-6.2.1
-
-2. **Enables for Organizers:**
-   - "Transparent, verifiable event data and participant history" → AR-6.1.1, AR-6.1.3, AR-6.2.1
-
-3. **Enables for Ecosystems:**
-   - "Event participation becomes composable data for airdrops, loyalty, and engagement insights" → AR-6.1.2, AR-6.1.4
-
-4. **Attendance Verification:**
-   - "Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems" → AR-6.1.2, AR-6.4.2
-
-5. **Optional/Extended Features:**
-   - "Integration points for event apps, sponsor activations, or loyalty programs that leverage on-chain attendance data" → AR-6.1.2, AR-6.1.4
-
-### 📝 Notes on Scope
-
-- **AR-6.2.1 (Aggregated Insights):** While not explicitly mentioned in the RFP, this feature supports platform scalability and operational excellence, which is implicit in delivering a production-ready platform.
-- **AR-6.3.2 (Discount Code Usage):** Extends the RFP's "discount code management" requirement with analytics capabilities for marketing ROI.
-- **AR-6.4.2 (Success Metrics with ZK):** Extends the privacy-first architecture with advanced ZK-aggregation, aligning with the platform's use of Seal encryption.
 
 ---
 
@@ -283,8 +191,6 @@ All proposed user stories in AR-06 align with the RFP's stated goals:
 - Social sharing features (Twitter, LinkedIn cards)
 - Portfolio customization options (theme, layout, visibility)
 - Portfolio API for third-party integrations
-
-**RFP Alignment:** ✅ Supports *"True ownership of tickets, private encrypted access, and reputation-building through attendance"* and *"Proof of attendance can later be used for airdrops, follow-up campaigns, or reputation systems"*.
 
 **Cross-Reference:** Integrates with UPS-02 (User Profile System) for badge display, AM-3.2.1 (Attendance SBTs) for badge data, NFT-14.8 (SBT Standards).
 

@@ -23,11 +23,6 @@ The Content and Materials module provides capabilities for sharing, accessing, a
 
 **Deliverable:** A decentralized asset library where session-specific materials are permanently linked to the event's on-chain record.
 
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Ticket holders gain access to a full Walrus Site containing event-specific content (agenda, speakers, media, announcements)" (Event Access & Validation)
-- Leverages Walrus Protocol for decentralized, permanent storage
-- Supports "Event data remains verifiable on Walrus" (Post-Event Interaction)
-
 ---
 
 ## 2.2. Feature: Presentation Access (CNT-02.2)
@@ -46,20 +41,6 @@ The Content and Materials module provides capabilities for sharing, accessing, a
 | Access Analytics | Emit a `MaterialAccessed` event (anonymized) to help organizers understand which presentations were most popular among VIPs. |
 
 **Deliverable:** A secure, token-gated content portal that enforces tiered access to exclusive event media and documentation.
-
-**RFP Alignment:** ✅ **Aligned**
-- Supports "Ticket blob includes encrypted metadata locked via Seal. Only the rightful holder can decrypt and view details" (NFT Ticketing)
-- Supports "Multi-track or multi-flow registration support for larger events with different ticket tiers" (Optional/Extended Features)
-- Leverages Seal encryption for NFT-gated access control
-
----
-
-## RFP Alignment Summary
-
-| Feature | ID | RFP Alignment | Primary RFP Reference |
-|---------|----|----|-----|
-| Speaker Material Upload | CNT-02.1.1 | ✅ Aligned | Event Access: Walrus Site with event-specific content |
-| Tier-Gated Content | CNT-02.2.1 | ✅ Aligned | NFT Ticketing: Seal-encrypted, rightful holder access |
 
 ---
 
