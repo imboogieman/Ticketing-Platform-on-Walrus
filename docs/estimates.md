@@ -44,8 +44,8 @@ This document provides a comprehensive estimation of all features and user stori
 | 0.1.1 | UXD-00.1.1: User Research and Personas | 2 | 24 | 12 | 48 | AI-assisted persona generation, lean user research | 10% | UX | Discovery |
 | 0.2.1 | UXD-00.2.1: Site Map and User Flows | 2 | 24 | 12 | 48 | AI sitemap generation tools (Whimsical AI, FigJam), core flows only | 10% | UX | Discovery |
 | 0.3.1 | UXD-00.3.1: Wireframes (Key Screens) | 2 | 24 | 12 | 48 | AI wireframe generation (Uizard, v0.dev), essential screens | 10% | UX | Design |
-| 0.4.1 | UXD-00.4.1: Design System (AI-enhanced) | 2 | 24 | 12 | 48 | Figma AI variables, Tailwind preset, AI component generation | 10% | UI | Design |
-| 0.4.2 | UXD-00.4.2: High-Fidelity Mockups (AI-generated) | 2 | 24 | 12 | 48 | v0.dev/Galileo AI for initial mockups, manual refinement | 10% | UI | Design |
+| 0.4.1 | UXD-00.4.1: Design System  | 2 | 24 | 12 | 48 | Figma AI variables, Tailwind preset, AI component generation | 10% | UI | Design |
+| 0.4.2 | UXD-00.4.2: High-Fidelity Mockups | 2 | 24 | 12 | 48 | v0.dev/Galileo AI for initial mockups, manual refinement | 10% | UI | Design |
 
 ---
 
