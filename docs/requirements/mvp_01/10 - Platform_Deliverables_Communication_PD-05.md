@@ -79,6 +79,16 @@ This document outlines the communication **features and use cases** for the Tick
 
 ---
 
+## 05.4. Feature: Content Access Control (PD-05.4)
+
+### 05.4.1. Feature: Tier-Gated Content (PD-05.4.1)
+
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| 05.4.1. Feature: Tier-Gated Content (PD-05.4.1) | User Story: As a premium attendee, I want exclusive access to high-definition recordings and private workshop notes, so that I receive the full value of my VIP ticket tier.<br><br>Actions:<br>**Tier-Based Gating:** Implement a `check_tier` logic in the Move contract that only exposes the Walrus `BlobID` to users holding a `VIP_Ticket` object.<br>**Seal-Policy Gating:** Use Sui Seal to encrypt the sensitive material links, only releasing the decryption key to users who sign a proof-of-ownership challenge.<br>**Dynamic Content Release:** Schedule the "Unlock" of specific recordings to trigger automatically 24 hours after a session ends, based on the Sui network Clock.<br>**Access Analytics:** Emit a `MaterialAccessed` event (anonymized) to help organizers understand which presentations were most popular among VIPs.<br><br>Deliverable: A secure, token-gated content portal that enforces tiered access to exclusive event media and documentation. | Not Started |
+
+---
+
 ## Summary of Platform Deliverables: Communication System
 
 | Feature | ID | Status |
@@ -94,6 +104,8 @@ This document outlines the communication **features and use cases** for the Tick
 | **Notification System** | PD-05.3 | Not Started |
 | Event Reminders | PD-05.3.1 | Not Started |
 | Important Announcements | PD-05.3.2 | Not Started |
+| **Content Access Control** | PD-05.4 | Not Started |
+| Tier-Gated Content | PD-05.4.1 | Not Started |
 
 ---
 

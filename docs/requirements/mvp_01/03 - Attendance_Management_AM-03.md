@@ -29,8 +29,6 @@ This document outlines attendance management requirements, including on-site reg
 
 ### 3.3.2. Feature: Walrus Site Access Integration (AM-3.3.2)
 
-**Estimate:** 20 hours (reduced from 32 hrs - shares infrastructure with AM-3.4.3)
-
 | User Story Title | User Story Body |
 | --- | --- |
 | 3.3.2. Feature: Walrus Site Access Integration (AM-3.3.2) | User Story: As an attendee, I want to access exclusive pre-event digital content (event schedules, speaker bios, preparation materials) on a Walrus Site, so that my ticket provides digital value before physical entry.<br><br>Actions:<br>- Public Site Architecture: Deploy Walrus Site as publicly accessible infrastructure, but encrypt specific premium content blobs using Sui Seal.<br>- NFT-Based Content Gating: Implement client-side verification that checks proof-of-ownership of the event's Ticket NFT before requesting decryption keys for premium content.<br>- Selective Encryption: Encrypt only premium assets (videos, documents, galleries) while keeping the site structure and basic information public.<br>- Session-Based Decryption: Utilize the attendee's wallet signature to request decryption fragments from Sui Seal for accessing gated content during their browsing session.<br>- Pre-Event Access: This feature grants access based on ticket ownership alone, without requiring physical check-in (see AM-3.4.3 for post-redemption content).<br>- **Shared Infrastructure:** The Seal encryption/decryption infrastructure is shared with AM-3.4.3 (Post-Redemption Gated Content), reducing total implementation effort by ~40%.<br><br>Deliverable: A publicly hosted Walrus Site with selectively encrypted premium content accessible only to valid Ticket NFT holders. Core encryption infrastructure reusable for AM-3.4.3. |
@@ -48,8 +46,6 @@ This document outlines attendance management requirements, including on-site reg
 | 3.4.2. Feature: QR Code Scanning (AM-3.4.2) | User Story: As an attendee, I want to present a dynamic, high-resolution QR code, so that I can enter the venue quickly without the risk of my ticket being stolen via a simple screenshot.<br><br>**Implementation Note:** This feature uses the QR code library implemented in TS-18.1.1. The effort here covers scanner app integration and validation workflow.<br><br>Actions:<br>- Dynamic Payload: Uses QR generation from TS-18.1.1 containing signed payload of TicketID + UserAddress + Timestamp + One-Time-Salt.<br>- Short-Lived Validity: Implements scanner validation with 30-second refresh window from TS-18.1.1.<br>- Fast-Path Processing: Optimize the scanner app to utilize Sui's Owned-Object transaction lane, hitting finality in <400ms.<br>- Scanner Integration: Build venue-side scanner app that validates QR codes and triggers check-in flow (AM-3.1.1).<br><br>Cross-Reference: QR Generation (TS-18.1.1), Check-in Procedures (AM-3.1.1)<br><br>Deliverable: Venue scanner app integrated with TS-18.1.1 QR generation library for fraud-proof entry validation. |
 
 ### 3.4.3. Feature: Gated Content (AM-3.4.3)
-
-**Estimate:** 20 hours (reduced from 32 hrs - reuses infrastructure from AM-3.3.2)
 
 | User Story Title | User Story Body |
 | --- | --- |

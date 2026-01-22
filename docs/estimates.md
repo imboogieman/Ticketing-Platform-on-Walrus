@@ -9,8 +9,8 @@ This document provides a comprehensive estimation of all features and user stori
 | Parameter | Value | Description |
 |-----------|-------|-------------|
 | Base Hours per Complexity Point | 12 hrs | Default end-to-end delivery (study + build + test + deploy) for complexity factor 1 |
-| Best Case Multiplier | 6 hrs (0.5x) | Optimal conditions: perfect SDK reuse, clear templates, no blockers |
-| Worst Case Multiplier | 24 hrs (2.0x) | Integration challenges, unclear docs, testing complexity, dependency issues |
+| Best Case Multiplier | 6 hrs | Optimal conditions (0.5x): perfect SDK reuse, clear templates, no blockers |
+| Worst Case Multiplier | 24 hrs | Integration challenges (2.0x): unclear docs, testing complexity, dependency issues |
 | Complexity Scale | 1-6 | 1=Simple, 6=Highly Complex |
 | AI Assistance Factor | 10-20% | Time reduction for AI code generation (Copilot, Cursor, v0.dev) |
 | SDK Reuse Factor | 30-50% | Time reduction for well-documented SDKs (Sui, Walrus, zkLogin) |
@@ -53,11 +53,11 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **1.0** | **ID-01: Identity & Authentication Module** | - | **108** | **54** | **216** | Leveraging existing profile/auth infrastructure (50% reuse) | - | - | - |
+| **1.0** | **ID-01: Identity & Authentication Module** | - | **108** | **54** | **216** | - | - | - | - |
 | 1.1.1 | ID-1.1.1: Seal Encryption Integration | 3 | 36 | 18 | 72 | Sui Seal SDK integration (library-based), policy config, AI-assisted implementation | 15% | Senior | Alpha |
 | 1.1.2 | ID-1.1.2: User Registration System Architecture | 2 | 24 | 12 | 48 | Move struct (AI-generated), basic UI components, dual auth path | 10% | Senior | Alpha |
 | 1.2.1 | ID-1.2.1: Wallet Connection | 2 | 24 | 12 | 48 | Sui Wallet Standard (well-documented), connection modal, AI component generation | 8% | Mid | Alpha |
-| 1.2.2 | ID-1.2.2: Social Login Integration (zkLogin) | 2 | 24 | 12 | 48 | Adapting existing zkLogin implementation, OIDC config reuse | 8% | Senior | Alpha |
+| 1.2.2 | ID-1.2.2: Social Login Integration (zkLogin) | 2 | 24 | 12 | 48 | zkLogin SDK integration, OIDC provider setup, session management | 8% | Senior | Alpha |
 
 ---
 
@@ -65,10 +65,10 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **2.0** | **UPS-02: User Profile System Module** | - | **36** | **18** | **72** | Reusing existing profile registry and metadata patterns (50% reuse) | - | - | - |
-| 2.1.3 | UPS-02.1.3: Avatar Upload | 1 | 12 | 6 | 24 | Adapting existing Walrus upload patterns | 5% | Junior | Beta |
-| 2.3.1 | UPS-02.3.1: Attendance History | 1 | 12 | 6 | 24 | Reusing profile history patterns with event-specific adaptation | 5% | Junior | Beta |
-| 2.4.1 | UPS-02.4.1: Badge Display | 1 | 12 | 6 | 24 | Direct reuse of existing SBT display implementation | 5% | Junior | Beta |
+| **2.0** | **UPS-02: User Profile System Module** | - | **36** | **18** | **72** | - | - | - | - |
+| 2.1.3 | UPS-02.1.3: Avatar Upload | 1 | 12 | 6 | 24 | Walrus blob upload, image optimization, profile linking | 5% | Junior | Beta |
+| 2.3.1 | UPS-02.3.1: Attendance History | 1 | 12 | 6 | 24 | Query SBT badges, attendance timeline, event list UI | 5% | Junior | Beta |
+| 2.4.1 | UPS-02.4.1: Badge Display | 1 | 12 | 6 | 24 | Badge gallery UI, SBT metadata rendering, achievement showcase | 5% | Junior | Beta |
 
 ---
 
@@ -76,9 +76,9 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **3.0** | **AM-03: Attendance Management Module** | - | **168** | **84** | **336** | Badge minting patterns reused (25% savings on SBT components) | - | - | - |
+| **3.0** | **AM-03: Attendance Management Module** | - | **168** | **84** | **336** | - | - | - | - |
 | 3.1.1 | AM-3.1.1: Check-in Procedures | 3 | 36 | 18 | 72 | Move redeem function (AI-generated), scanner UI, basic fraud checks | 12% | Senior | RC |
-| 3.2.1 | AM-3.2.1: SBT Minting on Check-in | 2 | 24 | 12 | 48 | Adapting existing threshold-based SBT minting logic | 8% | Senior | RC |
+| 3.2.1 | AM-3.2.1: SBT Minting on Check-in | 2 | 24 | 12 | 48 | SBT struct, atomic PTB trigger, dynamic fields, transfer restrictions | 8% | Senior | RC |
 | 3.3.2 | AM-3.3.2: Walrus Site Access (Pre-Event) | 2 | 24 | 12 | 48 | Seal policy check (SDK), NFT ownership validation, content gate UI, shared with AM-3.4.3 | 10% | Senior | RC |
 | 3.4.2 | AM-3.4.2: QR Code Generation & Scan | 2 | 24 | 12 | 48 | QR library integration, dynamic payload, scanner app (template-based) | 10% | Mid | RC |
 | 3.4.3 | AM-3.4.3: Gated Content (Post-Redemption) | 2 | 24 | 12 | 48 | Redemption-based Seal policy extension, reuses AM-3.3.2 infrastructure | 10% | Senior | RC |
@@ -104,9 +104,9 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **5.0** | **INF-05: Technical Infrastructure Module** | - | **60** | **30** | **120** | Reusing existing Sui network setup and transaction patterns (50% reuse) | - | - | - |
-| 5.1.1 | INF-05.1.1: Sui Network Setup | 1 | 12 | 6 | 24 | Configuration reuse from existing deployment templates | 5% | DevOps | Alpha |
-| 5.1.2 | INF-05.1.2: Gas Sponsorship | 1 | 12 | 6 | 24 | Adapting existing PTB batching patterns | 5% | Senior | Beta |
+| **5.0** | **INF-05: Technical Infrastructure Module** | - | **60** | **30** | **120** | - | - | - | - |
+| 5.1.1 | INF-05.1.1: Sui Network Setup | 1 | 12 | 6 | 24 | Network config, RPC endpoints, wallet setup, deployment scripts | 5% | DevOps | Alpha |
+| 5.1.2 | INF-05.1.2: Gas Sponsorship | 1 | 12 | 6 | 24 | Sponsored transaction setup, PTB batching, gas budget config | 5% | Senior | Beta |
 | 5.1.3 | INF-05.1.3: Transaction Validation | 2 | 24 | 12 | 48 | Dry-run integration, basic assertions, SDK-based patterns | 8% | Senior | RC |
 | 5.3.1 | INF-05.3.1: Session Management | 2 | 24 | 12 | 48 | Session storage utilities, epoch-based expiry, standard patterns | 10% | Mid | Alpha |
 
@@ -116,14 +116,14 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **6.0** | **NFT-06: NFT Implementation Module** | - | **168** | **84** | **336** | SBT infrastructure reusable (15% savings on badge patterns) | - | - | - |
+| **6.0** | **NFT-06: NFT Implementation Module** | - | **168** | **84** | **336** | - | - | - | - |
 | 6.1.1 | NFT-14.1.1: Ticket NFT Move Contract | 3 | 36 | 18 | 72 | Move struct (AI-generated), capability pattern, basic ownership | 12% | Senior | Beta |
 | 6.2.1 | NFT-14.2.1: Metadata Display (SIP-16) | 2 | 24 | 12 | 48 | Display standard (SDK pattern), template mapping | 8% | Junior | Beta |
 | 6.3.1 | NFT-14.3.1: Transfer Logic | 2 | 24 | 12 | 48 | Transfer flag toggle, basic transfer function | 10% | Senior | Beta |
 | 6.5.1 | NFT-14.5.1: Encrypted Metadata | 2 | 24 | 12 | 48 | Seal integration (already implemented in 1.1.1), NFT-specific usage | 10% | Senior | Beta |
 | 6.6.1 | NFT-14.6.1: Mutable State (Redemption) | 2 | 24 | 12 | 48 | is_redeemed boolean toggle, capability gating | 8% | Senior | RC |
-| 6.8.1 | NFT-14.8.1: SBT Contract | 1 | 12 | 6 | 24 | Reusing existing SBT interface patterns | 5% | Senior | Beta |
-| 6.9.1 | NFT-14.9.1: SBT Non-transfer Logic | 1 | 12 | 6 | 24 | Direct adaptation of non-transferable implementation | 5% | Senior | Beta |
+| 6.8.1 | NFT-14.8.1: SBT Contract | 1 | 12 | 6 | 24 | Non-transferable NFT struct, soulbound logic, metadata | 5% | Senior | Beta |
+| 6.9.1 | NFT-14.9.1: SBT Non-transfer Logic | 1 | 12 | 6 | 24 | Transfer capability disabling, ownership lock, validation | 5% | Senior | Beta |
 | 6.10.1 | NFT-14.10.1: Ticket-to-Badge Burn | 2 | 24 | 12 | 48 | Burn function, storage rebate logic | 5% | Senior | RC |
 
 ---
@@ -132,10 +132,10 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **7.0** | **EMS-07: Event Management System Module** | - | **264** | **132** | **528** | Adapting existing campaign lifecycle patterns (30% reuse) | - | - | - |
-| 7.1 | EMS-17.1: Event Creation | 2 | 24 | 12 | 48 | Adapting existing object creation patterns with AdminCap | 10% | Senior | Beta |
-| 7.2.1 | EMS-17.2.1: Capacity Management | 1 | 12 | 6 | 24 | Reusing capacity assertion patterns | 5% | Senior | Beta |
-| 7.2.2 | EMS-17.2.2: Event Cancellation | 2 | 24 | 12 | 48 | Adapting existing refund and status management logic | 10% | Senior | RC |
+| **7.0** | **EMS-07: Event Management System Module** | - | **264** | **132** | **528** | - | - | - | - |
+| 7.1 | EMS-17.1: Event Creation | 2 | 24 | 12 | 48 | Event struct, AdminCap pattern, metadata fields, creation UI | 10% | Senior | Beta |
+| 7.2.1 | EMS-17.2.1: Capacity Management | 1 | 12 | 6 | 24 | Ticket supply counter, sold-out checks, capacity assertions | 5% | Senior | Beta |
+| 7.2.2 | EMS-17.2.2: Event Cancellation | 2 | 24 | 12 | 48 | Event status mutation, refund trigger, attendee notifications | 10% | Senior | RC |
 | 7.2.3 | EMS-17.2.3: Publishing Workflow | 2 | 24 | 12 | 48 | State transition function, indexing | 8% | Senior | Beta |
 | 7.2.5 | EMS-17.2.5: Update Event Details | 2 | 24 | 12 | 48 | Metadata mutation, event emission | 8% | Senior | Beta |
 | 7.3.1 | EMS-17.3.1: Visibility Settings | 2 | 24 | 12 | 48 | Visibility enum, access control check | 8% | Senior | Beta |
@@ -170,11 +170,11 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **9.0** | **FIN-09: Financial Operations Module** | - | **132** | **66** | **264** | Reusing multi-coin payment and split logic infrastructure (50% reuse) | - | - | - |
-| 9.1.1 | FIN-19.1.1: Crypto Payments | 2 | 24 | 12 | 48 | Adapting existing multi-coin payment acceptance patterns | 8% | Senior | Beta |
-| 9.1.2 | FIN-19.1.2: Fiat On-Ramp (Optional) | 3 | 36 | 18 | 72 | New integration - Banxa/Stripe SDK, webhook handling, KYC flow | 15% | Senior | RC |
-| 9.1.3 | FIN-19.1.3: Payment Verification | 1 | 12 | 6 | 24 | Reusing transaction finality patterns | 5% | Senior | Beta |
-| 9.1.4 | FIN-19.1.4: Refund Logic | 1 | 12 | 6 | 24 | Adapting existing refund and burn patterns | 5% | Senior | RC |
+| **9.0** | **FIN-09: Financial Operations Module** | - | **132** | **66** | **264** | - | - | - | - |
+| 9.1.1 | FIN-19.1.1: Crypto Payments | 2 | 24 | 12 | 48 | Multi-coin acceptance (SUI, USDC), payment validation, balance updates | 8% | Senior | Beta |
+| 9.1.2 | FIN-19.1.2: Fiat On-Ramp (Optional) | 3 | 36 | 18 | 72 | Banxa/Stripe SDK integration, webhook handling, KYC flow | 15% | Senior | RC |
+| 9.1.3 | FIN-19.1.3: Payment Verification | 1 | 12 | 6 | 24 | Transaction finality check, confirmation flow, error handling | 5% | Senior | Beta |
+| 9.1.4 | FIN-19.1.4: Refund Logic | 1 | 12 | 6 | 24 | Refund calculation, ticket burn, payment reversal | 5% | Senior | RC |
 | 9.2.1 | FIN-19.2.1: Revenue Reports | 2 | 24 | 12 | 48 | Data aggregation, chart generation, export CSV | 10% | Mid | Release |
 | 9.2.2 | FIN-19.2.2: Transaction History | 2 | 24 | 12 | 48 | Personal ledger UI, receipt generation | 10% | Junior | RC |
 | 9.2.3 | FIN-19.2.3: Audit Trail | 2 | 24 | 12 | 48 | Event logging, admin tracking, basic compliance | 10% | Mid | Release |
@@ -188,6 +188,25 @@ This document provides a comprehensive estimation of all features and user stori
 | **11.0** | **AR-06: Analytics and Reporting Module (MVP 1 - Core)** | - | **48** | **24** | **96** | - | - | - | - |
 | 11.3.1 | AR-6.3.1: Sales Reports for Tax Compliance | 2 | 24 | 12 | 48 | Revenue tracking, tax reporting, CSV export | 10% | Junior | Release |
 | 11.4.1 | AR-6.4.1: Anonymized Attendance Data Export | 3 | 24 | 12 | 48 | Basic anonymization, data export for organizers | 10% | Mid | Release |
+
+---
+
+## Module 10: Platform Deliverables - Communication (PD-05)
+
+| Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
+|--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
+| **10.0** | **PD-05: Platform Deliverables - Communication Module** | - | **48** | **24** | **96** | - | - | - | - |
+| 10.1.1 | PD-05.4.1: Tier-Gated Content | 4 | 48 | 24 | 96 | Tier-based gating, Seal-policy gating, dynamic content release | 25% | Lead | RC |
+
+---
+
+## Module 12: Loyalty and Rewards (LRW-04)
+
+| Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
+|--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
+| **12.0** | **LRW-04: Loyalty and Rewards Module** | - | **72** | **36** | **144** | - | - | - | - |
+| 12.1 | LRW-04.1: Loyalty Points & Rewards | - | - | - | - | - | - | - | - |
+| 12.1.1 | LRW-04.1.1: Loyalty Token System | 6 | 72 | 36 | 144 | Coin<LOYALTY> module, earning logic, redemption store, tier progression, gamification | 30% | Lead | Release |
 
 ---
 
@@ -205,61 +224,26 @@ This document provides a comprehensive estimation of all features and user stori
 | EMS-07: Event Management System | 264 | 132 | 528 | 13 |
 | TS-08: Ticketing System | 228 | 114 | 456 | 9 |
 | FIN-09: Financial Operations | 132 | 66 | 264 | 7 |
+| PD-05: Platform Deliverables - Communication | 48 | 24 | 96 | 1 |
 | AR-06: Analytics and Reporting | 48 | 24 | 96 | 2 |
-| **MVP 1 TOTAL** | **1,476** | **738** | **2,952** | **67** |
+| LRW-04: Loyalty and Rewards | 72 | 36 | 144 | 1 |
+| **MVP 1 TOTAL** | **1,596** | **798** | **3,192** | **69** |
 
 ---
 
 # MVP 2 - Extended Features
 
-## Module 12: Analytics and Reporting - Extended (AR-06-Extended)
+## Module 13: Event Extensions (EVX-08)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **12.0** | **AR-06-Extended: Advanced Analytics Module** | - | **192** | **96** | **384** | - | - | - | - |
-| 12.1.1 | AR-6.1.1: Event Reports | 3 | 36 | 18 | 72 | Data aggregation, chart library, export functionality | 12% | Mid | MVP2 |
-| 12.1.2 | AR-6.1.2: Loyalty History | 3 | 36 | 18 | 72 | SBT query, reputation scoring, UI display | 12% | Mid | MVP2 |
-| 12.1.3 | AR-6.1.3: No-Show Analytics | 2 | 24 | 12 | 48 | Delta calculation, pattern display | 10% | Junior | MVP2 |
-| 12.1.4 | AR-6.1.4: Attendance Data API | 2 | 24 | 12 | 48 | REST API endpoint, data sanitization | 8% | Junior | MVP2 |
-| 12.2.1 | AR-6.2.1: Performance Metrics | 3 | 36 | 18 | 72 | Metric aggregation, dashboard visualization | 12% | Mid | MVP2 |
-| 12.3.2 | AR-6.3.2: Discount Analytics | 2 | 24 | 12 | 48 | Code redemption tracking, conversion metrics | 8% | Junior | MVP2 |
-| 12.4.2 | AR-6.4.2: Success Metrics | 2 | 24 | 12 | 48 | Aggregated satisfaction scores | 5% | Junior | MVP2 |
-| 12.5.1 | AR-6.5.1: Attendance Portfolio | 2 | 24 | 12 | 48 | Public profile page, badge showcase | 5% | Junior | MVP2 |
+| **13.0** | **EVX-08: Event Extensions Module** | - | **72** | **36** | **144** | - | - | - | - |
+| 13.1 | EVX-08.1: Multi-Track & Multi-Flow Events | - | - | - | - | - | - | - | - |
+| 13.1.1 | EVX-08.1.1: Multi-Track Event Structure | 6 | 72 | 36 | 144 | EventTrack shared object, session mapping, track-based pricing, access control | 30% | Lead | RC |
 
 ---
 
-## Module 13: Communication and Engagement (CM-01)
-
-| Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
-|--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **12.0** | **CM-01: Communication and Engagement Module** | - | **600** | **300** | **1,200** | - | - | - | - |
-| 12.1 | CM-01.1: Update Alerts | - | - | - | - | - | - | - | - |
-| 12.1.2 | CM-01.1.2: Schedule Changes | 3 | 36 | 18 | 72 | Mutable state update, event-driven triggers, conflict detection | 15% | Senior | RC |
-| 12.1.3 | CM-01.1.3: Event Notifications | 3 | 36 | 18 | 72 | Subscription management, time-gated execution, personalized routing | 15% | Mid | RC |
-| 12.2 | CM-01.2: Communication Platform | - | - | - | - | - | - | - | - |
-| 12.2.1 | CM-01.2.1: Event Chat Functionality | 4 | 48 | 24 | 96 | Sui Stack Messaging SDK, Seal encryption for group keys, moderation | 25% | Lead | RC |
-| 12.2.2 | CM-01.2.2: Schedule Updates | 3 | 36 | 18 | 72 | Object mutation, event-driven push, frontend hot-reload | 15% | Senior | RC |
-| 12.2.3 | CM-01.2.3: Attendee List | 3 | 36 | 18 | 72 | Privacy toggle, selective indexing, contact gating | 15% | Mid | RC |
-| 12.3 | CM-01.3: Notification System | - | - | - | - | - | - | - | - |
-| 12.3.1 | CM-01.3.1: Event Reminders | 3 | 36 | 18 | 72 | Cron-style trigger, PTB automation, deep linking | 15% | Senior | RC |
-| 12.3.2 | CM-01.3.2: Important Announcements | 3 | 36 | 18 | 72 | Admin gating, Seal encryption for broadcasts, SDK broadcasting | 15% | Senior | RC |
-| 12.3.3 | CM-01.3.3: Personalized Communications | 4 | 48 | 24 | 96 | Tier-based filtering, direct 1:1 channels, encryption policy | 20% | Lead | RC |
-
----
-
-## Module 14: Content and Materials (CNT-02)
-
-| Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
-|--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **13.0** | **CNT-02: Content and Materials Module** | - | **168** | **84** | **336** | - | - | - | - |
-| 13.1 | CNT-02.1: Material Sharing | - | - | - | - | - | - | - | - |
-| 13.1.1 | CNT-02.1.1: Speaker Material Upload | 3 | 36 | 18 | 72 | Speaker portal, Walrus blob linking, in-app viewer | 15% | Mid | Beta |
-| 13.2 | CNT-02.2: Presentation Access | - | - | - | - | - | - | - | - |
-| 13.2.1 | CNT-02.2.1: Tier-Gated Content | 4 | 48 | 24 | 96 | Tier-based gating, Seal-policy gating, dynamic content release | 25% | Lead | RC |
-
----
-
-## Module 15: Financial Extensions (FEX-03)
+## Module 14: Financial Extensions (FEX-03)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
@@ -272,17 +256,20 @@ This document provides a comprehensive estimation of all features and user stori
 
 ---
 
-## Module 16: Loyalty and Rewards (LRW-04)
+## Module 15: Physical Operations (PHY-09)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **15.0** | **LRW-04: Loyalty and Rewards Module** | - | **72** | **36** | **144** | - | - | - | - |
-| 15.1 | LRW-04.1: Loyalty Points & Rewards | - | - | - | - | - | - | - | - |
-| 15.1.1 | LRW-04.1.1: Loyalty Token System | 6 | 72 | 36 | 144 | Coin<LOYALTY> module, earning logic, redemption store, tier progression, gamification | 30% | Lead | Release |
+| **15.0** | **PHY-09: Physical Operations Module** | - | **144** | **72** | **288** | - | - | - | - |
+| 15.1 | PHY-09.1: Badge Printing & QR Access | - | - | - | - | - | - | - | - |
+| 15.1.1 | PHY-09.1.1: Badge Generation System | 4 | 48 | 24 | 96 | Badge template engine, QR encoding, batch processing | 20% | Lead | Release |
+| 15.1.2 | PHY-09.1.2: QR-Based Access Validation | 4 | 48 | 24 | 96 | Scanner app, on-chain verification, offline mode, fraud detection | 20% | Lead | Release |
+| 15.2 | PHY-09.2: NFC-Based Access | - | - | - | - | - | - | - | - |
+| 15.2.1 | PHY-09.2.1: NFC Badge System | 4 | 48 | 24 | 96 | NFC encoding, reader integration, security layer | 25% | Lead | Release |
 
 ---
 
-## Module 17: Growth and Marketing (GMK-05)
+## Module 16: Growth and Marketing (GMK-05)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
@@ -296,38 +283,60 @@ This document provides a comprehensive estimation of all features and user stori
 
 ---
 
-## Module 18: Developer Platform (DEV-06)
+## Module 17: Communication and Engagement (CM-01)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **17.0** | **DEV-06: Developer Platform Module** | - | **132** | **66** | **264** | - | - | - | - |
-| 17.1 | DEV-06.1: Developer API & Webhooks | - | - | - | - | - | - | - | - |
-| 17.1.1 | DEV-06.1.1: GraphQL API & Integrations | 5 | 60 | 30 | 120 | GraphQL indexer, webhook dispatcher, OAuth2, SDK generation | 25% | Lead | Release |
-| 17.2 | DEV-06.2: Event App Integration | - | - | - | - | - | - | - | - |
-| 17.2.1 | DEV-06.2.1: White-Label Event App | 6 | 72 | 36 | 144 | Mobile SDK, white-label template, wallet integration, push notifications | 30% | Lead | Release |
+| **17.0** | **CM-01: Communication and Engagement Module** | - | **600** | **300** | **1,200** | - | - | - | - |
+| 17.1 | CM-01.1: Update Alerts | - | - | - | - | - | - | - | - |
+| 17.1.2 | CM-01.1.2: Schedule Changes | 3 | 36 | 18 | 72 | Mutable state update, event-driven triggers, conflict detection | 15% | Senior | RC |
+| 17.1.3 | CM-01.1.3: Event Notifications | 3 | 36 | 18 | 72 | Subscription management, time-gated execution, personalized routing | 15% | Mid | RC |
+| 17.2 | CM-01.2: Communication Platform | - | - | - | - | - | - | - | - |
+| 17.2.1 | CM-01.2.1: Event Chat Functionality | 4 | 48 | 24 | 96 | Sui Stack Messaging SDK, Seal encryption for group keys, moderation | 25% | Lead | RC |
+| 17.2.2 | CM-01.2.2: Schedule Updates | 3 | 36 | 18 | 72 | Object mutation, event-driven push, frontend hot-reload | 15% | Senior | RC |
+| 17.2.3 | CM-01.2.3: Attendee List | 3 | 36 | 18 | 72 | Privacy toggle, selective indexing, contact gating | 15% | Mid | RC |
+| 17.3 | CM-01.3: Notification System | - | - | - | - | - | - | - | - |
+| 17.3.1 | CM-01.3.1: Event Reminders | 3 | 36 | 18 | 72 | Cron-style trigger, PTB automation, deep linking | 15% | Senior | RC |
+| 17.3.2 | CM-01.3.2: Important Announcements | 3 | 36 | 18 | 72 | Admin gating, Seal encryption for broadcasts, SDK broadcasting | 15% | Senior | RC |
+| 17.3.3 | CM-01.3.3: Personalized Communications | 4 | 48 | 24 | 96 | Tier-based filtering, direct 1:1 channels, encryption policy | 20% | Lead | RC |
 
 ---
 
-## Module 19: Event Extensions (EVX-08)
+## Module 18: Content and Materials (CNT-02)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **18.0** | **EVX-08: Event Extensions Module** | - | **72** | **36** | **144** | - | - | - | - |
-| 18.1 | EVX-08.1: Multi-Track & Multi-Flow Events | - | - | - | - | - | - | - | - |
-| 18.1.1 | EVX-08.1.1: Multi-Track Event Structure | 6 | 72 | 36 | 144 | EventTrack shared object, session mapping, track-based pricing, access control | 30% | Lead | RC |
+| **18.0** | **CNT-02: Content and Materials Module** | - | **36** | **18** | **72** | Tier-Gated Content moved to MVP 1 (PD-05.4.1) | - | - | - |
+| 18.1 | CNT-02.1: Material Sharing | - | - | - | - | - | - | - | - |
+| 18.1.1 | CNT-02.1.1: Speaker Material Upload | 3 | 36 | 18 | 72 | Speaker portal, Walrus blob linking, in-app viewer | 15% | Mid | Beta |
 
 ---
 
-## Module 20: Physical Operations (PHY-09)
+## Module 19: Advanced Analytics (AR-06-Extended)
 
 | Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
 |--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
-| **19.0** | **PHY-09: Physical Operations Module** | - | **144** | **72** | **288** | - | - | - | - |
-| 19.1 | PHY-09.1: Badge Printing & QR Access | - | - | - | - | - | - | - | - |
-| 19.1.1 | PHY-09.1.1: Badge Generation System | 4 | 48 | 24 | 96 | Badge template engine, QR encoding, batch processing | 20% | Lead | Release |
-| 19.1.2 | PHY-09.1.2: QR-Based Access Validation | 4 | 48 | 24 | 96 | Scanner app, on-chain verification, offline mode, fraud detection | 20% | Lead | Release |
-| 19.2 | PHY-09.2: NFC-Based Access | - | - | - | - | - | - | - | - |
-| 19.2.1 | PHY-09.2.1: NFC Badge System | 4 | 48 | 24 | 96 | NFC encoding, reader integration, security layer | 25% | Lead | Release |
+| **19.0** | **AR-06-Extended: Advanced Analytics Module** | - | **192** | **96** | **384** | - | - | - | - |
+| 19.1.1 | AR-6.1.1: Event Reports | 3 | 36 | 18 | 72 | Data aggregation, chart library, export functionality | 12% | Mid | MVP2 |
+| 19.1.2 | AR-6.1.2: Loyalty History | 3 | 36 | 18 | 72 | SBT query, reputation scoring, UI display | 12% | Mid | MVP2 |
+| 19.1.3 | AR-6.1.3: No-Show Analytics | 2 | 24 | 12 | 48 | Delta calculation, pattern display | 10% | Junior | MVP2 |
+| 19.1.4 | AR-6.1.4: Attendance Data API | 2 | 24 | 12 | 48 | REST API endpoint, data sanitization | 8% | Junior | MVP2 |
+| 19.2.1 | AR-6.2.1: Performance Metrics | 3 | 36 | 18 | 72 | Metric aggregation, dashboard visualization | 12% | Mid | MVP2 |
+| 19.3.2 | AR-6.3.2: Discount Analytics | 2 | 24 | 12 | 48 | Code redemption tracking, conversion metrics | 8% | Junior | MVP2 |
+| 19.4.2 | AR-6.4.2: Success Metrics | 2 | 24 | 12 | 48 | Aggregated satisfaction scores | 5% | Junior | MVP2 |
+| 19.5.1 | AR-6.5.1: Attendance Portfolio | 2 | 24 | 12 | 48 | Public profile page, badge showcase | 5% | Junior | MVP2 |
+
+---
+
+## Module 20: Developer Platform (DEV-06)
+
+| Item # | Work Item | Complexity | Most Likely (hrs) | Best Case (hrs) | Worst Case (hrs) | Risk Description | Risk % | Resource | Planned Phase |
+|--------|-----------|------------|-------------------|-----------------|------------------|------------------|--------|----------|---------------|
+| **20.0** | **DEV-06: Developer Platform Module** | - | **132** | **66** | **264** | - | - | - | - |
+| 20.1 | DEV-06.1: Developer API & Webhooks | - | - | - | - | - | - | - | - |
+| 20.1.1 | DEV-06.1.1: GraphQL API & Integrations | 5 | 60 | 30 | 120 | GraphQL indexer, webhook dispatcher, OAuth2, SDK generation | 25% | Lead | Release |
+| 20.2 | DEV-06.2: Event App Integration | - | - | - | - | - | - | - | - |
+| 20.2.1 | DEV-06.2.1: White-Label Event App | 6 | 72 | 36 | 144 | Mobile SDK, white-label template, wallet integration, push notifications | 30% | Lead | Release |
 
 ---
 
@@ -335,16 +344,15 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Module | Total Most Likely (hrs) | Total Best Case (hrs) | Total Worst Case (hrs) | Features |
 |--------|-------------------------|----------------------|------------------------|----------|
-| AR-06-Extended: Advanced Analytics | 192 | 96 | 384 | 8 |
-| CM-01: Communication and Engagement | 600 | 300 | 1,200 | 9 |
-| CNT-02: Content and Materials | 168 | 84 | 336 | 2 |
-| FEX-03: Financial Extensions | 324 | 162 | 648 | 3 |
-| LRW-04: Loyalty and Rewards | 72 | 36 | 144 | 1 |
-| GMK-05: Growth and Marketing | 144 | 72 | 288 | 3 |
-| DEV-06: Developer Platform | 132 | 66 | 264 | 2 |
 | EVX-08: Event Extensions | 72 | 36 | 144 | 1 |
+| FEX-03: Financial Extensions | 324 | 162 | 648 | 3 |
 | PHY-09: Physical Operations | 144 | 72 | 288 | 3 |
-| **MVP 2 TOTAL** | **1,848** | **924** | **3,696** | **32** |
+| GMK-05: Growth and Marketing | 144 | 72 | 288 | 3 |
+| CM-01: Communication and Engagement | 600 | 300 | 1,200 | 9 |
+| CNT-02: Content and Materials | 36 | 18 | 72 | 1 |
+| AR-06-Extended: Advanced Analytics | 192 | 96 | 384 | 8 |
+| DEV-06: Developer Platform | 132 | 66 | 264 | 2 |
+| **MVP 2 TOTAL** | **1,644** | **822** | **3,288** | **30** |
 
 ---
 
@@ -352,9 +360,9 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Phase | Total Most Likely (hrs) | Total Best Case (hrs) | Total Worst Case (hrs) | Total Features |
 |-------|-------------------------|----------------------|------------------------|----------------|
-| **MVP 1** | **1,476** | **738** | **2,952** | **67** |
-| **MVP 2** | **1,848** | **924** | **3,696** | **32** |
-| **GRAND TOTAL** | **3,324** | **1,662** | **6,648** | **99** |
+| **MVP 1** | **1,596** | **798** | **3,192** | **69** |
+| **MVP 2** | **1,644** | **822** | **3,288** | **30** |
+| **GRAND TOTAL** | **3,240** | **1,620** | **6,480** | **99** |
 
 ---
 
@@ -364,9 +372,9 @@ Assuming 160 working hours per person per month:
 
 | Phase | Most Likely (person-months) | Best Case (person-months) | Worst Case (person-months) |
 |-------|----------------------------|--------------------------|----------------------------|
-| **MVP 1** | 9.23 | 4.61 | 18.45 |
-| **MVP 2** | 11.55 | 5.78 | 23.10 |
-| **GRAND TOTAL** | **20.78** | **10.39** | **41.55** |
+| **MVP 1** | 9.98 | 4.99 | 19.95 |
+| **MVP 2** | 10.28 | 5.14 | 20.55 |
+| **GRAND TOTAL** | **20.25** | **10.13** | **40.50** |
 
 ---
 
