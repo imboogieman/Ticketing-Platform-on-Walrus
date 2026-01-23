@@ -67,42 +67,82 @@ This platform enables secure, verifiable, and transparent event ticketing using 
 
 ## 📁 Project Structure
 
+> **Note:** Files marked with ⚠️ are placeholder files for future smart contract implementations. These are **not final code** and contain only module structure outlines based on the requirements documentation. See the individual files for implementation details and references to their respective requirement documents.
+
 ```
-├── docs/                    # Documentation and specifications
-│   ├── requirements/        # Detailed requirements documents
-│   │   ├── 01 - Identity_and_Authentication_ID-01.md
-│   │   ├── 02 - User_Profile_System_UPS-02.md
-│   │   ├── 03 - Attendance_Management_AM-03.md
-│   │   ├── 04 - Data_Preservation_and_Storage_DAT-04.md
-│   │   ├── 05 - Technical_Infrastructure_INF-05.md
-│   │   ├── 06 - NFT_Implementation_NFT-14.md
-│   │   ├── Event_Creation_and_Registration_RC-1.md
-│   │   ├── NFT_Ticketing_TC-1.md
-│   │   ├── Event_Access_and_Validation_EA-1.md
-│   │   ├── Communication_CM-1.md
-│   │   ├── Post_Event_Interaction_PE-1.md
-│   │   └── Optional_and_Extended_Features_OE-1.md
-│   ├── technical-design/    # Technical specifications
-│   └── architecture/        # System architecture docs
-├── ARCHITECTURE.md          # Detailed technical architecture
-├── DEPLOYMENT.md            # Deployment guide
-├── USER_GUIDE.md           # User documentation
-├── move/                   # Sui Move smart contracts
+├── docs/                           # Documentation and specifications
+│   ├── diagrams/                   # Architecture diagrams
+│   │   └── soulbound-nft-sequence.md
+│   ├── estimates.md                # Project estimates
+│   └── requirements/               # Detailed requirements documents
+│       ├── mvp_01/                 # MVP Phase 1 Requirements
+│       │   ├── 00 - Project_Overview_and_Vision.md
+│       │   ├── 01 - Identity_and_Authentication_ID-01.md
+│       │   ├── 02 - User_Profile_System_UPS-02.md
+│       │   ├── 03 - Attendance_Management_AM-03.md
+│       │   ├── 04 - Data_Preservation_and_Storage_DAT-04.md
+│       │   ├── 05 - Technical_Infrastructure_INF-05.md
+│       │   ├── 06 - NFT_Implementation_NFT-06.md
+│       │   ├── 07 - Event_Management_System_EMS-07.md
+│       │   ├── 08 - Ticketing_System_TS-08.md
+│       │   ├── 09 - Financial_Operations_FIN-09.md
+│       │   ├── 10 - Platform_Deliverables_Communication_PD-05.md
+│       │   ├── 11 - Analytics_and_Reporting_AR-06.md
+│       │   └── 12 - Loyalty_and_Rewards_LRW-04.md
+│       └── mvp_02/                 # MVP Phase 2 Requirements
+│           ├── 01 - Communication_and_Engagement_CM-01.md
+│           ├── 02 - Content_and_Materials_CNT-02.md
+│           ├── 03 - Financial_Extensions_FEX-03.md
+│           ├── 05 - Growth_and_Marketing_GMK-05.md
+│           ├── 06 - Developer_Platform_DEV-06.md
+│           ├── 08 - Event_Extensions_EVX-08.md
+│           ├── 09 - Physical_Operations_PHY-09.md
+│           └── README.md
+├── smart-contracts/                # Sui Move smart contracts
 │   └── ticketing_platform/
 │       ├── sources/
-│       │   ├── event.move        # Event management
-│       │   ├── ticket.move       # NFT tickets
-│       │   └── attendance.move   # Attendance NFTs
+│       │   ├── event.move          # Event management
+│       │   ├── ticket.move         # NFT tickets
+│       │   ├── attendance.move     # Attendance NFTs
+│       │   ├── soulbound.move      # ⚠️ Placeholder: SBT standards (NFT-14.8/14.9)
+│       │   ├── loyalty.move        # ⚠️ Placeholder: Loyalty tokens (LRW-04)
+│       │   ├── payment.move        # ⚠️ Placeholder: Payment processing (FIN-09)
+│       │   ├── transfer_policy.move # ⚠️ Placeholder: Transfer policies (TS-08)
+│       │   └── seal_policy.move    # ⚠️ Placeholder: Seal encryption (NFT-14.5)
 │       ├── tests/
+│       │   └── ticketing_platform_tests.move
 │       └── Move.toml
-└── frontend/               # Next.js frontend dApp
-    ├── app/
-    │   ├── organizer/     # Organizer dashboard
-    │   └── attendee/      # Attendee interface
-    ├── lib/
-    │   ├── walrus.ts      # Walrus integration
-    │   └── seal.ts        # Seal encryption
-    └── package.json
+├── frontend/                       # Next.js frontend dApp
+│   ├── app/
+│   │   ├── layout.tsx              # Root layout
+│   │   ├── page.tsx                # Home page
+│   │   ├── providers.tsx           # App providers
+│   │   ├── globals.css             # Global styles
+│   │   ├── organizer/              # Organizer dashboard
+│   │   │   └── page.tsx
+│   │   └── attendee/               # Attendee interface
+│   │       └── page.tsx
+│   ├── components/
+│   │   ├── EventCard.tsx           # Event display component
+│   │   ├── Navbar.tsx              # Navigation component
+│   │   └── WalletConnect.tsx       # Wallet connection component
+│   ├── lib/
+│   │   ├── walrus.ts               # Walrus integration
+│   │   └── seal.ts                 # Seal encryption
+│   ├── utils/
+│   │   ├── constants.ts            # App constants
+│   │   ├── sui.ts                  # Sui utilities
+│   │   └── types.ts                # TypeScript types
+│   └── package.json
+├── ARCHITECTURE.md                 # Detailed technical architecture
+├── CONTRIBUTING.md                 # Contribution guidelines
+├── DEPLOYMENT.md                   # Deployment guide
+├── IMPLEMENTATION_SUMMARY.md       # Implementation summary
+├── SECURITY.md                     # Security documentation
+├── TESTING.md                      # Testing guide
+├── USER_GUIDE.md                   # User documentation
+├── deploy.sh                       # Deployment script
+└── LICENSE                         # Project license
 ```
 
 ## 🚀 Quick Start
@@ -117,7 +157,7 @@ This platform enables secure, verifiable, and transparent event ticketing using 
 ### 1. Deploy Smart Contracts
 
 ```bash
-cd move/ticketing_platform
+cd smart-contracts/ticketing_platform
 sui move build
 sui move test
 sui client publish --gas-budget 100000000
@@ -156,20 +196,38 @@ npm run build
 ## 📚 Documentation
 
 ### Requirements & Specifications
-- [Project Overview & Vision](docs/requirements/Project_Overview_and_Vision.md) - Vision, goals, and design philosophy
-- [Identity & Authentication (ID-1)](docs/requirements/Identity_and_Authentication_ID-1.md) - User registration and auth methods
-- [Event Creation & Registration (RC-1)](docs/requirements/Event_Creation_and_Registration_RC-1.md) - Event management workflows
-- [NFT Ticketing (TC-1)](docs/requirements/NFT_Ticketing_TC-1.md) - Encrypted ticket specifications
-- [Event Access & Validation (EA-1)](docs/requirements/Event_Access_and_Validation_EA-1.md) - Access control and venue validation
-- [Attendance Verification (AV-1)](docs/requirements/Attendance_Verification_AV-1.md) - Attendance NFTs and proof-of-presence
-- [Communication (CM-1)](docs/requirements/Communication_CM-1.md) - Notification and messaging
-- [Post-Event Interaction (PE-1)](docs/requirements/Post_Event_Interaction_PE-1.md) - Analytics and loyalty
-- [Optional & Extended Features (OE-1)](docs/requirements/Optional_and_Extended_Features_OE-1.md) - Advanced features
+
+#### MVP Phase 1
+- [Project Overview & Vision](docs/requirements/mvp_01/00%20-%20Project_Overview_and_Vision.md) - Vision, goals, and design philosophy
+- [Identity & Authentication](docs/requirements/mvp_01/01%20-%20Identity_and_Authentication_ID-01.md) - User registration and auth methods
+- [User Profile System](docs/requirements/mvp_01/02%20-%20User_Profile_System_UPS-02.md) - Profile management
+- [Attendance Management](docs/requirements/mvp_01/03%20-%20Attendance_Management_AM-03.md) - Attendance tracking and verification
+- [Data Preservation & Storage](docs/requirements/mvp_01/04%20-%20Data_Preservation_and_Storage_DAT-04.md) - Walrus storage integration
+- [Technical Infrastructure](docs/requirements/mvp_01/05%20-%20Technical_Infrastructure_INF-05.md) - System architecture
+- [NFT Implementation](docs/requirements/mvp_01/06%20-%20NFT_Implementation_NFT-06.md) - Ticket and attendance NFTs
+- [Event Management System](docs/requirements/mvp_01/07%20-%20Event_Management_System_EMS-07.md) - Event creation and management
+- [Ticketing System](docs/requirements/mvp_01/08%20-%20Ticketing_System_TS-08.md) - Ticket purchase and validation
+- [Financial Operations](docs/requirements/mvp_01/09%20-%20Financial_Operations_FIN-09.md) - Payment processing and reporting
+- [Platform Deliverables & Communication](docs/requirements/mvp_01/10%20-%20Platform_Deliverables_Communication_PD-05.md) - Notifications and messaging
+- [Analytics & Reporting](docs/requirements/mvp_01/11%20-%20Analytics_and_Reporting_AR-06.md) - Data analytics and insights
+- [Loyalty & Rewards](docs/requirements/mvp_01/12%20-%20Loyalty_and_Rewards_LRW-04.md) - Reward programs
+
+#### MVP Phase 2
+- [Communication & Engagement](docs/requirements/mvp_02/01%20-%20Communication_and_Engagement_CM-01.md) - Advanced communication features
+- [Content & Materials](docs/requirements/mvp_02/02%20-%20Content_and_Materials_CNT-02.md) - Event content management
+- [Financial Extensions](docs/requirements/mvp_02/03%20-%20Financial_Extensions_FEX-03.md) - Extended financial features
+- [Growth & Marketing](docs/requirements/mvp_02/05%20-%20Growth_and_Marketing_GMK-05.md) - Marketing tools
+- [Developer Platform](docs/requirements/mvp_02/06%20-%20Developer_Platform_DEV-06.md) - API and developer tools
+- [Event Extensions](docs/requirements/mvp_02/08%20-%20Event_Extensions_EVX-08.md) - Advanced event features
+- [Physical Operations](docs/requirements/mvp_02/09%20-%20Physical_Operations_PHY-09.md) - On-site operations
 
 ### Implementation Guides
 - [Architecture Document](ARCHITECTURE.md) - Technical design and system architecture
 - [Deployment Guide](DEPLOYMENT.md) - Step-by-step deployment instructions
 - [User Guide](USER_GUIDE.md) - Guide for organizers and attendees
+- [Testing Guide](TESTING.md) - Testing instructions and guidelines
+- [Security Documentation](SECURITY.md) - Security best practices
+- [Contributing Guide](CONTRIBUTING.md) - How to contribute
 
 ## 🔧 Technology Stack
 
