@@ -1,10 +1,3 @@
-# Soulbound NFT (Attendance Badge) Minting Sequence
-
-This diagram illustrates the complete flow of Soulbound Token (SBT) minting for attendance verification in the Ticketing Platform on Walrus.
-
-## Sequence Diagram
-
-```mermaid
 sequenceDiagram
     autonumber
     actor Attendee
@@ -16,7 +9,6 @@ sequenceDiagram
     participant Profile as UserProfile
     participant Walrus as Walrus Storage
     
-    %% Pre-Check-in State
     rect rgb(230, 240, 255)
     Note over Attendee,Mobile: Pre-Event: Ticket Ownership Verification
     Attendee->>+Mobile: Open Ticket
@@ -24,7 +16,6 @@ sequenceDiagram
     Mobile-->>-Attendee: Display Rotating QR Code
     end
     
-    %% Check-in Process
     rect rgb(255, 240, 230)
     Note over Scanner,SuiNetwork: Venue Entry: Check-in Procedure
     Attendee->>+Scanner: Present QR Code
@@ -38,7 +29,6 @@ sequenceDiagram
     else Ticket Valid
         Ticket-->>-SuiNetwork: VALID - Valid and Unredeemed
         
-        %% Atomic Transaction Block
         rect rgb(200, 255, 200)
         Note over SuiNetwork,Badge: Atomic PTB: Redemption + Badge Minting
         
@@ -72,7 +62,6 @@ sequenceDiagram
     end
     end
     
-    %% Post-Check-in State
     rect rgb(240, 255, 240)
     Note over Attendee,Walrus: Post-Event: Badge Verification and Display
     Attendee->>+Mobile: View Wallet
@@ -86,7 +75,6 @@ sequenceDiagram
     Mobile-->>-Attendee: Display Badge Gallery - Non-transferable Proof
     end
     
-    %% Post-Redemption Content Access
     rect rgb(255, 250, 230)
     Note over Attendee,Walrus: Bonus: Redemption-Gated Content Access
     Attendee->>+Mobile: Access Exclusive Content
@@ -108,7 +96,6 @@ sequenceDiagram
     end
     end
     
-    %% Security and Invariants
     rect rgb(255, 230, 230)
     Note over Badge,Profile: SBT Security Guarantees
     Note over Badge: WARNING - NON-TRANSFERABLE - No store ability - Transfer attempts fail
@@ -116,55 +103,3 @@ sequenceDiagram
     Note over Badge: OK - VERIFIABLE - On-chain proof of attendance history
     Note over Profile: OK - PERMANENT - Cannot be deleted or revoked by user
     end
-```
-
-## Key Components
-
-### 1. **Ticket NFT Object**
-- Mutable state: `is_redeemed` flag
-- Redemption timestamp captured via Sui Clock (0x6)
-- Emits `RedemptionEvent` for audit trail
-
-### 2. **AttendanceBadge (SBT)**
-- **Non-transferable**: Lacks `store` ability
-- **Soulbound**: Permanently linked to attendee address
-- **Dynamic Traits**: Early bird status, VIP access, etc.
-- **Walrus Integration**: SVG badge images stored as blobs
-
-### 3. **Atomic PTB (Programmable Transaction Block)**
-- **Single Transaction**: Redemption + Badge minting are atomic
-- **Fail-Safe**: Both operations succeed or both revert
-- **Storage Rebate**: Optional ticket burn to fund badge minting
-
-### 4. **Security Features**
-- **Double-Spend Prevention**: Single-Writer object model
-- **Timestamped Verification**: Immutable audit trail
-- **Cryptographic Binding**: QR signature verification
-- **Seal-Based Access**: Post-redemption content gating
-
-## Domain Isomorphism Patterns
-
-This flow reuses several patterns from existing platform infrastructure:
-
-| Pattern | Source Domain | Ticketing Domain |
-|---------|---------------|------------------|
-| **Object Redemption** | Campaign completion → Milestone SBT | Ticket check-in → Attendance Badge |
-| **State Mutation** | Donation status tracking | Ticket redemption flag |
-| **Achievement Minting** | Threshold-based badges | Time-based attendance traits |
-| **Capability Gating** | AdminCap for campaigns | ScannerCap for redemption |
-| **Profile Integration** | Donor history tracking | Attendee attendance log |
-
-## Technical Notes
-
-- **Performance**: Sub-400ms finality via Sui's owned-object execution lane
-- **Privacy**: Badge metadata can be encrypted for sensitive events
-- **Scalability**: Parallel execution across multiple entry gates
-- **Compliance**: Immutable audit trail for regulatory requirements
-- **User Experience**: Instant wallet notification upon badge mint
-
-## References
-
-- **Implementation**: [AM-3.2.1 - Attendance Tracking](../requirements/mvp_01/03%20-%20Attendance_Management_AM-03.md)
-- **SBT Standards**: [NFT-14.8 - Soulbound Token Standards](../requirements/mvp_01/06%20-%20NFT_Implementation_NFT-06.md)
-- **Profile Integration**: [UPS-02.3.1 - Attendance History](../requirements/mvp_01/02%20-%20User_Profile_System_UPS-02.md)
-- **Sealed Content**: [AM-3.4.3 - Gated Content](../requirements/mvp_01/03%20-%20Attendance_Management_AM-03.md)

@@ -1,0 +1,106 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryTextColor': '#333333', 'secondaryTextColor': '#333333', 'tertiaryTextColor': '#333333', 'noteTextColor': '#333333', 'actorTextColor': '#333333', 'signalTextColor': '#333333', 'labelTextColor': '#333333', 'loopTextColor': '#333333'}}}%%
+sequenceDiagram
+    autonumber
+    actor Attendee
+    participant Mobile as Mobile dApp
+    participant Scanner as Gatekeeper Scanner
+    participant SuiNetwork as Sui Blockchain
+    participant Ticket as Ticket NFT Object
+    participant Badge as AttendanceBadge SBT
+    participant Profile as UserProfile
+    participant Walrus as Walrus Storage
+    
+    rect rgb(230, 240, 255)
+    Note over Attendee,Mobile: Pre-Event Ticket Ownership Verification
+    Attendee->>+Mobile: Open Ticket
+    Mobile->>Mobile: Generate Dynamic QR
+    Mobile-->>-Attendee: Display Rotating QR Code
+    end
+    
+    rect rgb(255, 240, 230)
+    Note over Scanner,SuiNetwork: Venue Entry Check-in Procedure
+    Attendee->>+Scanner: Present QR Code
+    Scanner->>Scanner: Extract Payload
+    Scanner->>+SuiNetwork: Verify Signature and Ticket Ownership
+    SuiNetwork->>+Ticket: Check State is_redeemed false
+    
+    alt Ticket Already Redeemed
+        Ticket-->>Scanner: Error Already Checked In
+        Scanner-->>Attendee: DENIED Entry Denied
+    else Ticket Valid
+        Ticket-->>-SuiNetwork: VALID Valid and Unredeemed
+        
+        rect rgb(200, 255, 200)
+        Note over SuiNetwork,Badge: Atomic PTB Redemption and Badge Minting
+        
+        par Ticket Redemption
+            SuiNetwork->>+Ticket: redeem_ticket Set is_redeemed true
+            Ticket->>Ticket: Update State Capture Timestamp
+            Ticket->>SuiNetwork: Emit RedemptionEvent
+            Ticket-->>-SuiNetwork: OK Redemption Complete
+        and Badge Minting Triggered
+            SuiNetwork->>+Badge: mint_attendance_badge Attendee Address
+            Badge->>Badge: Create SBT Object NO store ability
+            Badge->>Badge: Set Metadata Event ID Check-in Time Entry Gate
+            Badge->>Badge: Inject Dynamic Fields Early Bird trait
+            Badge->>SuiNetwork: Emit BadgeMintedEvent
+            Badge-->>-SuiNetwork: OK Badge Created
+        end
+        
+        SuiNetwork->>+Profile: Link Badge to Profile
+        Profile->>Profile: Append to attendance_log Update badge_count
+        Profile-->>-SuiNetwork: OK Profile Updated
+        
+        SuiNetwork->>+Walrus: Store Badge Metadata SVG Image Traits
+        Walrus->>Walrus: Generate Blob ID
+        Walrus-->>-SuiNetwork: Return blob_id
+        
+        SuiNetwork->>Badge: Update url field Walrus Blob ID
+        end
+        
+        SuiNetwork-->>-Scanner: OK Transaction Finalized sub-400ms
+        Scanner-->>-Attendee: SUCCESS Entry Granted Badge Received
+    end
+    end
+    
+    rect rgb(240, 255, 240)
+    Note over Attendee,Walrus: Post-Event Badge Verification and Display
+    Attendee->>+Mobile: View Wallet
+    Mobile->>+SuiNetwork: Query AttendanceBadges owner Attendee
+    SuiNetwork->>+Badge: Fetch Badge Objects
+    Badge-->>-SuiNetwork: Return Badge Metadata
+    SuiNetwork-->>-Mobile: Badge List with Traits
+    
+    Mobile->>+Walrus: Fetch Badge SVG using blob_id
+    Walrus-->>-Mobile: Return Badge Image
+    Mobile-->>-Attendee: Display Badge Gallery Non-transferable Proof
+    end
+    
+    rect rgb(255, 250, 230)
+    Note over Attendee,Walrus: Bonus Redemption-Gated Content Access
+    Attendee->>+Mobile: Access Exclusive Content
+    Mobile->>+SuiNetwork: Request seal_approve_access
+    
+    alt Ticket Not Redeemed
+        SuiNetwork-->>Mobile: DENIED Access Denied Must check in first
+        Mobile-->>Attendee: Content Locked Requires Physical Attendance
+    else Ticket Redeemed
+        SuiNetwork->>+Ticket: Verify Redemption State
+        Ticket-->>-SuiNetwork: OK is_redeemed true
+        SuiNetwork->>SuiNetwork: Generate Seal Decryption Key
+        SuiNetwork-->>-Mobile: OK Access Granted Decryption Fragments
+        
+        Mobile->>+Walrus: Fetch Encrypted Content using blob_id
+        Walrus-->>-Mobile: Return Encrypted Blob
+        Mobile->>Mobile: Decrypt Content using Seal fragments
+        Mobile-->>Attendee: Display Exclusive Content
+    end
+    end
+    
+    rect rgb(255, 230, 230)
+    Note over Badge,Profile: SBT Security Guarantees
+    Note over Badge: NON-TRANSFERABLE No store ability Transfer attempts fail
+    Note over Badge: SOULBOUND Permanently linked to attendee address
+    Note over Badge: VERIFIABLE On-chain proof of attendance history
+    Note over Profile: PERMANENT Cannot be deleted or revoked by user
+    end
