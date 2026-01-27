@@ -14,14 +14,28 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **Actions:**
 
-| Action | Description |
-|--------|-------------|
-| Data Aggregation | Build a specialized indexer using Sui Events Indexer to scrape all `TicketMinted` and `CheckInEvent` logs associated with a specific `EventID`. |
-| Metric Calculation | Implement backend logic to calculate "Sell-through Rate," "Peak Check-in Velocity," and "Revenue per Tier." |
-| Visualization Engine | Integrate a reporting tool (like Highcharts or D3.js) to convert raw data into a PDF/Excel dashboard with clean charts and tables. |
-| Export Portal | Create an admin-only "Download Report" button that triggers the data aggregation and serves the file via the organizer dashboard. |
+| Action | Description | Estimate |
+|--------|-------------|----------|
+| Data Aggregation | Build a specialized indexer using Sui Events Indexer to scrape all `TicketMinted` and `CheckInEvent` logs associated with a specific `EventID`. | |
+| Metric Calculation | Implement backend logic to calculate "Sell-through Rate," "Peak Check-in Velocity," and "Revenue per Tier." | |
+| Visualization Engine | Integrate a reporting tool (like Highcharts or D3.js) to convert raw data into a PDF/Excel dashboard with clean charts and tables. | |
+| Export Portal | Create an admin-only "Download Report" button that triggers the data aggregation and serves the file via the organizer dashboard. | |
 
-**Deliverable:** A professional, downloadable Event Summary Report that provides a detailed 360-degree view of the event's performance.
+**Stack-Provided Features:**
+- Sui Events Indexer framework for event scraping
+- On-chain event log immutability
+
+**Custom Development Required:**
+- Build specialized indexer for TicketMinted and CheckInEvent logs
+- Implement metric calculation logic (sell-through rate, peak velocity, revenue per tier)
+- Integrate charting library (Highcharts/D3.js) for visualization
+- Build export functionality (PDF/Excel)
+- Create admin download portal UI
+- Testing
+
+**Estimate**: **20-28 hours**
+
+**Deliverable**: A professional, downloadable Event Summary Report that provides a detailed 360-degree view of the event's performance.
 
 ---
 
