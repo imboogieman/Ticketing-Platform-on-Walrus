@@ -9,33 +9,29 @@ This document outlines the core ticketing system requirements for the Ticketing 
 
 ### 18.1.1. Feature: QR Code Generation (TS-18.1.1)
 
-| User Story Title | User Story Body | Status |
+| User Story Title | User Story Body | Estimate |
 | --- | --- | --- |
-| 18.1.1. Feature: QR Code Generation (TS-18.1.1) | User Story: As an attendee, I want to view a dynamic, high-fidelity QR code in my dApp, so that I can present a secure and verifiable entry pass at the venue gates that cannot be easily spoofed or screenshotted.<br><br>Actions:<br>**Dynamic Salt Injection:** Implement a client-side generator that hashes the TicketID with a rotating 30-second EpochSalt from the Sui network.<br>**Vector Rendering:** Utilize SVG-based rendering for the QR code to ensure high scan accuracy across all mobile screen resolutions and brightness levels.<br>**Branding Governance:** Embed the event logo into the QR's center "quiet zone" using standard QR design patterns to signal authenticity to the user.<br>**Offline Fallback:** Generate a "Signed Fragment" that remains valid for 60 minutes, allowing users to scan in even if their mobile data drops at the gate.<br><br>Deliverable: A secure, rotating QR code interface that updates every 30 seconds to prevent unauthorized ticket duplication. | Not Started |
+| 18.1.1. Feature: QR Code Generation (TS-18.1.1) | User Story: As an attendee, I want to view a dynamic, high-fidelity QR code in my dApp, so that I can present a secure and verifiable entry pass at the venue gates that cannot be easily spoofed or screenshotted.<br><br>**Stack-Provided Features:**<br>- QR code library/framework handles code generation<br>- SVG rendering libraries available<br><br>**Custom Development Required:**<br>- Implement dynamic salt injection (TicketID + 30-second EpochSalt)<br>- Build QR code UI component with event logo embedding<br>- Create offline fallback with 60-minute validity<br>- Testing and error handling<br><br>**Deliverable**: A secure, rotating QR code interface that updates every 30 seconds to prevent unauthorized ticket duplication. | **6-10 hours** |
 
 ---
 
-### 18.1.2. Feature: Digital Signature Verification (TS-18.1.2)
+### 18.1.2. Feature: Digital Signature Verification (TS-18.1.2) - **[REMOVED]**
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.1.2. Feature: Digital Signature Verification (TS-18.1.2) | User Story: As a gatekeeper, I want the scanning app to cryptographically verify the ticket's digital signature against the organizer's public key, so that I can instantly confirm the ticket was legitimately issued by the platform.<br><br>Actions:<br>**Ed25519 Handshake:** Use the `sui::ed25519` Move module to verify that the ticket object carries a signature from the authorized EventRegistry key.<br>**Instruction Introspection:** Implement a Programmable Transaction Block (PTB) that performs the signature check as a pre-execution step before the ticket is marked as "Redeemed."<br>**Public Key Derivation:** Optimize bandwidth by deriving the public key directly from the signature during the validation process (ECDSA recovery pattern).<br>**Anti-Spoofing Assertion:** Implement `assert!(signature_is_valid, EInvalidSignature)` to halt any transaction attempting to use an altered or counterfeit ticket.<br><br>Deliverable: A sub-second, on-chain verification gate that mathematically guarantees ticket authenticity. | Not Started |
+**Note**: Handled by Sui Wallet Standard (@mysten/dapp-kit). No custom development required. Digital signature verification is provided natively by the Sui blockchain infrastructure for all wallet interactions.
 
 ---
 
 ### 18.1.3. Feature: Expiration Handling (TS-18.1.3)
 
-| User Story Title | User Story Body | Status |
+| User Story Title | User Story Body | Estimate |
 | --- | --- | --- |
-| 18.1.3. Feature: Expiration Handling (TS-18.1.3) | User Story: As an organizer, I want tickets to automatically expire and become invalid for entry after the event concludes, so that expired assets cannot be misused or clutter the active marketplace.<br><br>Actions:<br>**Timestamp Gating:** Define an `expires_at` field in the Ticket struct using the Sui Clock object's millisecond timestamp.<br>**State Transition Logic:** Write a Move function `check_expiry` that compares the current network time to the ticket's expiration and toggles an `is_active` boolean to false.<br>**Storage Fund Reclamation:** Design the ticket object to be "deletable" post-event, allowing users or organizers to destroy the object and reclaim the SUI Storage Fund rebate.<br>**UI Dimming:** Update the frontend to visually "grey out" expired tickets and remove them from the "Active Passes" dashboard.<br><br>Deliverable: An automated lifecycle management system that enforces ticket validity based on real-time network clock data. | Not Started |
+| 18.1.3. Feature: Expiration Handling (TS-18.1.3) | User Story: As an organizer, I want tickets to automatically expire and become invalid for entry after the event concludes, so that expired assets cannot be misused or clutter the active marketplace.<br><br>**Stack-Provided Features:**<br>- Sui Clock object provides network timestamp<br>- Object lifecycle management built-in<br><br>**Custom Development Required:**<br>- Add expires_at field in Ticket struct<br>- Implement check_expiry Move function<br>- Build UI to grey out expired tickets<br>- Testing<br><br>**Deliverable**: An automated lifecycle management system that enforces ticket validity based on real-time network clock data. | **8-12 hours** |
 
 ---
 
-### 18.1.4. Feature: Double-Spending Prevention (TS-18.1.4)
+### 18.1.4. Feature: Double-Spending Prevention (TS-18.1.4) - **[REMOVED]**
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.1.4. Feature: Double-Spending Prevention (TS-18.1.4) | User Story: As a venue manager, I want to ensure that a single ticket cannot be used for entry twice (by two different people), so that the event's capacity remains accurate and fair.<br><br>Actions:<br>**Owned-Object Locking:** Leverage Sui's Single-Writer model where each ticket is an "Owned Object," meaning only the current owner can initiate a redemption transaction.<br>**Atomic Redemption:** Implement the `redeem_entry` function to toggle the `is_redeemed` flag to true in a single, non-reversible transaction.<br>**Equivocation Protection:** Use Sui's object versioning to ensure that if two entry requests are sent for the same ticket, only the first transaction advances the version number, causing the second to fail.<br>**Causal Ordering:** Bypass the consensus bottleneck for individual redemptions, ensuring sub-500ms finality to keep the entry lines moving.<br><br>Deliverable: A "Fast-Path" entry logic that prevents double-use of any ticket through native blockchain object versioning. | Not Started |
+**Note**: Sui object ownership model and versioning provide built-in double-spend prevention. No custom development required. The Single-Writer model ensures only the current owner can initiate redemption transactions, and object versioning prevents race conditions automatically.
 
 ---
 
@@ -83,31 +79,26 @@ This document outlines the core ticketing system requirements for the Ticketing 
 
 ---
 
-### 18.3.3. Feature: Timestamped Verification (TS-18.3.3)
+### 18.3.3. Feature: Timestamped Verification (TS-18.3.3) - **[REMOVED]**
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.3.3. Feature: Timestamped Verification (TS-18.3.3) | User Story: As an event auditor, I want every ticket redemption to be anchored to a network-verified timestamp, so that I have a tamper-proof audit trail for capacity monitoring and post-event analytics.<br><br>Actions:<br>**Clock Object Integration:** Use the Sui system `0x6` Clock object as an immutable reference in the redemption Move function.<br>**Precision Logging:** Capture the exact millisecond of entry using `clock::timestamp_ms(clock)` and store it in the ticket's `redemption_info` dynamic field.<br>**Event Emission:** Emit a `CheckInSuccess` event containing the TicketID, GateID, and the network-verified timestamp for real-time indexing.<br>**Data Persistence:** Ensure the timestamp remains part of the ticket's permanent on-chain history, even after the event concludes.<br><br>Deliverable: A cryptographically verified "Entry Log" that provides undeniable proof of when each attendee entered the venue. | Not Started |
+**Note**: Covered by Attendance Management module (AM-03.5.1). See that module for implementation. Timestamped verification is implemented as part of the check-in and attendance tracking system.
 
 ---
 
 ## Summary of Requirements
 
-| Feature | ID | Status |
+| Feature | ID | Estimate |
 |---------|----|----|
 | **18.1 Ticket Management** | | |
-| QR Code Generation | TS-18.1.1 | Not Started |
-| Digital Signature Verification | TS-18.1.2 | Not Started |
-| Expiration Handling | TS-18.1.3 | Not Started |
-| Double-Spending Prevention | TS-18.1.4 | Not Started |
-| Transfer Policies | TS-18.1.5 | Not Started |
+| QR Code Generation | TS-18.1.1 | 6-10 hours |
+| Expiration Handling | TS-18.1.3 | 8-12 hours |
+| Transfer Policies | TS-18.1.5 | TBD |
 | **18.2 Purchase Workflow** | | |
-| Buy Ticket Process | TS-18.2.1 | Not Started |
-| Quantity Selection | TS-18.2.2 | Not Started |
+| Buy Ticket Process | TS-18.2.1 | TBD |
+| Quantity Selection | TS-18.2.2 | TBD |
 | **18.3 Ticket Validation** | | |
-| On-Chain Verification | TS-18.3.1 | Not Started |
-| Wallet Validation | TS-18.3.2 | Not Started |
-| Timestamped Verification | TS-18.3.3 | Not Started |
+| On-Chain Verification | TS-18.3.1 | TBD |
+| Wallet Validation | TS-18.3.2 | TBD |
 | **Deferred to MVP 2** | | |
 | Pricing Tiers | TS-18.2.3 | MVP 2 |
 | Refund Ticket Mechanisms | TS-18.2.4 | MVP 2 |

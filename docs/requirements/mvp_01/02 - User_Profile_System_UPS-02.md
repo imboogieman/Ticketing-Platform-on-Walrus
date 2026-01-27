@@ -19,19 +19,15 @@ This document defines requirements for user profile creation, authentication flo
 
 ### 2.1.3. Feature: Avatar (Optional) (UPS-02.1.3)
 
-| User Story Title | User Story Body |
-| --- | --- |
-| 2.1.3. Feature: Avatar (Optional) (UPS-02.1.3) | User Story: As a user, I want to upload an optional profile picture, so that I am easily recognizable within the event community and attendee lists.<br><br>Actions:<br>- Decentralized Storage: Integrate the Walrus Protocol to host the image file, ensuring the avatar is decentralized and highly available.<br>- Blob Linking: Store the avatar_blob_id as an optional field within the UserProfile struct.<br>- Image Processing: Build a frontend utility to crop and compress images to a standard resolution before uploading to Walrus to minimize storage costs.<br>- Fallback Logic: Implement a default "identicon" renderer for profiles that choose not to upload a custom avatar.<br><br>Deliverable: An avatar management system that links high-resolution media on Walrus to the user’s on-chain profile object. |
+| User Story Title | User Story Body | Estimate |
+| --- | --- | --- |
+| 2.1.3. Feature: Avatar (Optional) (UPS-02.1.3) | User Story: As a user, I want to upload an optional profile picture, so that I am easily recognizable within the event community and attendee lists.<br><br>**Stack-Provided Features:**<br>- Walrus SDK handles upload/download operations<br>- Blob ID storage and retrieval infrastructure<br><br>**Custom Development Required:**<br>- Build image crop and resize UI component<br>- Implement compression pipeline before upload<br>- Create avatar_blob_id field in UserProfile struct<br>- Build fallback "identicon" generator for users without avatars<br>- Testing and error handling<br><br>**Deliverable**: An avatar management system that links high-resolution media on Walrus to the user's on-chain profile object. | **20-28 hours** |
 
 ---
 
 ## 2.2. Feature: Authentication (UPS-02.2)
 
-### 2.2.1. Feature: Authenticate User Flows (UPS-02.2.1)
-
-| User Story Title | User Story Body |
-| --- | --- |
-| 2.2.1. Feature: Authenticate User Flows (UPS-02.2.1) | User Story: As a returning user, I want a secure authentication process that recognizes my existing profile, so that I can access my private dashboard and purchased tickets instantly.<br><br>Actions:<br>- Session Handshake: Implement a "Sign Message" flow where the user signs a unique nonce to prove ownership of the address without incurring a gas fee.<br>- Profile Resolution: Develop a backend query that checks for the existence of a UserProfile object associated with the authenticated address.<br>- zkLogin Persistence: Map the OpenID Connect (OIDC) sub-claim to the user’s Sui address to allow seamless login across devices.<br>- Route Guarding: Build React "Protected Routes" that redirect unauthenticated users to the login page when attempting to access private profile data.<br><br>Deliverable: A secure authentication gateway that grants users access to their personalized experience based on cryptographic proof. |
+**Note**: Authentication flows consolidated into ID-1.2: Authentication Methods. See Identity module (01 - Identity_and_Authentication_ID-01.md) for implementation details on wallet connection (ID-1.2.1) and social login integration (ID-1.2.2).
 
 ---
 
@@ -57,10 +53,12 @@ This document defines requirements for user profile creation, authentication flo
 
 ## Summary of Requirements
 
-| Feature | ID | Status |
-|---------|----|----|
-| Register Profile Flow | UPS-02.1.1 | Not Started |
-| Avatar (Optional) | UPS-02.1.3 | Not Started |
-| Authenticate User Flows | UPS-02.2.1 | Not Started |
-| Attendance History | UPS-02.3.1 | Not Started |
-| Badge System | UPS-02.4.1 | Not Started |
+| Feature | ID | Estimate | Status |
+|---------|----|----|---|
+| Register Profile Flow | UPS-02.1.1 | 22-28 hours | Not Started |
+| Avatar (Optional) | UPS-02.1.3 | 20-28 hours | Not Started |
+| Authentication Methods | UPS-02.2 | See ID-1.2 | Not Started |
+| Attendance History | UPS-02.3.1 | TBD | Not Started |
+| Badge System | UPS-02.4.1 | TBD | Not Started |
+
+**Total Module Hours**: **42-56 hours** (excluding features to be estimated)
