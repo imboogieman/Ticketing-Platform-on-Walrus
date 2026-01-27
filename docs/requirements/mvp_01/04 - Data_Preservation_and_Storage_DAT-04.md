@@ -10,19 +10,27 @@ This module defines requirements for decentralized data storage, privacy-preserv
 
 ### 8.1.1. Feature: Decentralized Media Storage (DAT-08.1.1)
 
-| User Story Title | User Story Body | Status |
+| User Story Title | User Story Body | Estimate |
 | --- | --- | --- |
-| 8.1.1. Feature: Decentralized Media Storage (DAT-08.1.1) | User Story: As a system architect, I want to store heavy media assets (images, PDFs) on decentralized storage (Walrus), so that I can reduce on-chain gas costs while ensuring data permanence.<br><br>Acceptance Criteria:<br>- SDK Integration: Walrus SDK (Sui Client) is integrated into the backend service<br>- Upload Logic: System accepts file uploads, posts to Walrus publisher node, and receives `blob_id`<br>- On-Chain Linking: `blob_id` and `blob_hash` are stored in Event or Ticket Move objects<br>- Display: Event posters load correctly from Walrus `blob_id` on dashboard<br><br>Deliverables:<br>- Walrus SDK integration in backend service<br>- File upload API with Walrus publisher integration<br>- Smart contract fields for `blob_id` and `blob_hash` storage<br>- Content retrieval from Walrus via standard gateway<br>- Event poster display component using Walrus blobs<br><br>Deferred to v2: Gateway aggregator optimization, image compression pipeline | Not Started |
+| 8.1.1. Feature: Decentralized Media Storage (DAT-08.1.1) | User Story: As a system architect, I want to store heavy media assets (images, PDFs) on decentralized storage (Walrus), so that I can reduce on-chain gas costs while ensuring data permanence.<br><br>**Stack-Provided Features:**<br>- Walrus SDK provides complete upload/download API<br>- Blob ID generation and content addressing handled by Walrus<br>- Publisher node infrastructure managed by Walrus network<br><br>**Custom Development Required:**<br>- Integrate Walrus SDK into backend service (basic initialization)<br>- Create file upload API endpoint<br>- Add blob_id and blob_hash fields to Event/Ticket Move objects<br>- Build content retrieval and display components<br>- Testing<br><br>**Deliverable**: Walrus SDK integration in backend service with file upload API and smart contract fields for blob_id storage.<br><br>Acceptance Criteria:<br>- SDK Integration: Walrus SDK (Sui Client) is integrated into the backend service<br>- Upload Logic: System accepts file uploads, posts to Walrus publisher node, and receives `blob_id`<br>- On-Chain Linking: `blob_id` and `blob_hash` are stored in Event or Ticket Move objects<br>- Display: Event posters load correctly from Walrus `blob_id` on dashboard<br><br>Deferred to v2: Gateway aggregator optimization, image compression pipeline | **4-8 hours** |
 
 ---
 
 ## Attendee/User Features
 
-### 8.2.1. Feature: Seal Encryption for Ticket Metadata (DAT-08.2.1)
+### 8.2.1. Feature: Seal Encryption for Ticket Metadata (DAT-08.2.1) - **[CONSOLIDATED]**
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 8.2.1. Feature: Seal Encryption for Ticket Metadata (DAT-08.2.1) | User Story: As a system architect, I want to encrypt sensitive ticket metadata (event location, QR code seed, access credentials) using Sui Seal before storing on Walrus, so that only the rightful ticket NFT owner can decrypt and access their ticket details.<br><br>Acceptance Criteria:<br>- Seal SDK Integration: Sui Seal SDK is integrated into the ticket minting service<br>- Encryption Workflow: When a ticket is minted, sensitive metadata is encrypted using Seal before upload to Walrus<br>- Encrypted Fields: Event venue address, access link, QR code generation seed, and entry instructions are Seal-encrypted<br>- Walrus Storage: Encrypted ticket blob is stored on Walrus, `blob_id` is stored in Ticket NFT object<br>- Owner-Only Decryption: Seal policy ensures only the current Ticket NFT owner can decrypt the blob<br>- Key Derivation: Encryption keys are derived from Ticket NFT object ID and owner address<br>- Transfer Support: When ticket is transferred, new owner can decrypt; previous owner loses access<br>- Integration: Works with dynamic QR generation (AM-3.4.2) and ticket redemption (AM-3.1.1)<br><br>Deliverables:<br>- Sui Seal SDK integration<br>- Ticket metadata encryption service<br>- Seal policy configuration for owner-based decryption<br>- Encrypted blob upload to Walrus pipeline<br>- Ticket NFT minting with encrypted `blob_id` linking<br>- Decryption client library for ticket holders<br>- Security documentation for Seal implementation | Not Started |
+**Note**: Seal encryption infrastructure has been consolidated into INF-05.2.2: Seal-Based Access Encryption Infrastructure. See Technical Infrastructure module (05 - Technical_Infrastructure_INF-05.md) for implementation.
+
+This consolidation covers:
+- Seal SDK integration
+- Ticket metadata encryption service
+- Seal policy configuration for owner-based decryption
+- Encrypted blob upload to Walrus pipeline
+- Ticket NFT minting with encrypted blob_id linking
+- Decryption client library for ticket holders
+
+**Cross-Reference**: See INF-05.2.2 for the complete 60-80 hour consolidated implementation.
 
 ---
 
@@ -62,9 +70,9 @@ This module defines requirements for decentralized data storage, privacy-preserv
 
 ### 8.7.1. Feature: Permanent Event Data Archival (DAT-08.7.1)
 
-| User Story Title | User Story Body | Status |
+| User Story Title | User Story Body | Estimate |
 | --- | --- | --- |
-| 8.7.1. Feature: Permanent Event Data Archival (DAT-08.7.1) | User Story: As an event organizer, I want event data to remain permanently archived on Walrus after the event concludes, so that historical event information is always accessible, immutable, and cannot be lost.<br><br>Acceptance Criteria:<br>- Event metadata and content remain on Walrus after event ends<br>- Event data is immutable and permanently hosted<br>- Event can still be discovered and accessed after conclusion<br>- Organizer can retrieve event analytics at any time<br>- Walrus ensures data redundancy and availability<br>- Archival status is reflected in event smart contract state<br><br>Deliverables:<br>- Walrus storage lifecycle management for event archival<br>- Event archival procedures and automation<br>- Immutable data references in smart contracts<br>- Historical event discovery mechanism<br>- Archival metadata indexing for search<br><br>Cross-Reference: Integrates with EMS-07 (Event Management) for event lifecycle, AR-06 (Analytics) for historical reporting. | Not Started |
+| 8.7.1. Feature: Permanent Event Data Archival (DAT-08.7.1) | User Story: As an event organizer, I want event data to remain permanently archived on Walrus after the event concludes, so that historical event information is always accessible, immutable, and cannot be lost.<br><br>**Stack-Provided Features:**<br>- Walrus provides permanent, redundant storage by design<br>- Data immutability and availability guaranteed by Walrus network<br><br>**Custom Development Required:**<br>- Define archival status field in Event smart contract<br>- Build archival metadata indexing for search<br>- Create historical event discovery UI<br>- Testing<br><br>**Deliverable**: Event archival procedures with immutable data references and historical discovery mechanism.<br><br>Acceptance Criteria:<br>- Event metadata and content remain on Walrus after event ends<br>- Event data is immutable and permanently hosted<br>- Event can still be discovered and accessed after conclusion<br>- Organizer can retrieve event analytics at any time<br>- Walrus ensures data redundancy and availability<br>- Archival status is reflected in event smart contract state<br><br>Cross-Reference: Integrates with EMS-07 (Event Management) for event lifecycle, AR-06 (Analytics) for historical reporting. | **24-32 hours** |
 
 ---
 
