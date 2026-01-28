@@ -7,13 +7,13 @@ This document defines requirements for user profile creation, authentication flo
 
 ## 2.1. Feature: Profile Creation (UPS-02.1)
 
-### 2.1.1. Feature: Register Profile Flow (UPS-02.1.1) - **[CONSOLIDATED]**
+### 2.1.1. Feature: User Registration & Profile Initialization (UPS-02.1.1) - **[CONSOLIDATED]**
 
 | User Story Title | User Story Body | Estimate |
 | --- | --- | --- |
-| 2.1.1. Feature: Register Profile Flow (UPS-02.1.1) | User Story: As a new user, I want a seamless registration flow that initializes my on-chain identity, so that I can begin interacting with the marketplace and accumulating event history.<br><br>**Stack-Provided Features:**<br>- Sui object ownership model (key ability, UID generation)<br>- Sui address-based access control<br>- SuiNS name resolution (optional)<br><br>**Custom Development Required:**<br>- Define UserProfile struct in Move with required fields (name, email, metadata)<br>- Implement create_profile transaction function<br>- Build "Welcome" onboarding screen component<br>- Connect to wallet context (ID-1.2.1) and social login (ID-1.2.2)<br>- Transaction signing and execution<br>- Error handling and validation<br>- Testing<br><br>**Deliverable**: A deployed smart contract that creates a permanent, non-transferable UserProfile object for every new user. | **22-28 hours** |
+| 2.1.1. Feature: User Registration & Profile Initialization (UPS-02.1.1) | User Story: As a new user, I want a seamless registration flow that initializes my on-chain identity, so that I can begin interacting with the marketplace and accumulating event history.<br><br>**Stack-Provided Features:**<br>- Sui object ownership model (key ability, UID generation)<br>- Sui address-based access control<br>- SuiNS name resolution (optional)<br><br>**Custom Development Required:**<br>- Define UserProfile struct in Move with required fields (name, email, avatar_blob_id, metadata)<br>- Implement create_profile transaction function<br>- Build "Welcome" onboarding screen component<br>- Connect to wallet context (ID-1.2.1) and social login (ID-1.2.2)<br>- Avatar storage setup (Walrus integration)<br>- Decentralized storage configuration<br>- Transaction signing and execution<br>- Error handling and validation<br>- Testing<br><br>**Deliverable**: A deployed smart contract that creates a permanent, non-transferable UserProfile object for every new user. | **32-40 hours** |
 
-**Audit Note**: Consolidated from ID-1.1.2 (User Registration System Architecture, 42 hrs). This represents the canonical implementation reference for user registration from the Identity module.
+**Consolidation Note**: This requirement consolidates ID-1.1.2 (User Registration System Architecture, 42 hrs). It represents the canonical implementation for user registration, including schema design, profile creation, storage setup, and registration form logic.
 
 ---
 
@@ -57,10 +57,12 @@ This document defines requirements for user profile creation, authentication flo
 
 ## Summary of Requirements
 
-| Feature | ID | Status |
-|---------|----|----|
-| Register Profile Flow | UPS-02.1.1 | Not Started |
-| Avatar (Optional) | UPS-02.1.3 | Not Started |
-| Authenticate User Flows | UPS-02.2.1 | Not Started |
-| Attendance History | UPS-02.3.1 | Not Started |
-| Badge System | UPS-02.4.1 | Not Started |
+| Feature | ID | Estimate | Status |
+|---------|----|----|---|
+| User Registration & Profile Initialization | UPS-02.1.1 | 32-40 hours | Not Started |
+| Avatar (Optional) | UPS-02.1.3 | 21 hours | Not Started |
+| Authenticate User Flows | UPS-02.2.1 | CONSOLIDATED → ID-1 | Consolidated |
+| Attendance History | UPS-02.3.1 | 21 hours | Not Started |
+| Badge System | UPS-02.4.1 | 21 hours | Not Started |
+
+**Total Module Hours**: **95-103 hours** (after consolidations)

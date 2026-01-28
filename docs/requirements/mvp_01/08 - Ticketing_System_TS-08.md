@@ -1,7 +1,34 @@
 # 18-Ticketing System (TS-18)
 
 ## 18 Overview
-This document outlines the core ticketing system requirements for the Ticketing Platform on Walrus, covering ticket management, QR code generation, digital signature verification, expiration handling, double-spending prevention, and transfer policies. These features ensure secure, verifiable, and fraud-resistant digital ticketing.
+This document outlines the core ticketing system requirements for the Ticketing Platform on Walrus, covering ticket management, QR code generation, expiration handling, and transfer policies. These features ensure secure, verifiable, and fraud-resistant digital ticketing.
+
+## Stack-Provided Features
+
+The Sui blockchain and its ecosystem provide significant built-in functionality that eliminates custom development work:
+
+### ✅ Sui Provides:
+- **Digital Signature Verification**: All transactions are cryptographically signed and verified by Sui wallets (TS-18.1.2 - REMOVED)
+- **Double-Spending Prevention**: Object versioning and single-writer model automatically prevent ticket reuse (TS-18.1.4 - REMOVED)
+- **Transaction Atomicity**: PTBs ensure multi-step operations succeed or fail atomically
+- **Timestamp Authority**: Sui Clock object provides network-verified timestamps with millisecond precision
+- **Object Ownership**: Owned object model ensures only ticket holder can initiate redemption transactions
+- **Causal Ordering**: Sub-500ms finality for owned object transactions
+
+### ✅ Sui Kiosk Provides:
+- **Transfer Policy Framework**: Built-in enforcement of royalties, price caps, and custom transfer rules
+- **Hot Potato Pattern**: Automatic rule validation for secondary market trades
+- **Marketplace Infrastructure**: Standard interfaces for listing, purchasing, and transferring tickets
+
+## Custom Development Required
+
+Our ticketing system focuses on business logic and user experience:
+- QR code generation and rendering (client-side)
+- Ticket expiration logic (timestamp comparison)
+- Purchase workflow UI and UX
+- Bulk purchase batching (PTB composition)
+- On-chain state validation (is_redeemed checks)
+- Wallet validation challenge-response protocol
 
 ---
 
@@ -17,9 +44,18 @@ This document outlines the core ticketing system requirements for the Ticketing 
 
 ### 18.1.2. Feature: Digital Signature Verification (TS-18.1.2)
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.1.2. Feature: Digital Signature Verification (TS-18.1.2) | User Story: As a gatekeeper, I want the scanning app to cryptographically verify the ticket's digital signature against the organizer's public key, so that I can instantly confirm the ticket was legitimately issued by the platform.<br><br>Actions:<br>**Ed25519 Handshake:** Use the `sui::ed25519` Move module to verify that the ticket object carries a signature from the authorized EventRegistry key.<br>**Instruction Introspection:** Implement a Programmable Transaction Block (PTB) that performs the signature check as a pre-execution step before the ticket is marked as "Redeemed."<br>**Public Key Derivation:** Optimize bandwidth by deriving the public key directly from the signature during the validation process (ECDSA recovery pattern).<br>**Anti-Spoofing Assertion:** Implement `assert!(signature_is_valid, EInvalidSignature)` to halt any transaction attempting to use an altered or counterfeit ticket.<br><br>Deliverable: A sub-second, on-chain verification gate that mathematically guarantees ticket authenticity. | Not Started |
+**STATUS: REMOVED - Stack-Provided Feature (Phase 1D Consolidation)**
+
+This requirement has been removed from MVP 1 scope. Digital signature verification is completely provided by Sui's native wallet authentication and transaction validation system. All transactions on Sui are cryptographically signed and verified as part of the blockchain's core operation. The ticket object ownership model inherently guarantees that only authorized transactions can manipulate ticket state.
+
+**Rationale:** 
+- Sui wallet integration automatically handles Ed25519/ECDSA signature verification
+- Transaction execution only proceeds if signatures are valid per Sui protocol
+- Object ownership model ensures only legitimate ticket holders can execute redemption
+- No custom signature verification infrastructure needed
+
+**Original Estimate:** 42 hours (removed)  
+**See also:** Sui transaction validation (native platform feature)
 
 ---
 
@@ -33,9 +69,18 @@ This document outlines the core ticketing system requirements for the Ticketing 
 
 ### 18.1.4. Feature: Double-Spending Prevention (TS-18.1.4)
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.1.4. Feature: Double-Spending Prevention (TS-18.1.4) | User Story: As a venue manager, I want to ensure that a single ticket cannot be used for entry twice (by two different people), so that the event's capacity remains accurate and fair.<br><br>Actions:<br>**Owned-Object Locking:** Leverage Sui's Single-Writer model where each ticket is an "Owned Object," meaning only the current owner can initiate a redemption transaction.<br>**Atomic Redemption:** Implement the `redeem_entry` function to toggle the `is_redeemed` flag to true in a single, non-reversible transaction.<br>**Equivocation Protection:** Use Sui's object versioning to ensure that if two entry requests are sent for the same ticket, only the first transaction advances the version number, causing the second to fail.<br>**Causal Ordering:** Bypass the consensus bottleneck for individual redemptions, ensuring sub-500ms finality to keep the entry lines moving.<br><br>Deliverable: A "Fast-Path" entry logic that prevents double-use of any ticket through native blockchain object versioning. | Not Started |
+**STATUS: REMOVED - Stack-Provided Feature (Phase 1E Consolidation)**
+
+This requirement has been removed from MVP 1 scope. Double-spending prevention is completely automatic in Sui through its object versioning system and single-writer ownership model. Each ticket is an owned object with a unique version number that increments atomically during state transitions, making it cryptographically impossible to use the same ticket twice.
+
+**Rationale:**
+- Sui's object versioning ensures only one transaction can advance the version number
+- Single-writer model prevents concurrent redemption attempts  
+- Causal ordering provides sub-500ms finality without custom logic
+- Native blockchain guarantees eliminate need for application-layer double-spend checks
+
+**Original Estimate:** 42 hours (removed)  
+**See also:** Sui object versioning (native platform feature)
 
 ---
 
@@ -97,9 +142,9 @@ This document outlines the core ticketing system requirements for the Ticketing 
 |---------|----|----|
 | **18.1 Ticket Management** | | |
 | QR Code Generation | TS-18.1.1 | Not Started |
-| Digital Signature Verification | TS-18.1.2 | Not Started |
+| Digital Signature Verification | TS-18.1.2 | **REMOVED** (Stack-Provided) |
 | Expiration Handling | TS-18.1.3 | Not Started |
-| Double-Spending Prevention | TS-18.1.4 | Not Started |
+| Double-Spending Prevention | TS-18.1.4 | **REMOVED** (Stack-Provided) |
 | Transfer Policies | TS-18.1.5 | Not Started |
 | **18.2 Purchase Workflow** | | |
 | Buy Ticket Process | TS-18.2.1 | Not Started |
@@ -111,4 +156,8 @@ This document outlines the core ticketing system requirements for the Ticketing 
 | **Deferred to MVP 2** | | |
 | Pricing Tiers | TS-18.2.3 | MVP 2 |
 | Refund Ticket Mechanisms | TS-18.2.4 | MVP 2 |
+
+**Module Total:** 226 hours (down from 310 hours after Phase 1D & 1E consolidations)  
+**Estimate Range:** Development estimates assume individual feature complexity and integration overhead.  
+**Stack-Provided Features:** TS-18.1.2 and TS-18.1.4 removed as functionality is natively provided by Sui blockchain.
 

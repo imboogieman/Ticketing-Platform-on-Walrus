@@ -4,11 +4,81 @@
 
 This is a decentralized event and ticketing platform powered by Sui blockchain, Walrus decentralized storage, and Seal encryption. The platform enables secure, verifiable ticketing with NFT-based proof of ownership and attendance.
 
+## Stack-Provided Features vs. Custom Development
+
+A key architectural decision is understanding what the technology stack provides natively versus what requires custom development. This significantly impacts development estimates and system design.
+
+### Sui Blockchain Provides
+
+The Sui blockchain eliminates the need for custom implementation of many traditional ticketing platform concerns:
+
+#### ✅ Automatic Features (No Custom Code Required)
+- **Digital Signature Verification**: All transactions are cryptographically signed and verified automatically
+- **Double-Spending Prevention**: Object versioning prevents ticket reuse without custom logic
+- **Transaction Atomicity**: PTBs ensure multi-step operations succeed or fail atomically
+- **Ownership Enforcement**: Single-writer model guarantees only ticket holder can redeem
+- **Timestamp Authority**: Clock object (0x6) provides network-verified millisecond timestamps
+- **Storage Persistence**: Storage fund mechanism ensures permanent data availability
+- **Gas Sponsorship**: Built-in framework for sponsored transactions (gasless UX)
+- **Fast Finality**: Sub-500ms confirmation for owned object transactions
+
+#### 📦 SDK-Provided Features (Integration Only)
+- **Wallet Connection**: @mysten/dapp-kit provides React hooks and UI components
+- **zkLogin**: Social login SDK handles ephemeral keys and OIDC flows
+- **Transaction Building**: @mysten/sui.js provides PTB composition utilities
+- **Object Queries**: GraphQL and RPC APIs for blockchain state reads
+
+### Walrus Storage Provides
+
+#### ✅ Automatic Features
+- **Blob Lifecycle**: Automatic replication and availability management
+- **Content Addressing**: Immutable blob IDs for permanent references
+- **HTTP Gateway**: Standard web access via aggregator nodes
+- **Sites Hosting**: Static website deployment infrastructure
+
+#### 📦 SDK-Provided Features
+- **TypeScript/Rust SDKs**: Publisher and aggregator client libraries
+- **Sites CLI**: Deployment and management tools
+
+### Seal Encryption Provides
+
+#### 📦 SDK-Provided Features
+- **IBE Framework**: Identity-based encryption primitives
+- **Policy Engine**: Attribute-based access control
+- **Threshold Cryptography**: Distributed key management
+
+### Custom Development Required
+
+Our platform focuses on these areas where custom development is necessary:
+
+#### Business Logic
+- Event creation and management workflows
+- Ticket pricing and tier configurations
+- Check-in procedures and badge minting
+- Revenue splitting and payment processing
+- Loyalty and rewards programs
+
+#### User Experience
+- Responsive web interface (Next.js + React)
+- Wallet connection flows and error handling
+- QR code generation and scanning
+- Dashboard analytics and reporting
+- Mobile-optimized ticket display
+
+#### Integration Work
+- Walrus SDK integration for media storage
+- Seal policy configuration for content gating
+- DeepBook integration for multi-token payments
+- Event indexing and search functionality
+- Email notifications (optional)
+
+---
+
 ## Architecture Components
 
 ### 1. Blockchain Layer (Sui)
 
-#### Smart Contracts
+#### Smart Contracts (Move)
 - **Event Contract**: Manages event creation, metadata, and lifecycle
 - **Ticket NFT Contract**: Handles ticket minting, transfers, and verification
 - **Attendance NFT Contract**: Issues proof-of-presence NFTs for attendees
@@ -17,7 +87,7 @@ This is a decentralized event and ticketing platform powered by Sui blockchain, 
 #### Key Features
 - On-chain identity (Sui Address or zkLogin)
 - NFT-based tickets with metadata
-- Verifiable ownership and transfers
+- Verifiable ownership and transfers (automatic via Sui)
 - Attendance verification and rewards
 
 ### 2. Storage Layer (Walrus)

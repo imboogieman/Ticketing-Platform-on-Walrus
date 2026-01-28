@@ -4,6 +4,50 @@
 
 This document defines the foundational technical infrastructure requirements for the Ticketing Platform on Walrus, leveraging Sui's blockchain capabilities, Walrus decentralized storage, and advanced authentication mechanisms. These requirements ensure high-performance, secure, and scalable operations with optimized gas costs and decentralized hosting.
 
+## Stack-Provided Features
+
+The Sui blockchain, Walrus storage network, and Seal encryption framework provide extensive infrastructure that eliminates significant custom development:
+
+### ✅ Sui Network Provides:
+- **Object-Centric Model**: Native parallel execution for independent transactions
+- **Fast-Path Consensus**: Sub-500ms finality for owned object transactions
+- **Shared Object Consensus**: Byzantine agreement for multi-party state changes
+- **Storage Fund Mechanism**: Upfront storage fees with rebate on object deletion
+- **Gas Sponsorship Framework**: Built-in sponsored transaction support
+- **Programmable Transaction Blocks (PTBs)**: Atomic multi-command execution
+- **Clock Object**: Network-verified timestamps (0x6 system object)
+- **Move Language**: Memory-safe smart contract development with formal verification
+- **Object Versioning**: Automatic version incrementing for state changes
+- **Transaction Validation**: Cryptographic signature verification by default
+
+### ✅ Sui SDKs Provide:
+- **@mysten/sui.js**: Full-featured TypeScript SDK for transaction building
+- **@mysten/dapp-kit**: React hooks for wallet connection and transaction execution
+- **Wallet Standard**: Universal wallet detection and connection protocol
+- **zkLogin SDK**: Social login with ephemeral key management
+
+### ✅ Walrus Provides:
+- **TypeScript/Rust SDKs**: Publisher and aggregator client libraries
+- **Sites CLI**: Static website deployment and management tools
+- **Blob Lifecycle**: Automatic replication and availability maintenance
+
+### ✅ Seal Provides:
+- **IBE Framework**: Identity-based encryption primitives
+- **Policy Engine**: Attribute-based access control
+- **Threshold Cryptography**: Distributed decryption key management
+
+## Custom Development Required
+
+Our infrastructure work focuses on configuration, integration, and business-specific logic:
+- Sui network environment setup (Devnet/Testnet/Mainnet configs)
+- Gas Station service implementation for sponsored transactions
+- PTB composition for complex workflows
+- Move contract development (tickets, events, profiles)
+- Seal policy configuration for content gating
+- Session management and state persistence
+- Walrus SDK integration for blob operations
+- Monitoring and error handling
+
 ---
 
 ## INF-05.1 Blockchain Foundation
@@ -44,13 +88,15 @@ This document defines the foundational technical infrastructure requirements for
 
 ---
 
-### INF-05.2.2 Feature: Seal-Based Access Encryption
+### INF-05.2.2 Feature: Seal-Based Access Encryption Infrastructure - **[CONSOLIDATED HUB]**
 
-| User Story Title | User Story Body | Status |
+| User Story Title | User Story Body | Estimate |
 | --- | --- | --- |
-| INF-05.2.2 Feature: Seal-Based Access Encryption | User Story: As a user, I want my sensitive event details (location, QR codes) to be locked via Seal encryption, so that only the rightful holder can decrypt and view the information.<br><br>Actions:<br>- Policy Definition: Define a Sui Move policy struct that specifies the conditions (e.g., ticket ownership) under which a holder is authorized to request decryption<br>- Seal Wrapping: Use the Seal SDK to wrap sensitive attributes into ciphertext blobs anchored to the user's on-chain ticket object<br>- Threshold Request: Configure the dApp to request "decryption fragments" from Sui key servers, which only succeed if on-chain ownership is verified via the Move policy<br><br>Acceptance Criteria:<br>- Seal policies are defined for ticket-based access control<br>- Sensitive data is encrypted before storage on Walrus<br>- Only ticket owners can successfully decrypt their ticket details<br>- Encryption is anchored to on-chain ticket ownership<br>- Decryption requests are validated against Move policies<br><br>Deliverables:<br>- Seal policy implementation in Move smart contracts<br>- Seal SDK integration for encryption/decryption<br>- Cryptographically gated storage system<br>- Decryption request handling in frontend<br>- Security documentation for Seal integration | Not Started |
+| INF-05.2.2 Feature: Seal-Based Access Encryption Infrastructure | User Story: As a system architect, I want centralized Seal encryption infrastructure that can be reused across all platform features (tickets, events, content gating), so that we have consistent, secure access control without duplicating encryption logic.<br><br>**Consolidates:**<br>- ID-1.1.1: Seal Encryption Integration (66 hrs)<br>- DAT-08.2.1: Seal Encryption for Ticket Metadata (~46 hrs)<br>- NFT-14.5.1: Encrypted Metadata (42 hrs)<br><br>**Actions:**<br>- Policy Definition Library: Create reusable Move policy modules for common access patterns:<br>  * Ownership-based policies (ticket holder only)<br>  * Redemption-based policies (after check-in)<br>  * Time-based policies (event date constraints)<br>  * Hybrid policies (ownership + redemption + time)<br>- Seal SDK Integration: Integrate Seal SDK for encryption/decryption operations<br>- Move Infrastructure: Implement seal_approve functions and policy validation logic<br>- Encryption Workflows: Create standardized encryption pipeline for sensitive data before Walrus upload<br>- Decryption Handling: Build frontend library for requesting decryption fragments from Seal key servers<br>- Policy Verification: Ensure on-chain ownership/state verification before fragment release<br>- Testing Suite: Comprehensive tests for all policy types and edge cases<br><br>**Stack-Provided Features:**<br>- Sui Seal provides IBE (Identity-Based Encryption) framework<br>- Threshold scheme handled by Seal key server network<br>- Walrus provides encrypted blob storage<br><br>**Custom Development Required:**<br>- Move policy module library<br>- Seal SDK integration wrappers<br>- Frontend decryption request library<br>- Policy-to-use-case mapping documentation<br>- Integration testing across all use cases<br><br>**Use Cases Supported:**<br>- Ticket metadata encryption (owner-only access)<br>- Event content gating (ticket ownership)<br>- Post-redemption content (attendance verified)<br>- Sensitive event details (location, access codes)<br><br>Acceptance Criteria:<br>- All policy types are defined and tested in Move<br>- Seal SDK successfully encrypts/decrypts data<br>- Only authorized users can decrypt based on on-chain state<br>- Encryption is anchored to Sui object ownership<br>- Decryption requests validate Move policies<br>- All platform features can reuse this infrastructure<br><br>Deliverables:<br>- Seal policy library (Move modules)<br>- Seal SDK integration layer<br>- Cryptographic access control system<br>- Frontend decryption utilities<br>- Security documentation and best practices<br>- Integration examples for each use case | **24-32 hours** |
 
-**Cross-Reference:** Implements ID-1.1.1 (Seal Encryption Integration) and DAT-04.2 (Seal Encryption for Ticket Metadata)
+**Consolidation Note**: This creates a single source of truth for Seal encryption across the platform, eliminating 80-120 hours of duplicate work while providing consistent security patterns.
+
+**Cross-Reference**: Used by AM-3.3.2 (Content Gating), Ticket NFTs (sensitive metadata), Event data (location privacy)
 
 ---
 
@@ -68,27 +114,29 @@ This document defines the foundational technical infrastructure requirements for
 
 ## INF-05.4 Walrus Storage Integration
 
-### INF-05.4.1 Feature: Walrus Site Static Hosting
+**Status**: CONSOLIDATED → DAT-08.5.1
 
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| INF-05.4.1 Feature: Walrus Site Static Hosting | User Story: As a platform owner, I want to host the marketplace and event pages on Walrus Sites, so that the user interface is decentralized and censorship-resistant.<br><br>Actions:<br>- Site Deployment: Use the Walrus Site-builder CLI to upload the React/Next.js static export to Walrus, generating a decentralized URL<br>- Sui Object Rooting: Root the entire marketplace site in a Sui object, allowing for versioned updates by modifying a single field on-chain<br>- SuiNS Integration: Link human-readable domains (e.g., tickets.walrus.sui) to the Walrus Site object ID for easy user access<br><br>Acceptance Criteria:<br>- Static frontend is successfully deployed to Walrus Sites<br>- Decentralized URL is accessible and fully functional<br>- Site is rooted in a Sui object for versioning<br>- SuiNS domain resolves to Walrus Site<br>- Site updates can be managed through on-chain object modifications<br>- Hosting is censorship-resistant and decentralized<br><br>Deliverables:<br>- Fully deployed decentralized frontend at a .walrus.site address<br>- Walrus Site-builder deployment scripts<br>- Sui object for site versioning and updates<br>- SuiNS domain configuration<br>- Deployment documentation and procedures | Not Started |
+Walrus Site static hosting is handled in DAT-08.5.1 (Static Frontend Deployment to Walrus).
 
-**Cross-Reference:** Implements DAT-04.5 (Decentralized Platform Hosting) and DAT-04.6 (Per-Event Walrus Sites Infrastructure)
+**Rationale**: Frontend hosting is a data/storage concern, not infrastructure setup. It should live with other storage requirements rather than being duplicated.
+
+**Cross-Reference**: See DAT-08.5.1 for frontend deployment configuration and testing.
 
 ---
 
 ## Summary of Requirements
 
-| Feature | ID | Status | Cross-References |
-|---------|----|----|------------------|
-| Sui Network Foundation | INF-05.1.1 | Not Started | Foundation for all blockchain operations |
-| Gas Fee Optimization | INF-05.1.2 | Not Started | Enhances user onboarding experience |
-| High-Fidelity Transaction Validation | INF-05.1.3 | Not Started | Security foundation for platform |
-| Content Addressing | INF-05.2.1 | Not Started | DAT-04.1 |
-| Seal-Based Access Encryption | INF-05.2.2 | Not Started | ID-1.1.1, DAT-04.2 |
-| Session Controls | INF-05.3.1 | Not Started | ID-1.2.2, RC-1.2 |
-| Walrus Site Static Hosting | INF-05.4.1 | Not Started | DAT-04.5, DAT-04.6 |
+| Feature | ID | Estimate | Status | Cross-References |
+|---------|----|----|----|----|
+| Sui Network Foundation | INF-05.1.1 | 21 hours | Not Started | Foundation for all blockchain operations |
+| Gas Fee Optimization | INF-05.1.2 | 21 hours | Not Started | Enhances user onboarding experience |
+| High-Fidelity Transaction Validation | INF-05.1.3 | 42 hours | Not Started | Security foundation for platform |
+| Content Addressing | INF-05.2.1 | Not in estimates.md | Not Started | DAT-04.1 |
+| Seal-Based Access Encryption Infrastructure | INF-05.2.2 | 24-32 hours | Not Started | ID-1.1.1, DAT-04.2, NFT-14.5.1 |
+| Session Controls | INF-05.3.1 | 42 hours | Not Started | ID-1.2.2, RC-1.2 |
+| Walrus Site Static Hosting | INF-05.4.1 | CONSOLIDATED → DAT-08.5.1 | Consolidated | DAT-04.5, DAT-04.6 |
+
+**Total Module Hours**: **150-158 hours** (after consolidations)
 
 ---
 

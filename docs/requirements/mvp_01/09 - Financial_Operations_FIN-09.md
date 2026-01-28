@@ -4,6 +4,36 @@
 
 This document outlines the financial operations requirements for the Ticketing Platform on Walrus, covering payment processing, financial reporting, and audit trails. These features ensure secure, transparent, and compliant handling of all monetary transactions across both cryptocurrency and fiat payment rails.
 
+## Stack-Provided Features
+
+The Sui blockchain and DeepBook DEX provide robust financial infrastructure:
+
+### ✅ Sui Provides:
+- **Transaction Atomicity**: All payment operations succeed or fail atomically (no partial payments)
+- **Coin Standard**: Native fungible token framework with split/merge operations
+- **Object Ownership**: Direct wallet-to-wallet transfers with cryptographic guarantees
+- **Gas Sponsorship**: Built-in sponsored transaction framework for gasless UX
+- **Event Emission**: On-chain event logs for payment tracking and indexing
+- **Checkpointing**: Automatic transaction checkpoints for historical verification
+
+### ✅ DeepBook v3 Provides:
+- **Liquidity Pools**: Deep liquidity for SUI, USDC, and major tokens
+- **Atomic Swaps**: Multi-hop routing within single transactions
+- **Price Discovery**: Real-time market pricing for token conversions
+- **Order Matching**: Efficient order book for token exchanges
+
+## Custom Development Required
+
+Our financial system focuses on business logic and integrations:
+- Multi-token checkout UI with token selection
+- PTB composition for atomic swaps and payment splits
+- Gas sponsorship service configuration
+- Payment verification webhooks and listeners
+- Revenue reporting dashboards
+- Transaction history indexing and display
+- Refund logic workflows
+- Audit trail generation
+
 ---
 
 ## 19.1. Feature: Payment Processing (FIN-19.1)

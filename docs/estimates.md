@@ -26,8 +26,6 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Duration (man-hours) | Resource | Planned Phase | Status |
 |--------|-----------|---------------------|----------|---------------|--------|
-| ID-1.1.1 | Seal Encryption Integration | 66 | Sen | Alpha | Not Started |
-| ID-1.1.2 | User Registration System Architecture | 42 | Sen | Alpha | Not Started |
 | ID-1.2.1 | Wallet Connection | 8-10 | Mid | Alpha | Not Started |
 | ID-1.2.2 | Social Login Integration (zkLogin) | 12-16 | Sen | Alpha | Not Started |
 
@@ -39,7 +37,8 @@ This document provides a comprehensive estimation of all features and user stori
 |--------|-----------|---------------------|----------|---------------|--------|
 | UPS-02.1.3 | Avatar Upload | 21 | Jun | Beta | Not Started |
 | UPS-02.3.1 | Attendance History | 21 | Jun | Beta | Not Started |
-| UPS-02.4.1 | Badge Display | 21 | Jun | Beta | Not Started |
+| UPS-02.4.1 | User Registration & Profile Initialization | 32-40 | Sen | Alpha | Not Started |
+| UPS-02.1.1 | Badge Display | 21 | Jun | Beta | Not Started |
 
 ---
 
@@ -47,11 +46,9 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Duration (man-hours) | Resource | Planned Phase | Status |
 |--------|-----------|---------------------|----------|---------------|--------|
-| AM-3.1.1 | Check-in Procedures | 40-48 | Sen | RC | Not Started |
-| AM-3.2.1 | SBT Minting on Check-in | 42 | Sen | RC | Not Started |
-| AM-3.3.2 | Walrus Site Access (Pre-Event) | 42 | Sen | RC | Not Started |
+| AM-3.1.1 | Check-in & Badge Minting Procedures | 40-48 | Sen | RC | Not Started |
+| AM-3.3.2 | Seal-Based Content Gating (venue + post-event) | 24-32 | Sen | RC | Not Started |
 | AM-3.4.2 | QR Code Generation & Scan | 42 | Mid | RC | Not Started |
-| AM-3.4.3 | Gated Content (Post-Redemption) | 42 | Sen | RC | Not Started |
 | AM-3.5.1 | Timestamped Verification | 8-12 | Sen | RC | Not Started |
 
 ---
@@ -63,7 +60,7 @@ This document provides a comprehensive estimation of all features and user stori
 | DAT-08.1 | Walrus SDK Integration | 24-32 | Sen | Alpha | Not Started |
 | DAT-08.3 | Email Encryption (Optional) | 23 | Jun | Beta | Not Started |
 | DAT-08.4 | User Data Deletion | 23 | Jun | Release | Not Started |
-| DAT-08.5 | Walrus Sites Deployment | 46 | DO | Alpha | Not Started |
+| DAT-08.5 | Static Frontend Deployment to Walrus | 4-8 | DO | Alpha | Not Started |
 | DAT-08.6 | Per-Event Sites | 24-32 | Sen | Beta | Not Started |
 | DAT-08.7 | Event Archival | 16-20 | Sen | Release | Not Started |
 
@@ -76,6 +73,7 @@ This document provides a comprehensive estimation of all features and user stori
 | INF-05.1.1 | Sui Network Setup | 21 | DO | Alpha | Not Started |
 | INF-05.1.2 | Gas Sponsorship | 21 | Sen | Beta | Not Started |
 | INF-05.1.3 | Transaction Validation | 42 | Sen | RC | Not Started |
+| INF-05.2.2 | Seal-Based Access Encryption Infrastructure | 24-32 | Sen | Alpha | Not Started |
 | INF-05.3.1 | Session Management | 42 | Mid | Alpha | Not Started |
 
 ---
@@ -86,8 +84,6 @@ This document provides a comprehensive estimation of all features and user stori
 |--------|-----------|---------------------|----------|---------------|--------|
 | NFT-14.1.1 | Ticket NFT Move Contract | 65 | Sen | Beta | Not Started |
 | NFT-14.2.1 | Metadata Display (SIP-16) | 42 | Jun | Beta | Not Started |
-| NFT-14.3.1 | Transfer Logic | 42 | Sen | Beta | Not Started |
-| NFT-14.5.1 | Encrypted Metadata | 42 | Sen | Beta | Not Started |
 | NFT-14.6.1 | Mutable State (Redemption) | 42 | Sen | RC | Not Started |
 | NFT-14.8.1 | SBT Contract | 21 | Sen | Beta | Not Started |
 | NFT-14.9.1 | SBT Non-transfer Logic | 21 | Sen | Beta | Not Started |
@@ -120,9 +116,7 @@ This document provides a comprehensive estimation of all features and user stori
 | Item # | Work Item | Duration (man-hours) | Resource | Planned Phase | Status |
 |--------|-----------|---------------------|----------|---------------|--------|
 | TS-18.1.1 | QR Code Generation (Primary Implementation) | 6-10 | Mid | Beta | Not Started |
-| TS-18.1.2 | Digital Signature | 42 | Sen | Beta | Not Started |
 | TS-18.1.3 | Expiration Logic | 8-12 | Sen | Beta | Not Started |
-| TS-18.1.4 | Double-Spend Prevention | 42 | Sen | Beta | Not Started |
 | TS-18.1.5 | Transfer Policies | 65 | Sen | RC | Not Started |
 | TS-18.2.1 | Buy Ticket Flow | 65 | Sen | Beta | Not Started |
 | TS-18.2.2 | Bulk Purchase | 28-36 | Sen | Beta | Not Started |
@@ -175,19 +169,19 @@ This document provides a comprehensive estimation of all features and user stori
 | Module | Total Duration (man-hours) | Features |
 |--------|---------------------------|----------|
 | Art - Graphical Design | 210 | 5 |
-| Identity & Authentication (ID-1) | 128-136 | 4 |
-| User Profile System (UPS-02) | 63 | 3 |
-| Attendance Management (AM-3) | 216-228 | 6 |
-| Data Preservation and Storage (DAT-04) | 156-176 | 6 |
-| Technical Infrastructure (INF-05) | 126 | 4 |
-| NFT Implementation (NFT-06) | 316 | 8 |
+| Identity & Authentication (ID-1) | 20-26 | 2 |
+| User Profile System (UPS-02) | 95-103 | 4 |
+| Attendance Management (AM-3) | 114-142 | 4 |
+| Data Preservation and Storage (DAT-04) | 128-156 | 6 |
+| Technical Infrastructure (INF-05) | 150-158 | 5 |
+| NFT Implementation (NFT-06) | 232 | 6 |
 | Event Management System (EMS-07) | 530 | 13 |
-| Ticketing System (TS-08) | 318-342 | 9 |
+| Ticketing System (TS-08) | 206-254 | 6 |
 | Financial Operations (FIN-09) | 245-259 | 7 |
 | Analytics and Reporting (AR-06) | 106 | 2 |
 | Platform Deliverables (PD-05) | 93 | 1 |
 | Loyalty and Rewards (LRW-04) | 128 | 1 |
-| **MVP 1 TOTAL** | **2,636-2,878** | **69** |
+| **MVP 1 TOTAL** | **2,257-2,461** | **62** |
 
 ---
 

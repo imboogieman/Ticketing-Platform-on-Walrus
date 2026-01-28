@@ -37,11 +37,13 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ## 14.5. Feature: Encrypted Metadata (Sui Seal Integration) (NFT-14.5)
 
-### 14.5.1. Feature: Encrypted Metadata (Sui Seal Integration) (NFT-14.5.1)
+**Status**: CONSOLIDATED → INF-05.2.2
 
-| User Story Title | User Story Body |
-| --- | --- |
-| 14.5.1. Feature: Encrypted Metadata (Sui Seal Integration) (NFT-14.5.1) | User Story: As a user, I want my sensitive event details (e.g., precise location or access codes) to be stored securely on Walrus and only accessible via my ticket, so that I am protected from physical security risks.<br><br>Actions:<br>1. Define a seal_approve_access function in Move that verifies the caller is the current owner of the Ticket object.<br>2. Store the encrypted metadata as a ciphertext blob on Walrus, with the blob_id stored in the Ticket object.<br>3. Use the Seal SDK to request decryption fragments from the key-server network only after the on-chain approval transaction is verified.<br><br>Deliverable: A cryptographically gated view in the dApp where sensitive event details are decrypted in real-time for the ticket holder. |
+Encrypted metadata for ticket NFTs is handled by the centralized Seal infrastructure (INF-05.2.2: Seal-Based Access Encryption Infrastructure).
+
+**Rationale**: Seal encryption is shared infrastructure used across the entire platform. It should be implemented once rather than duplicated per NFT type.
+
+**Cross-Reference**: See INF-05.2.2 for Seal policy implementation, encryption workflows, and owner-based decryption handling for ticket metadata.
 
 ---
 
@@ -97,17 +99,19 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ## Summary of Requirements
 
-| Feature | ID | Status |
-|---------|----|----|
-| Ticket NFTs on Sui (Base Object) | NFT-14.1.1 | Not Started |
-| Metadata Standards (SIP-16/Display) | NFT-14.2.1 | Not Started |
-| Ticket Transfer Logic | NFT-14.3.1 | Not Started |
-| Encrypted Metadata (Sui Seal Integration) | NFT-14.5.1 | Not Started |
-| Dynamic Updates (Mutable State) | NFT-14.6.1 | Not Started |
-| Soulbound Token (SBT) Standards | NFT-14.8.1 | Not Started |
-| SBT Non-transferability Logic | NFT-14.9.1 | Not Started |
-| Attendance Proof Burn Mechanisms | NFT-14.10.1 | Not Started |
-| zkLogin Address Derivation | NFT-14.11.1 | Not Started |
+| Feature | ID | Estimate | Status |
+|---------|----|----|---|
+| Ticket NFTs on Sui (Base Object) | NFT-14.1.1 | 65 hours | Not Started |
+| Metadata Standards (SIP-16/Display) | NFT-14.2.1 | 42 hours | Not Started |
+| Ticket Transfer Logic | NFT-14.3.1 | 42 hours | Not Started |
+| Encrypted Metadata (Sui Seal Integration) | NFT-14.5.1 | CONSOLIDATED → INF-05.2.2 | Consolidated |
+| Dynamic Updates (Mutable State) | NFT-14.6.1 | 42 hours | Not Started |
+| Soulbound Token (SBT) Standards | NFT-14.8.1 | 21 hours | Not Started |
+| SBT Non-transferability Logic | NFT-14.9.1 | 21 hours | Not Started |
+| Attendance Proof Burn Mechanisms | NFT-14.10.1 | 41 hours | Not Started |
+| zkLogin Address Derivation | NFT-14.11.1 | Not in estimates.md | Not Started |
+
+**Total Module Hours**: **274 hours** (after consolidations, down from 316 hours)
 
 ---
 
