@@ -18,14 +18,6 @@ This module defines requirements for decentralized data storage, privacy-preserv
 
 ## Attendee/User Features
 
-### 8.3. Feature: Optional Contact Email Encryption (DAT-08.3)
-
-| User Story Title | User Story Body | Estimate |
-| --- | --- | --- |
-| 8.3. Feature: Optional Contact Email Encryption (DAT-08.3) | User Story: As a user who opts in to email notifications, I want my email address to be stored encrypted, so that my contact information is protected.<br><br>**Actions:**<br>- Encryption Standard: Email addresses are encrypted using AES-256-GCM before storage<br>- Optional Field: Email collection is opt-in for users who want email notifications<br>- Encrypted Storage: Only encrypted email is stored in database<br>- Decryption: System can decrypt email when sending notifications<br><br>**Deliverables:**<br>- Email encryption/decryption utility<br>- Encrypted email field in database schema<br>- Email opt-in flow in user settings | **23 hours** |
-
----
-
 ### 8.4. Feature: User Data Deletion (DAT-08.4)
 
 | User Story Title | User Story Body | Estimate |
@@ -63,10 +55,11 @@ This module defines requirements for decentralized data storage, privacy-preserv
 | Feature | ID | Estimate | Status |
 |---------|----|----|--------|
 | Decentralized Media Storage | DAT-08.1 | 24-32 hours | Not Started |
-| Optional Contact Email Encryption | DAT-08.3 | 23 hours | Not Started |
 | User Data Deletion | DAT-08.4 | 23 hours | Not Started |
 | Static Frontend Deployment to Walrus | DAT-08.5 | 4-8 hours | Not Started |
 | Per-Event Walrus Sites Infrastructure | DAT-08.6 | 24-32 hours | Not Started |
 | Permanent Event Data Archival | DAT-08.7 | 16-20 hours | Not Started |
 
-**Total Module Hours**: **114-156 hours**
+**Total Module Hours**: **91-133 hours**
+
+**Note**: Email collection for notifications is handled via zkLogin OAuth flow (see ID-1.2.2), eliminating the need for separate email encryption infrastructure.

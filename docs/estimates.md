@@ -35,10 +35,11 @@ This document provides a comprehensive estimation of all features and user stori
 
 | Item # | Work Item | Factor | Best Case | Most Likely | Worst Case | Risk % | Resource | Planned Phase | Status |
 |--------|-----------|--------|-----------|-------------|------------|--------|----------|---------------|--------|
+| UPS-02.1.1 | User Registration & Profile Initialization | 2 | 28h | 42h | 56h | 35% | Sen | Alpha | Not Started |
 | UPS-02.1.3 | Avatar Upload | 1 | 14h | 21h | 28h | 15% | Jun | Beta | Not Started |
+| UPS-02.2.1 | Authenticate User Flows | 2 | 28h | 42h | 56h | 30% | Sen | Alpha | Not Started |
 | UPS-02.3.1 | Attendance History | 1 | 14h | 21h | 28h | 20% | Jun | Beta | Not Started |
-| UPS-02.4.1 | User Registration & Profile Initialization | 2 | 28h | 42h | 56h | 35% | Sen | Alpha | Not Started |
-| UPS-02.1.1 | Badge Display | 1 | 14h | 21h | 28h | 15% | Jun | Beta | Not Started |
+| UPS-02.4.1 | Badge System | 1 | 14h | 21h | 28h | 15% | Jun | Beta | Not Started |
 
 ---
 
@@ -58,7 +59,6 @@ This document provides a comprehensive estimation of all features and user stori
 | Item # | Work Item | Factor | Best Case | Most Likely | Worst Case | Risk % | Resource | Planned Phase | Status |
 |--------|-----------|--------|-----------|-------------|------------|--------|----------|---------------|--------|
 | DAT-08.1 | Walrus SDK Integration | 2 | 28h | 42h | 56h | 35% | Sen | Alpha | Not Started |
-| DAT-08.3 | Email Encryption (Optional) | 1 | 14h | 21h | 28h | 25% | Jun | Beta | Not Started |
 | DAT-08.4 | User Data Deletion | 1 | 14h | 21h | 28h | 20% | Jun | Release | Not Started |
 | DAT-08.5 | Static Frontend Deployment to Walrus | 1 | 14h | 21h | 28h | 30% | DO | Alpha | Not Started |
 | DAT-08.6 | Per-Event Sites | 2 | 28h | 42h | 56h | 35% | Sen | Beta | Not Started |
@@ -169,7 +169,7 @@ This document provides a comprehensive estimation of all features and user stori
 | Module | Best Case | Most Likely | Worst Case | Avg Risk % | Features |
 |--------|-----------|-------------|------------|------------|----------|
 | Art - Graphical Design | 140h | 210h | 280h | 24% | 5 |
-| Identity & Authentication (ID-1) | 28h | 42h | 56h | 23% | 2 |
+| Identity & Authentication (ID-198h | 147h | 196h | 23% | 5 2 |
 | User Profile System (UPS-02) | 70h | 105h | 140h | 21% | 4 |
 | Attendance Management (AM-3) | 112h | 168h | 224h | 30% | 4 |
 | Data Preservation and Storage (DAT-04) | 112h | 168h | 224h | 28% | 6 |
@@ -180,7 +180,7 @@ This document provides a comprehensive estimation of all features and user stori
 | Financial Operations (FIN-09) | 196h | 294h | 392h | 29% | 7 |
 | Analytics and Reporting (AR-06) | 84h | 126h | 168h | 33% | 2 |
 | Platform Deliverables (PD-05) | 70h | 105h | 140h | 45% | 1 |
-| Loyalty and Rewards (LRW-04) | 84h | 126h | 168h | 50% | 1 |
+| Loyalty and Rewards (L820h** | **2,730h** | **3,640h** | **30%** | **64
 | **MVP 1 TOTAL** | **1,792h** | **2,688h** | **3,584h** | **30%** | **63** |
 
 ### Confidence Intervals
