@@ -75,16 +75,6 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ---
 
-## 14.11. Feature: zkLogin Address Derivation (NFT-14.11)
-
-### 14.11.1. Feature: zkLogin Address Derivation (NFT-14.11.1)
-
-| User Story Title | User Story Body |
-| --- | --- |
-| 14.11.1. Feature: zkLogin Address Derivation (NFT-14.11.1) | User Story: As a Web2 user, I want to manage my tickets using my Google account, so that I don't have to worry about losing a 24-word recovery phrase.<br><br>Actions:<br>- Salt Service: Deploy a production-grade Salt Service backed by a Hardware Security Module (HSM) to ensure user salts are never exposed.<br>- Address Mapping: Use jwtToAddress(jwt, userSalt) from the @mysten/sui/zklogin SDK to compute the deterministic Sui address.<br>- Proof Generation: Integrate a Proving Service to generate the ZK Proof for the user's ephemeral signature.<br>- Consistency Check: Implement an on-chain verification that the ZK proof matches the address_seed derived from the JWT.<br><br>Deliverable: A seamless login flow where a Google OAuth redirect results in a fully functional Sui wallet address. |
-
----
-
 ## Summary of Requirements
 
 | Feature | ID | Estimate | Status |
@@ -97,7 +87,6 @@ This document outlines the advanced NFT implementation requirements for the Tick
 | Soulbound Token (SBT) Standards | NFT-14.8.1 | 21 hours | Not Started |
 | SBT Non-transferability Logic | NFT-14.9.1 | 21 hours | Not Started |
 | Attendance Proof Burn Mechanisms | NFT-14.10.1 | 41 hours | Not Started |
-| zkLogin Address Derivation | NFT-14.11.1 | Not in estimates.md | Not Started |
 
 **Total Module Hours**: **274 hours** (after consolidations, down from 316 hours)
 
@@ -109,7 +98,6 @@ This document outlines the advanced NFT implementation requirements for the Tick
 - Sui Move language and object model
 - Programmable Transaction Blocks (PTBs)
 - Sui Object Display standard (SIP-16)
-- zkLogin authentication framework
 - System Clock object (0x6)
 
 ### Walrus Integration
@@ -117,17 +105,14 @@ This document outlines the advanced NFT implementation requirements for the Tick
 - Blob ID referencing
 - Sui Seal encryption/decryption
 
-### External Services
-- Salt Service with HSM backing
-- ZK Proving Service
-- OAuth providers (Google, etc.)
+
 
 ---
 
 ## Cross-References
 
 This module integrates with:
-- **Identity & Authentication (ID-01)**: zkLogin integration for Web2 user onboarding (NFT-14.11)
+- **Identity & Authentication (ID-01)**: User authentication provides Sui addresses for NFT minting and ownership
 - **Attendance Management (AM-03)**: 
   - QR code scanning and check-in procedures (AM-3.1.1, AM-3.4.2) using dynamic QR from TS-18.1.1
   - Ticket redemption and SBT badge minting (AM-3.2.1) using NFT-14.10
@@ -148,9 +133,8 @@ This module integrates with:
 1. **Capability-Based Security**: AdminCap and ScannerCap enforce role-based access control
 2. **Soulbound Enforcement**: Non-transferability prevents reputation farming and ticket scalping
 3. **Encrypted Metadata**: Sui Seal ensures sensitive event details are only accessible to ticket holders
-4. **zkLogin Security**: HSM-backed salt service prevents address compromise
-5. **Atomic Operations**: PTBs ensure ticket-to-badge conversion is atomic and prevents double-entry
-6. **Timestamp Verification**: System Clock integration provides tamper-proof audit trails
+4. **Atomic Operations**: PTBs ensure ticket-to-badge conversion is atomic and prevents double-entry
+5. **Timestamp Verification**: System Clock integration provides tamper-proof audit trails
 
 ---
 
