@@ -25,41 +25,11 @@ This document outlines attendance management requirements, including check-in pr
 
 ---
 
-## 3.4. Feature: Entry Management (AM-3.4)
-
-### 3.4.2. Feature: QR Code Scanning (AM-3.4.2)
-
-| User Story Title | User Story Body | Estimate |
-| --- | --- | --- |
-| 3.4.2. Feature: QR Code Scanning (AM-3.4.2) | User Story: As an attendee, I want to present a dynamic, high-resolution QR code, so that I can enter the venue quickly without the risk of my ticket being stolen via a simple screenshot.<br><br>**Actions:**<br>- Dynamic Payload: Uses QR generation from TS-18.1.1 containing signed payload of TicketID + UserAddress + Timestamp + One-Time-Salt<br>- Short-Lived Validity: Implements scanner validation with 30-second refresh window from TS-18.1.1<br>- Fast-Path Processing: Optimize the scanner app to utilize Sui's Owned-Object transaction lane, hitting finality in <400ms<br>- Scanner Integration: Build venue-side scanner app that validates QR codes and triggers check-in flow (AM-3.1.1)<br><br>**Deliverable**: Venue scanner app integrated with TS-18.1.1 QR generation library for fraud-proof entry validation. | **42 hours** |
-
-**Status**: CONSOLIDATED → AM-3.3.2
-
-Post-redemption content gating is handled within AM-3.3.2 (Seal-Based Content Gating) which supports both pre-event (ticket ownership) and post-event (redemption verified) content access variants.
-
-**Rationale**: Both pre-event and post-event content gating share 80% of infrastructure (Seal policies, decryption flows, session management). Only the access control policy differs between ownership-based and redemption-based gating.
-| --- | --- |
-| 3.4.3. Feature: Gated Content (AM-3.4.3) | User Story: As an attendee, I want my physical check-in to unlock exclusive digital content (live backstage feeds, exclusive interviews, post-event recordings), so that my ticket provides enhanced value during and after the event based on verified attendance.<br><br>Actions:<br>- Redemption-Locked Encryption: Extend the Seal encryption infrastructure from AM-3.3.2 to support redemption-based policies.<br>- Policy-Based Decryption: Set an on-chain Seal policy that only releases decryption fragments after the ticket's is_redeemed flag is set to true via the redeem_ticket function (AM-3.1.1).<br>- Attendance Verification: Verify both ticket ownership AND redemption status before granting access to premium content.<br>- Session Gating: Use zkLogin to ensure that only the verified account owner can access the redemption-locked content.<br>- Distinct from Pre-Event Content: Unlike AM-3.3.2 (accessible with ticket ownership), this content requires physical venue check-in to unlock.<br>- **Shared Infrastructure:** Reuses 80% of the encryption/decryption logic from AM-3.3.2, only adding redemption-state verification to the access control policy.<br>- Cross-Reference: Integrates with AM-3.1.1 (Check-in Procedures), AM-3.2.1 (Attendance Badge), and AM-3.3.2 (Shared Encryption Infrastructure).<br><br>Deliverable: Extended content portal where physical attendance redemption is the cryptographic "key" to unlock exclusive materials, leveraging shared infrastructure from AM-3.3.2. |
-
----
-
-## 3.5. Feature: Validation Methods (AM-3.5)
-
-### 3.5.1. Feature: Timestamped Verification (AM-3.5.1)
-
-| User Story Title | User Story Body | Estimate |
-| --- | --- | --- |
-| 3.5.1. Feature: Timestamped Verification (AM-3.5.1) | User Story: As an event security lead, I want every ticket redemption to be anchored to a cryptographically verified timestamp, so that I have a tamper-proof audit trail of exactly when each attendee entered the venue.<br><br>**Actions:**<br>- Clock Integration: Integrate the Sui 0x6 system Clock object into the Move redeem_ticket entry function<br>- Deterministic Mapping: Capture the exact millisecond of validation using clock::timestamp_ms(clock) and store it within the Ticket object's state<br>- Audit Event: Emit a ValidationEvent containing the TicketID, GateID, and the network-verified timestamp for real-time indexing<br>- Sequential Integrity: Utilize the timestamp to prevent "Time-of-Check to Time-of-Use" (TOCTOU) exploits where a ticket might be transferred while in the scan queue<br><br>**Deliverable**: A Move-secured verification logic that produces an immutable temporal record for every entry. | **8-12 hours** |
-
----
-
 ## Summary of Requirements
 
 | Feature | ID | Estimate | Status |
 |---------|----|----|--------|
 | Check-in & Badge Minting Procedures | AM-3.1.1 | 40-48 hours | Not Started |
 | Seal-Based Content Gating | AM-3.3.2 | 24-32 hours | Not Started |
-| QR Code Scanning | AM-3.4.2 | 42 hours | Not Started |
-| Timestamped Verification | AM-3.5.1 | 8-12 hours | Not Started |
 
-**Total Module Hours**: **114-142 hours**
+**Total Module Hours**: **64-80 hours**

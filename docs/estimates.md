@@ -49,8 +49,6 @@ This document provides a comprehensive estimation of all features and user stori
 |--------|-----------|--------|-----------|-------------|------------|--------|----------|---------------|--------|
 | AM-3.1.1 | Check-in & Badge Minting Procedures | 3 | 42h | 63h | 84h | 40% | Sen | RC | Not Started |
 | AM-3.3.2 | Seal-Based Content Gating (venue + post-event) | 2 | 28h | 42h | 56h | 35% | Sen | RC | Not Started |
-| AM-3.4.2 | QR Code Generation & Scan | 2 | 28h | 42h | 56h | 25% | Mid | RC | Not Started |
-| AM-3.5.1 | Timestamped Verification | 1 | 14h | 21h | 28h | 20% | Sen | RC | Not Started |
 
 ---
 
@@ -74,7 +72,6 @@ This document provides a comprehensive estimation of all features and user stori
 | INF-05.1.2 | Gas Sponsorship | 1 | 14h | 21h | 28h | 25% | Sen | Beta | Not Started |
 | INF-05.1.3 | Transaction Validation | 2 | 28h | 42h | 56h | 30% | Sen | RC | Not Started |
 | INF-05.2.2 | Seal-Based Access Encryption Infrastructure | 2 | 28h | 42h | 56h | 35% | Sen | Alpha | Not Started |
-| INF-05.3.1 | Session Management | 2 | 28h | 42h | 56h | 25% | Mid | Alpha | Not Started |
 
 ---
 
@@ -171,23 +168,23 @@ This document provides a comprehensive estimation of all features and user stori
 | Art - Graphical Design | 140h | 210h | 280h | 24% | 5 |
 | Identity & Authentication (ID-198h | 147h | 196h | 23% | 5 2 |
 | User Profile System (UPS-02) | 70h | 105h | 140h | 21% | 4 |
-| Attendance Management (AM-3) | 112h | 168h | 224h | 30% | 4 |
+| Attendance Management (AM-3) | 70h | 105h | 140h | 38% | 2 |
 | Data Preservation and Storage (DAT-04) | 112h | 168h | 224h | 28% | 6 |
-| Technical Infrastructure (INF-05) | 112h | 168h | 224h | 27% | 5 |
+| Technical Infrastructure (INF-05) | 84h | 126h | 168h | 27% | 4 |
 | NFT Implementation (NFT-06) | 168h | 252h | 336h | 31% | 6 |
 | Event Management System (EMS-07) | 392h | 588h | 784h | 26% | 13 |
 | Ticketing System (TS-08) | 224h | 336h | 448h | 29% | 7 |
 | Financial Operations (FIN-09) | 196h | 294h | 392h | 29% | 7 |
 | Analytics and Reporting (AR-06) | 84h | 126h | 168h | 33% | 2 |
 | Platform Deliverables (PD-05) | 70h | 105h | 140h | 45% | 1 |
-| Loyalty and Rewards (L820h** | **2,730h** | **3,640h** | **30%** | **64
-| **MVP 1 TOTAL** | **1,792h** | **2,688h** | **3,584h** | **30%** | **63** |
+| Loyalty and Rewards (LRW-04) | 84h | 126h | 168h | 50% | 1 |
+| **MVP 1 TOTAL** | **1,722h** | **2,583h** | **3,444h** | **30%** | **60** |
 
 ### Confidence Intervals
-- **Expected Duration (PERT):** 2,688 hours (16 weeks with 3-person team)
-- **Optimistic Range (Best Case):** 1,792 hours (67% of expected)
-- **Pessimistic Range (Worst Case):** 3,584 hours (133% of expected)
-- **90% Confidence Interval:** 1,900 - 3,400 hours
+- **Expected Duration (PERT):** 2,583 hours (16 weeks with 3-person team)
+- **Optimistic Range (Best Case):** 1,722 hours (67% of expected)
+- **Pessimistic Range (Worst Case):** 3,444 hours (133% of expected)
+- **90% Confidence Interval:** 1,835 - 3,325 hours
 - **Average Risk Across All Tasks:** 30%
 
 ---
