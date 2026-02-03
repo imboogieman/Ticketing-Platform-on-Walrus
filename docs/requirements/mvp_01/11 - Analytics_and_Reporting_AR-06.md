@@ -173,18 +173,16 @@ The Analytics and Reporting module provides comprehensive data aggregation, visu
 
 **User Story:** As an attendee, I want to showcase my attendance across multiple events in a public portfolio to build reputation and demonstrate expertise, so that I can leverage this for professional opportunities and community status.
 
-**Acceptance Criteria:**
+**Actions:**
 
-- User can display Attendance NFTs (SBTs) in a public portfolio view
-- Portfolio shows event names, dates, organizers, and badge metadata
-- Portfolio can be shared via unique link or embedded widget
-- Statistics show event attendance trends, patterns, and streaks
-- Attendance records can be filtered and sorted by date, category, or organizer
-- Portfolio respects user privacy preferences (selective display)
-- Integration with external platforms via shareable links
+| Action | Description |
+|--------|-------------|
+| Portfolio Display | Implement public portfolio view displaying Attendance NFTs (SBTs) with event names, dates, organizers, and badge metadata. |
+| Sharing System | Generate unique shareable links and embeddable widgets for portfolio display on external platforms. |
+| Statistics Engine | Calculate and visualize attendance trends, patterns, streaks, and category breakdowns. |
+| Privacy Controls | Enable user-controlled visibility settings for selective badge display and data filtering. |
 
 **Deliverables:**
-
 - Public attendance portfolio page component
 - Portfolio sharing links and embed code generator
 - Attendance statistics and visualization dashboard

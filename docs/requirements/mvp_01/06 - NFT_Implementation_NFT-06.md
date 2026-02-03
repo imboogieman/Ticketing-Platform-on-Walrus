@@ -35,18 +35,6 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ---
 
-## 14.5. Feature: Encrypted Metadata (Sui Seal Integration) (NFT-14.5)
-
-**Status**: CONSOLIDATED → INF-05.2.2
-
-Encrypted metadata for ticket NFTs is handled by the centralized Seal infrastructure (INF-05.2.2: Seal-Based Access Encryption Infrastructure).
-
-**Rationale**: Seal encryption is shared infrastructure used across the entire platform. It should be implemented once rather than duplicated per NFT type.
-
-**Cross-Reference**: See INF-05.2.2 for Seal policy implementation, encryption workflows, and owner-based decryption handling for ticket metadata.
-
----
-
 ## 14.6. Feature: Dynamic Updates (Mutable State) (NFT-14.6)
 
 ### 14.6.1. Feature: Dynamic Updates (Mutable State) (NFT-14.6.1)

@@ -3,33 +3,6 @@
 ## 18 Overview
 This document outlines the core ticketing system requirements for the Ticketing Platform on Walrus, covering ticket management, QR code generation, expiration handling, and transfer policies. These features ensure secure, verifiable, and fraud-resistant digital ticketing.
 
-## Stack-Provided Features
-
-The Sui blockchain and its ecosystem provide significant built-in functionality that eliminates custom development work:
-
-### ✅ Sui Provides:
-- **Digital Signature Verification**: All transactions are cryptographically signed and verified by Sui wallets (TS-18.1.2 - REMOVED)
-- **Double-Spending Prevention**: Object versioning and single-writer model automatically prevent ticket reuse (TS-18.1.4 - REMOVED)
-- **Transaction Atomicity**: PTBs ensure multi-step operations succeed or fail atomically
-- **Timestamp Authority**: Sui Clock object provides network-verified timestamps with millisecond precision
-- **Object Ownership**: Owned object model ensures only ticket holder can initiate redemption transactions
-- **Causal Ordering**: Sub-500ms finality for owned object transactions
-
-### ✅ Sui Kiosk Provides:
-- **Transfer Policy Framework**: Built-in enforcement of royalties, price caps, and custom transfer rules
-- **Hot Potato Pattern**: Automatic rule validation for secondary market trades
-- **Marketplace Infrastructure**: Standard interfaces for listing, purchasing, and transferring tickets
-
-## Custom Development Required
-
-Our ticketing system focuses on business logic and user experience:
-- QR code generation and rendering (client-side)
-- Ticket expiration logic (timestamp comparison)
-- Purchase workflow UI and UX
-- Bulk purchase batching (PTB composition)
-- On-chain state validation (is_redeemed checks)
-- Wallet validation challenge-response protocol
-
 ---
 
 ## 18.1. Feature: Ticket Management (TS-18.1)
@@ -42,45 +15,11 @@ Our ticketing system focuses on business logic and user experience:
 
 ---
 
-### 18.1.2. Feature: Digital Signature Verification (TS-18.1.2)
-
-**STATUS: REMOVED - Stack-Provided Feature (Phase 1D Consolidation)**
-
-This requirement has been removed from MVP 1 scope. Digital signature verification is completely provided by Sui's native wallet authentication and transaction validation system. All transactions on Sui are cryptographically signed and verified as part of the blockchain's core operation. The ticket object ownership model inherently guarantees that only authorized transactions can manipulate ticket state.
-
-**Rationale:** 
-- Sui wallet integration automatically handles Ed25519/ECDSA signature verification
-- Transaction execution only proceeds if signatures are valid per Sui protocol
-- Object ownership model ensures only legitimate ticket holders can execute redemption
-- No custom signature verification infrastructure needed
-
-**Original Estimate:** 42 hours (removed)  
-**See also:** Sui transaction validation (native platform feature)
-
----
-
 ### 18.1.3. Feature: Expiration Handling (TS-18.1.3)
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
 | 18.1.3. Feature: Expiration Handling (TS-18.1.3) | User Story: As an organizer, I want tickets to automatically expire and become invalid for entry after the event concludes, so that expired assets cannot be misused or clutter the active marketplace.<br><br>Actions:<br>**Timestamp Gating:** Define an `expires_at` field in the Ticket struct using the Sui Clock object's millisecond timestamp.<br>**State Transition Logic:** Write a Move function `check_expiry` that compares the current network time to the ticket's expiration and toggles an `is_active` boolean to false.<br>**Storage Fund Reclamation:** Design the ticket object to be "deletable" post-event, allowing users or organizers to destroy the object and reclaim the SUI Storage Fund rebate.<br>**UI Dimming:** Update the frontend to visually "grey out" expired tickets and remove them from the "Active Passes" dashboard.<br><br>Deliverable: An automated lifecycle management system that enforces ticket validity based on real-time network clock data. | Not Started |
-
----
-
-### 18.1.4. Feature: Double-Spending Prevention (TS-18.1.4)
-
-**STATUS: REMOVED - Stack-Provided Feature (Phase 1E Consolidation)**
-
-This requirement has been removed from MVP 1 scope. Double-spending prevention is completely automatic in Sui through its object versioning system and single-writer ownership model. Each ticket is an owned object with a unique version number that increments atomically during state transitions, making it cryptographically impossible to use the same ticket twice.
-
-**Rationale:**
-- Sui's object versioning ensures only one transaction can advance the version number
-- Single-writer model prevents concurrent redemption attempts  
-- Causal ordering provides sub-500ms finality without custom logic
-- Native blockchain guarantees eliminate need for application-layer double-spend checks
-
-**Original Estimate:** 42 hours (removed)  
-**See also:** Sui object versioning (native platform feature)
 
 ---
 
@@ -142,9 +81,7 @@ This requirement has been removed from MVP 1 scope. Double-spending prevention i
 |---------|----|----|
 | **18.1 Ticket Management** | | |
 | QR Code Generation | TS-18.1.1 | Not Started |
-| Digital Signature Verification | TS-18.1.2 | **REMOVED** (Stack-Provided) |
 | Expiration Handling | TS-18.1.3 | Not Started |
-| Double-Spending Prevention | TS-18.1.4 | **REMOVED** (Stack-Provided) |
 | Transfer Policies | TS-18.1.5 | Not Started |
 | **18.2 Purchase Workflow** | | |
 | Buy Ticket Process | TS-18.2.1 | Not Started |
@@ -153,11 +90,5 @@ This requirement has been removed from MVP 1 scope. Double-spending prevention i
 | On-Chain Verification | TS-18.3.1 | Not Started |
 | Wallet Validation | TS-18.3.2 | Not Started |
 | Timestamped Verification | TS-18.3.3 | Not Started |
-| **Deferred to MVP 2** | | |
-| Pricing Tiers | TS-18.2.3 | MVP 2 |
-| Refund Ticket Mechanisms | TS-18.2.4 | MVP 2 |
 
-**Module Total:** 226 hours (down from 310 hours after Phase 1D & 1E consolidations)  
-**Estimate Range:** Development estimates assume individual feature complexity and integration overhead.  
-**Stack-Provided Features:** TS-18.1.2 and TS-18.1.4 removed as functionality is natively provided by Sui blockchain.
-
+**Module Total:** 226 hours
