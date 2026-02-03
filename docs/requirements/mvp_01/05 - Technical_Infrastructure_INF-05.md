@@ -20,7 +20,7 @@ This document defines the foundational technical infrastructure requirements for
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| INF-05.1.2 Feature: Gas Fee Optimization | User Story: As a product manager, I want to minimize transaction costs and abstract gas away from the user, so that the onboarding experience via ZkLogin is indistinguishable from a Web2 application.<br><br>**Actions:**<br>- Implement Gas Station service for sponsored transactions<br>- Chain multiple operations into single PTBs to reduce overhead<br>- Design object lifecycle for post-event storage fee reclamation<br>- Configure gasless onboarding flows<br><br>**Deliverables:**<br>- Functional Gas Station service<br>- PTB batching implementation for common workflows<br>- Storage fee reclamation utilities<br>- Gas optimization documentation | **21 hours** |
+| INF-05.1.2 Feature: Gas Fee Optimization | User Story: As a product manager, I want to minimize transaction costs through PTB batching and storage fee reclamation, so that the platform operates efficiently and users have a seamless experience.<br><br>**Note:** Gas sponsorship primitives are provided by Sui's native Gas Station framework (see STACK_CAPABILITIES.md).<br><br>**Actions:**<br>- Chain multiple operations into single PTBs to reduce overhead<br>- Design object lifecycle for post-event storage fee reclamation<br>- Configure gasless onboarding flows using Sui's gas sponsorship<br><br>**Deliverables:**<br>- PTB batching implementation for common workflows (ticket purchase + profile update, event creation + policy setup)<br>- Storage fee reclamation utilities<br>- Gas optimization documentation | **12 hours** |
 
 ---
 
@@ -28,7 +28,7 @@ This document defines the foundational technical infrastructure requirements for
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| INF-05.1.3 Feature: High-Fidelity Transaction Validation | User Story: As a security officer, I want rigorous on-chain and off-chain validation of every transaction, so that malicious calls are rejected and platform integrity is maintained.<br><br>**Actions:**<br>- Implement Hot Potato pattern for critical payment flows<br>- Use sui_dryRunTransactionBlock for pre-execution simulation<br>- Add granular assert! checks for all state transitions<br>- Develop comprehensive test suite for edge cases<br><br>**Deliverables:**<br>- Smart contracts with Hot Potato pattern<br>- Frontend transaction simulation integration<br>- Comprehensive test suite (100+ scenarios)<br>- Security documentation<br>- Assertion coverage report | **42 hours** |
+| INF-05.1.3 Feature: High-Fidelity Transaction Validation | User Story: As a security officer, I want business-logic validation and comprehensive testing beyond Sui's base guarantees, so that malicious calls are rejected and platform integrity is maintained.<br><br>**Note:** Double-spend prevention and basic ownership validation are provided by Sui's object versioning and ownership model (see STACK_CAPABILITIES.md).<br><br>**Actions:**<br>- Implement Hot Potato pattern for critical payment flows (ensure refund or ticket minting)<br>- Integrate sui_dryRunTransactionBlock for pre-execution simulation in frontend<br>- Add granular assert! checks for business logic state transitions<br>- Develop comprehensive test suite for edge cases<br><br>**Deliverables:**<br>- Smart contracts with Hot Potato pattern for payments<br>- Frontend transaction simulation integration<br>- Comprehensive test suite (100+ scenarios)<br>- Security documentation<br>- Assertion coverage report | **32 hours** |
 
 ---
 
@@ -47,13 +47,13 @@ This document defines the foundational technical infrastructure requirements for
 | Feature | ID | Estimate | Status | Cross-References |
 |---------|----|----|----|----|
 | Sui Network Foundation | INF-05.1.1 | 21 hours | Not Started | Foundation for all blockchain operations |
-| Gas Fee Optimization | INF-05.1.2 | 21 hours | Not Started | Enhances user onboarding experience |
-| High-Fidelity Transaction Validation | INF-05.1.3 | 42 hours | Not Started | Security foundation for platform |
+| Gas Fee Optimization | INF-05.1.2 | 12 hours | Not Started | PTB batching and storage reclamation (gas sponsorship provided by Sui) |
+| High-Fidelity Transaction Validation | INF-05.1.3 | 32 hours | Not Started | Business logic validation (base validation provided by Sui) |
 | Seal-Based Access Encryption Infrastructure | INF-05.2.1 | 24-32 hours | Not Started | ID-1.1.1, DAT-04.2, NFT-14.5.1 |
 | Session Controls | INF-05.3.1 | CONSOLIDATED → ID-1.2.2, UPS-02.2.1 | Consolidated | Duplicate of zkLogin integration and session management |
 | Walrus Site Static Hosting | INF-05.4.1 | CONSOLIDATED → DAT-08.5.1 | Consolidated | DAT-04.5, DAT-04.6 |
 
-**Total Module Hours**: **108-116 hours** (after consolidations)
+**Total Module Hours**: **89-97 hours** (after consolidations and stack capability validation)
 
 ---
 
