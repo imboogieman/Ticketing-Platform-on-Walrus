@@ -65,6 +65,22 @@ This platform enables secure, verifiable, and transparent event ticketing using 
 └─────────────────────────────────────────────────┘
 ```
 
+### Soulbound NFT Attendance Flow
+
+The platform implements a sophisticated attendance verification system using Soulbound Tokens (SBTs) for non-transferable proof of attendance:
+
+![Soulbound NFT Sequence Diagram](docs/diagrams/soulbound-nft-sequence.mmd)
+
+For detailed flow visualization, see [Soulbound NFT Sequence Diagram](docs/diagrams/soulbound-nft-sequence.md).
+
+**Key Features:**
+- Dynamic QR code generation with 30-second rotation
+- Real-time on-chain verification at venue gates
+- Atomic PTB (Programmable Transaction Block) for ticket redemption and badge minting
+- Non-transferable soulbound attendance badges linked to attendee address
+- Redemption-gated content access via Seal encryption
+- Sub-400ms transaction finalization for seamless gate experience
+
 ## 📁 Project Structure
 
 > **Note:** Files marked with ⚠️ are placeholder files for future smart contract implementations. These are **not final code** and contain only module structure outlines based on the requirements documentation. See the individual files for implementation details and references to their respective requirement documents.
@@ -72,11 +88,11 @@ This platform enables secure, verifiable, and transparent event ticketing using 
 ```
 ├── docs/                           # Documentation and specifications
 │   ├── diagrams/                   # Architecture diagrams
-│   │   └── soulbound-nft-sequence.md
-│   ├── estimates.md                # Project estimates
+│   │   ├── soulbound-nft-sequence.md
+│   │   └── soulbound-nft-sequence.mmd
 │   └── requirements/               # Detailed requirements documents
-│       ├── mvp_01/                 # MVP Phase 1 Requirements
-│       │   ├── 00 - Project_Overview_and_Vision.md
+│       ├── mvp_01/                 # MVP Phase 1 Requirements (52 Features)
+│       │   ├── 00 - UX_Design_UXD-00.md
 │       │   ├── 01 - Identity_and_Authentication_ID-01.md
 │       │   ├── 02 - User_Profile_System_UPS-02.md
 │       │   ├── 03 - Attendance_Management_AM-03.md
@@ -86,7 +102,6 @@ This platform enables secure, verifiable, and transparent event ticketing using 
 │       │   ├── 07 - Event_Management_System_EMS-07.md
 │       │   ├── 08 - Ticketing_System_TS-08.md
 │       │   ├── 09 - Financial_Operations_FIN-09.md
-│       │   ├── 10 - Platform_Deliverables_Communication_PD-05.md
 │       │   ├── 11 - Analytics_and_Reporting_AR-06.md
 │       │   └── 12 - Loyalty_and_Rewards_LRW-04.md
 │       └── mvp_02/                 # MVP Phase 2 Requirements
@@ -95,6 +110,7 @@ This platform enables secure, verifiable, and transparent event ticketing using 
 │           ├── 03 - Financial_Extensions_FEX-03.md
 │           ├── 05 - Growth_and_Marketing_GMK-05.md
 │           ├── 06 - Developer_Platform_DEV-06.md
+│           ├── 07 - Platform_Deliverables_Communication_PD-05.md
 │           ├── 08 - Event_Extensions_EVX-08.md
 │           ├── 09 - Physical_Operations_PHY-09.md
 │           └── README.md
@@ -197,27 +213,27 @@ npm run build
 
 ### Requirements & Specifications
 
-#### MVP Phase 1
-- [Project Overview & Vision](docs/requirements/mvp_01/00%20-%20Project_Overview_and_Vision.md) - Vision, goals, and design philosophy
-- [Identity & Authentication](docs/requirements/mvp_01/01%20-%20Identity_and_Authentication_ID-01.md) - User registration and auth methods
-- [User Profile System](docs/requirements/mvp_01/02%20-%20User_Profile_System_UPS-02.md) - Profile management
-- [Attendance Management](docs/requirements/mvp_01/03%20-%20Attendance_Management_AM-03.md) - Attendance tracking and verification
-- [Data Preservation & Storage](docs/requirements/mvp_01/04%20-%20Data_Preservation_and_Storage_DAT-04.md) - Walrus storage integration
-- [Technical Infrastructure](docs/requirements/mvp_01/05%20-%20Technical_Infrastructure_INF-05.md) - System architecture
-- [NFT Implementation](docs/requirements/mvp_01/06%20-%20NFT_Implementation_NFT-06.md) - Ticket and attendance NFTs
-- [Event Management System](docs/requirements/mvp_01/07%20-%20Event_Management_System_EMS-07.md) - Event creation and management
-- [Ticketing System](docs/requirements/mvp_01/08%20-%20Ticketing_System_TS-08.md) - Ticket purchase and validation
-- [Financial Operations](docs/requirements/mvp_01/09%20-%20Financial_Operations_FIN-09.md) - Payment processing and reporting
-- [Platform Deliverables & Communication](docs/requirements/mvp_01/10%20-%20Platform_Deliverables_Communication_PD-05.md) - Notifications and messaging
-- [Analytics & Reporting](docs/requirements/mvp_01/11%20-%20Analytics_and_Reporting_AR-06.md) - Data analytics and insights
-- [Loyalty & Rewards](docs/requirements/mvp_01/12%20-%20Loyalty_and_Rewards_LRW-04.md) - Reward programs
+#### MVP Phase 1 (52 Features)
+- [UX Design](docs/requirements/mvp_01/00%20-%20UX_Design_UXD-00.md) - Responsive design, accessibility, and internationalization
+- [Identity & Authentication](docs/requirements/mvp_01/01%20-%20Identity_and_Authentication_ID-01.md) - Wallet connection and zkLogin
+- [User Profile System](docs/requirements/mvp_01/02%20-%20User_Profile_System_UPS-02.md) - Profile management and attendance history
+- [Attendance Management](docs/requirements/mvp_01/03%20-%20Attendance_Management_AM-03.md) - Check-in and soulbound badges
+- [Data Preservation & Storage](docs/requirements/mvp_01/04%20-%20Data_Preservation_and_Storage_DAT-04.md) - Walrus blob storage
+- [Technical Infrastructure](docs/requirements/mvp_01/05%20-%20Technical_Infrastructure_INF-05.md) - Sui network and Seal encryption
+- [NFT Implementation](docs/requirements/mvp_01/06%20-%20NFT_Implementation_NFT-06.md) - Ticket NFTs and soulbound tokens
+- [Event Management System](docs/requirements/mvp_01/07%20-%20Event_Management_System_EMS-07.md) - Event creation and tier configuration
+- [Ticketing System](docs/requirements/mvp_01/08%20-%20Ticketing_System_TS-08.md) - QR codes, digital signatures, and transfer policies
+- [Financial Operations](docs/requirements/mvp_01/09%20-%20Financial_Operations_FIN-09.md) - Crypto payments, fiat on-ramp, and audit trails
+- [Analytics & Reporting](docs/requirements/mvp_01/11%20-%20Analytics_and_Reporting_AR-06.md) - Tax compliance and data export
+- [Loyalty & Rewards](docs/requirements/mvp_01/12%20-%20Loyalty_and_Rewards_LRW-04.md) - Points system and tier rewards
 
 #### MVP Phase 2
-- [Communication & Engagement](docs/requirements/mvp_02/01%20-%20Communication_and_Engagement_CM-01.md) - Advanced communication features
+- [Communication & Engagement](docs/requirements/mvp_02/01%20-%20Communication_and_Engagement_CM-01.md) - Delivery channels and messaging
 - [Content & Materials](docs/requirements/mvp_02/02%20-%20Content_and_Materials_CNT-02.md) - Event content management
-- [Financial Extensions](docs/requirements/mvp_02/03%20-%20Financial_Extensions_FEX-03.md) - Extended financial features
-- [Growth & Marketing](docs/requirements/mvp_02/05%20-%20Growth_and_Marketing_GMK-05.md) - Marketing tools
-- [Developer Platform](docs/requirements/mvp_02/06%20-%20Developer_Platform_DEV-06.md) - API and developer tools
+- [Financial Extensions](docs/requirements/mvp_02/03%20-%20Financial_Extensions_FEX-03.md) - Refunds and settlements
+- [Growth & Marketing](docs/requirements/mvp_02/05%20-%20Growth_and_Marketing_GMK-05.md) - Marketing and discovery
+- [Developer Platform](docs/requirements/mvp_02/06%20-%20Developer_Platform_DEV-06.md) - API and integrations
+- [Platform Deliverables & Communication](docs/requirements/mvp_02/07%20-%20Platform_Deliverables_Communication_PD-05.md) - Alerts, chat, and notifications
 - [Event Extensions](docs/requirements/mvp_02/08%20-%20Event_Extensions_EVX-08.md) - Advanced event features
 - [Physical Operations](docs/requirements/mvp_02/09%20-%20Physical_Operations_PHY-09.md) - On-site operations
 

@@ -32,23 +32,7 @@ This document outlines the financial operations requirements for the Ticketing P
 
 ---
 
-### 19.1.4. Feature: Refund Processing (Manual Only) (FIN-19.1.4)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 19.1.4. Feature: Refund Processing (Manual Only) (FIN-19.1.4) | User Story: As a customer support lead, I want the ability to manually trigger a refund for an attendee in exceptional cases, so that I can provide high-quality service while maintaining strict control over the event treasury.<br><br>Actions:<br>**Capability Gating:** Restrict the `manual_refund` Move function to addresses holding a specific `FinanceCap` issued by the organizer.<br>**Burn & Return Logic:** Write a function that destroys (burns) the specific `Ticket` object and simultaneously releases the corresponding funds from the escrow vault back to the original payer.<br>**Approval Workflow:** Implement a "Two-Step Approval" in the admin dashboard where one staff member initiates the refund and another confirms it.<br>**Tax Reconciliation:** Automatically adjust the organizer's "Net Revenue" report to account for the refunded amount, including a reason code for the audit trail.<br><br>Deliverables:<br>- `FinanceCap` object type for refund authorization<br>- Entry point: `manual_refund(finance_cap: &FinanceCap, ticket: Ticket, reason: String)`<br>- Ticket burn and fund release logic<br>- Two-step approval workflow in admin dashboard<br>- Revenue report auto-adjustment<br>- Refund event emission | Not Started |
-
----
-
 ## 19.2. Feature: Financial Reporting (FIN-19.2)
-
-### 19.2.1. Feature: Settlement Reports (FIN-19.2.1)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 19.2.1. Feature: Settlement Reports (FIN-19.2.1) | User Story: As an organizer, I want a detailed settlement report at the end of each day, so that I can understand my total revenue across all payment methods and currencies.<br><br>Actions:<br>**Aggregated Indexing:** Use a specialized indexer to scrape all `PaymentFinalized` events and group them by currency type (SUI, USDC, Fiat).<br>**FX Normalization:** Convert all non-base currency sales into a "Reporting Currency" (e.g., USD) based on historical price data at the time of each transaction.<br>**Withdrawal Tracking:** Detail the status of funds moved from the platform's smart contract to the organizer's external bank account or cold wallet.<br>**Export Options:** Provide "One-Click" exports in CSV and PDF formats tailored for 2026 accounting standards.<br><br>Deliverables:<br>- Payment event indexer with aggregation logic<br>- FX conversion using historical rates<br>- Withdrawal status tracking system<br>- CSV/PDF export functionality<br>- Daily settlement dashboard UI<br>- API endpoint: `GET /api/reports/settlement?date={date}` | Not Started |
-
----
 
 ### 19.2.2. Feature: Transaction History (FIN-19.2.2)
 

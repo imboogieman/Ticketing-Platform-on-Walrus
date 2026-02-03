@@ -77,18 +77,16 @@ This document outlines the advanced NFT implementation requirements for the Tick
 
 ## Summary of Requirements
 
-| Feature | ID | Estimate | Status |
+| Feature | ID | Status |
 |---------|----|----|---|
-| Ticket NFTs on Sui (Base Object) | NFT-14.1.1 | 65 hours | Not Started |
-| Metadata Standards (SIP-16/Display) | NFT-14.2.1 | 42 hours | Not Started |
-| Ticket Transfer Logic | NFT-14.3.1 | 42 hours | Not Started |
-| Encrypted Metadata (Sui Seal Integration) | NFT-14.5.1 | CONSOLIDATED → INF-05.2.2 | Consolidated |
-| Dynamic Updates (Mutable State) | NFT-14.6.1 | 42 hours | Not Started |
-| Soulbound Token (SBT) Standards | NFT-14.8.1 | 21 hours | Not Started |
-| SBT Non-transferability Logic | NFT-14.9.1 | 21 hours | Not Started |
-| Attendance Proof Burn Mechanisms | NFT-14.10.1 | 41 hours | Not Started |
-
-**Total Module Hours**: **274 hours** (after consolidations, down from 316 hours)
+| Ticket NFTs on Sui (Base Object) | NFT-14.1.1 | Not Started |
+| Metadata Standards (SIP-16/Display) | NFT-14.2.1 | Not Started |
+| Ticket Transfer Logic | NFT-14.3.1 | CONSOLIDATED → TS-18.1.5 |
+| Encrypted Metadata (Sui Seal Integration) | NFT-14.5.1 | CONSOLIDATED → INF-05.2.2 |
+| Dynamic Updates (Mutable State) | NFT-14.6.1 | Not Started |
+| Soulbound Token (SBT) Standards | NFT-14.8.1 | Not Started |
+| SBT Non-transferability Logic | NFT-14.9.1 | Not Started |
+| Attendance Proof Burn Mechanisms | NFT-14.10.1 | CONSOLIDATED → AM-3.1.1 |
 
 ---
 

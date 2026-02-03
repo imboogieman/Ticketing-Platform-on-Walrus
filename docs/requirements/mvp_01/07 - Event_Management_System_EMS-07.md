@@ -10,19 +10,11 @@ The Event Management System provides comprehensive capabilities for organizers t
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| 17.1 Feature: Event Creation (EMS-17.1) | User Story: As an organizer, I want to initialize a new event by defining its core identity, so that I can begin the lifecycle of a ticketed experience on the blockchain.<br><br>Actions:<br>- Initialize a `PendingEvent` object on-chain with unique UUID and Organizer address<br>- Link initial metadata (Title, Category) to a temporary Walrus blob<br>- Generate the `AdminCap` specifically for this event ID to delegate future management tasks<br><br>Deliverables:<br>- Move contract module for `PendingEvent` struct<br>- Entry point: `create_event(title: String, category: u64, ctx: &mut TxContext)`<br>- `AdminCap` object type with event_id field<br>- Walrus integration for metadata blob upload<br>- Event emission logging<br>- Frontend event creation form | Not Started |
+| 17.1 Feature: Event Creation (EMS-17.1) | User Story: As an organizer, I want to initialize and configure a new event, so that I can create a complete ticketed experience on the blockchain.<br><br>Actions:<br>- Initialize a `PendingEvent` object on-chain with unique UUID and Organizer address<br>- Link initial metadata (Title, Category, Description) to a Walrus blob<br>- Generate the `AdminCap` specifically for this event ID to delegate future management tasks<br>- Set capacity limits (`max_capacity: u64` and `current_supply: u64` fields)<br>- Configure publishing settings (`is_public` boolean, `start_epoch`, `end_epoch`)<br><br>Deliverables:<br>- Move contract module for `Event` struct with capacity and publishing fields<br>- Entry point: `create_event(title: String, category: u64, max_capacity: u64, is_public: bool, start_epoch: u64, end_epoch: u64, ctx: &mut TxContext)`<br>- Entry point: `update_capacity(admin_cap: &AdminCap, event: &mut Event, new_capacity: u64)`<br>- `AdminCap` object type with event_id field<br>- Walrus integration for metadata blob upload<br>- Event emission logging<br>- Indexer integration for marketplace discovery<br>- Frontend event creation form with capacity and publishing controls | Not Started |
 
 ---
 
 ## 17.2 Feature: Event Administration (EMS-17.2)
-
-### 17.2.1 Feature: Capacity Management (EMS-17.2.1)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 17.2.1 Feature: Capacity Management (EMS-17.2.1) | User Story: As an organizer, I want to set a hard limit on the number of tickets available, so that I do not violate venue safety regulations.<br><br>Actions:<br>- **State Definition:** Add a `max_capacity: u64` field to the `EventDetails` object<br>- **Assertion Logic:** Implement an `assert!(current_supply < max_capacity)` check within the minting transaction<br>- **Dynamic Adjustment:** Create an admin-gated function to increase capacity if venue expansion occurs<br><br>Deliverables:<br>- `max_capacity` and `current_supply` fields in Event struct<br>- Entry point: `update_capacity(admin_cap: &AdminCap, event: &mut Event, new_capacity: u64)`<br>- Validation logic preventing overselling<br>- Frontend capacity management UI | Not Started |
-
----
 
 ### 17.2.2 Feature: Cancel Event Procedures (EMS-17.2.2)
 
@@ -32,19 +24,11 @@ The Event Management System provides comprehensive capabilities for organizers t
 
 ---
 
-### 17.2.3 Feature: Publishing Workflow (EMS-17.2.3)
+### 17.2.5 Feature: Update Event Details (EMS-17.2.5)
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| 17.2.3 Feature: Publishing Workflow (EMS-17.2.3) | User Story: As a marketing manager, I want to move an event from a private draft to a public listing, so that ticket sales can officially begin.<br><br>Actions:<br>- **State Transition:** Update the `is_public` boolean from `false` to `true`<br>- **Marketplace Indexing:** Trigger the indexer to scrape the event's Walrus metadata for listing on the global dashboard<br>- **Epoch Gating:** Set the `start_epoch` and `end_epoch` to define the window of sale activity<br><br>Deliverables:<br>- `is_public` boolean field in Event struct<br>- Entry point: `publish_event(admin_cap: &AdminCap, event: &mut Event, start_epoch: u64, end_epoch: u64)`<br>- Epoch validation logic<br>- Indexer integration for marketplace discovery<br>- Frontend publishing UI with epoch picker | Not Started |
-
----
-
-### 17.2.4 Feature: Update Event Details (EMS-17.2.5)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 17.2.4 Feature: Update Event Details (EMS-17.2.5) | User Story: As an organizer, I want to change non-critical event information (e.g., description updates or guest list changes) after publishing, so that my attendees have the latest info.<br><br>Actions:<br>- **Metadata Mutation:** Allow the `AdminCap` holder to update the `metadata_url` field in the Sui object<br>- **Event Emission:** Emit a `MetadataUpdated` event to notify wallets to refresh their cached view of the ticket<br>- **Version Tracking:** Maintain a history of previous metadata blobs for auditability<br><br>Deliverables:<br>- Entry point: `update_metadata(admin_cap: &AdminCap, event: &mut Event, new_metadata_url: String)`<br>- Metadata version tracking (vector of historical blob IDs)<br>- Event emission for update notifications<br>- Frontend metadata editing UI<br>- Version history viewer | Not Started |
+| 17.2.5 Feature: Update Event Details (EMS-17.2.5) | User Story: As an organizer, I want to update event information (including venue changes) after publishing, so that my attendees have the latest info.<br><br>Actions:<br>- **Metadata Mutation:** Allow the `AdminCap` holder to update the `metadata_url` field in the Sui object<br>- **Venue Updates:** Support updating venue information (name, address, coordinates)<br>- **Event Emission:** Emit a `MetadataUpdated` or `VenueUpdated` event to notify ticket holders<br>- **Version Tracking:** Maintain a history of previous metadata blobs for auditability<br><br>Deliverables:<br>- Entry point: `update_metadata(admin_cap: &AdminCap, event: &mut Event, new_metadata_url: String)`<br>- Entry point: `update_venue(admin_cap: &AdminCap, event: &mut Event, venue_info: VenueInfo)`<br>- Metadata version tracking (vector of historical blob IDs)<br>- Event emission for update notifications<br>- Frontend metadata/venue editing UI<br>- Version history viewer<br>- Basic notification system for venue changes | Not Started |
 
 ---
 
@@ -80,59 +64,46 @@ The Event Management System provides comprehensive capabilities for organizers t
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| 17.4.1 Feature: Search Capabilities (EMS-17.4.1) | User Story: As an attendee, I want to search for events by name or keyword, so that I can find experiences that interest me.<br><br>Actions:<br>- **Full-Text Search:** Implement an Elasticsearch or Algolia index that syncs with the Sui event stream<br>- **Fuzzy Matching:** Allow for typos or partial names in the search bar<br><br>Deliverables:<br>- Indexer integration (Elasticsearch, Algolia, or custom)<br>- Full-text search indexing of event metadata<br>- Frontend search bar component<br>- Search results page with filtering<br>- API endpoint: `GET /api/search?q={query}` | Not Started |
+| 17.4.1 Feature: Event Search & Filtering (EMS-17.4.1) | User Story: As an attendee, I want to search and filter events by name, keyword, or category, so that I can find experiences that interest me.<br><br>Actions:<br>- **Full-Text Search:** Implement an Elasticsearch or Algolia index that syncs with the Sui event stream<br>- **Fuzzy Matching:** Allow for typos or partial names in the search bar<br>- **Category Filtering:** Provide sidebar filters to narrow down events by genre (Music, Tech, Sports, etc.)<br>- **Tagging System:** Assign `u64` category IDs to every event object<br><br>Deliverables:<br>- Indexer integration (Elasticsearch, Algolia, or custom)<br>- Full-text search indexing of event metadata<br>- Category enum or constant list<br>- Indexer category aggregation<br>- Frontend search bar component<br>- Frontend category filter component<br>- Search results page with filtering<br>- API endpoint: `GET /api/search?q={query}&category={id}` | Not Started |
 
 ---
 
-### 17.4.2 Feature: Category Filtering (EMS-17.4.2)
+### 17.4.3 Feature: Geolocation Features (EMS-17.4.3) [Deferred to MVP 2]
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| 17.4.2 Feature: Category Filtering (EMS-17.4.2) | User Story: As a user, I want to filter events by genre (Music, Tech, Sports), so that I can quickly browse relevant listings.<br><br>Actions:<br>- **Tagging System:** Assign `u64` category IDs to every event object<br>- **UI Facets:** Provide sidebar filters to narrow down the event list by category<br><br>Deliverables:<br>- Category enum or constant list<br>- `category_id` field in Event struct<br>- Indexer category aggregation<br>- Frontend category filter component<br>- API endpoint: `GET /api/events?category={id}` | Not Started |
+| 17.4.3 Feature: Geolocation Features (EMS-17.4.3) | **DEFERRED TO MVP 2** - Geographic discovery features including location-based search and "Near Me" filtering. | Deferred |
 
 ---
 
-### 17.4.3 Feature: Geolocation Features (EMS-17.4.3)
+### 17.4.5 Feature: Calendar Sync Capabilities (EMS-17.4.5) [Deferred to MVP 2]
 
 | User Story Title | User Story Body | Status |
 | --- | --- | --- |
-| 17.4.3 Feature: Geolocation Features (EMS-17.4.3) | User Story: As a mobile user, I want to see events happening within 10 miles of my current location, so that I can find local entertainment.<br><br>Actions:<br>- **Coordinate Storage:** Store latitude and longitude in the event's metadata<br>- **Spatial Querying:** Use H3 geospatial indexing to calculate distances between user coordinates and venue locations<br><br>Deliverables:<br>- Latitude/longitude fields in event metadata<br>- Geospatial indexing (H3 or similar)<br>- Frontend geolocation API integration<br>- Map component (e.g., Mapbox, Google Maps)<br>- Distance calculation utility<br>- "Near Me" filter UI<br>- API endpoint: `GET /api/events?lat={lat}&lon={lon}&radius={miles}` | Not Started |
-
----
-
-### 17.4.4 Feature: Venue Changes (EMS-17.4.4)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 17.4.4 Feature: Venue Changes (EMS-17.4.4) | User Story: As an attendee, I want to be notified if the venue changes, so that I do not show up at the wrong location.<br><br>Actions:<br>- **Admin Update:** Update the `venue_info` field in the Sui object<br>- **Push Notifications:** Trigger a Web3 notification (e.g., via Notifi or XMTP) to all addresses holding the event's Ticket objects<br>- **Version Tracking:** Maintain a history of previous metadata blobs for auditability<br><br>Deliverables:<br>- Entry point: `update_venue(admin_cap: &AdminCap, event: &mut Event, venue_name: String, address: String, lat: String, lon: String)`<br>- Notification integration (Notifi/XMTP)<br>- `VenueUpdated` event emission<br>- Frontend venue change alert UI<br>- Email notification service<br>- Updated ICS file generation | Not Started |
-
----
-
-### 17.4.5 Feature: Calendar Sync Capabilities (EMS-17.4.5)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 17.4.5 Feature: Calendar Sync Capabilities (EMS-17.4.5) | User Story: As a power user, I want my events to stay synced across my devices, so that I have the most up-to-date entry info.<br><br>Actions:<br>- **CalDAV Support:** Provide a subscription URL for the user's "Whatdahack?! Schedule"<br>- **Dynamic Refresh:** Ensure the calendar feed updates if the event time or venue is moved<br><br>Deliverables:<br>- CalDAV server implementation or service integration<br>- Per-user subscription URL generation<br>- Entry point: `generate_calendar_subscription(user_address: address)`<br>- Dynamic calendar feed updates<br>- Frontend subscription URL display<br>- Documentation for adding to various calendar apps | Not Started |
+| 17.4.5 Feature: Calendar Sync Capabilities (EMS-17.4.5) | **DEFERRED TO MVP 2** - Advanced calendar synchronization via CalDAV for dynamic updates across devices. MVP 1 includes static ICS file export only. | Deferred |
 
 ---
 
 ## Summary of Event Management System
 
+### MVP 1 Features (7)
+
 | Feature ID | Feature Name | Status |
 |------------|--------------|--------|
-| EMS-17.1 | Event Creation | Not Started |
-| EMS-17.2.1 | Capacity Management | Not Started |
+| EMS-17.1 | Event Creation (incl. Capacity & Publishing) | Not Started |
 | EMS-17.2.2 | Cancel Event Procedures | Not Started |
-| EMS-17.2.3 | Publishing Workflow | Not Started |
-| EMS-17.2.5 | Update Event Details | Not Started |
+| EMS-17.2.5 | Update Event Details (incl. Venue Updates) | Not Started |
 | EMS-17.3.1 | Visibility Settings | Not Started |
 | EMS-17.3.2 | Pricing Configuration | Not Started |
-| EMS-17.3.5 | ICS File Generation | Not Started |
-| EMS-17.4.1 | Search Capabilities | Not Started |
-| EMS-17.4.2 | Category Filtering | Not Started |
-| EMS-17.4.3 | Geolocation Features | Not Started |
-| EMS-17.4.4 | Venue Changes | Not Started |
-| EMS-17.4.5 | Calendar Sync Capabilities | Not Started |
+| EMS-17.3.5 | ICS File Generation (Static) | Not Started |
+| EMS-17.4.1 | Event Search & Category Filtering | Not Started |
+
+### Deferred to MVP 2 (2)
+
+| Feature ID | Feature Name | Status |
+|------------|--------------|--------|
+| EMS-17.4.3 | Geolocation Features | Deferred |
+| EMS-17.4.5 | Calendar Sync (CalDAV) | Deferred |
 
 ---
 

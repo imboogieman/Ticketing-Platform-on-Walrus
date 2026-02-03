@@ -15,6 +15,14 @@ This document outlines the core ticketing system requirements for the Ticketing 
 
 ---
 
+### 18.1.2. Feature: Digital Signature (TS-18.1.2)
+
+| User Story Title | User Story Body | Status |
+| --- | --- | --- |
+| 18.1.2. Feature: Digital Signature (TS-18.1.2) | User Story: As a security-conscious organizer, I want each ticket to be cryptographically signed with my wallet's private key, so that attendees can verify ticket authenticity and detect counterfeit tickets before arriving at the venue.<br><br>Actions:<br>**Signature Generation:** Implement a Move function that signs the ticket's unique metadata (TicketID, EventID, owner address, tier) using the organizer's wallet during the minting process.<br>**Signature Storage:** Store the digital signature as a field in the Ticket object, making it permanently associated with the NFT on-chain.<br>**Verification Interface:** Build a "Verify Ticket" UI that allows anyone to validate the signature against the organizer's public key without requiring gate access.<br>**Frontend Display:** Display a "Verified by [Organizer Name]" badge on authentic tickets, with a visual indicator if the signature validation fails.<br><br>Deliverable: A cryptographic signature system that provides mathematical proof of ticket authenticity and prevents forgery. | Not Started |
+
+---
+
 ### 18.1.3. Feature: Expiration Handling (TS-18.1.3)
 
 | User Story Title | User Story Body | Status |
@@ -57,21 +65,7 @@ This document outlines the core ticketing system requirements for the Ticketing 
 | --- | --- | --- |
 | 18.3.1. Feature: On-Chain Verification (TS-18.3.1) | User Story: As a gate manager, I want the scanning system to verify ticket ownership and status directly on the Sui blockchain in real-time, so that I can prevent the use of fraudulent, revoked, or already-redeemed tickets with absolute certainty.<br><br>Actions:<br>**Object Introspection:** Implement a backend query using the `sui_getObject` RPC method to verify that the scanned TicketID exists and is currently owned by the presenter's address.<br>**State Check:** Validate that the `is_redeemed` boolean on the Move object is `false` before allowing the check-in transaction to proceed.<br>**Smart Contract Logic:** Execute the `validate_ticket` entry function to atomically toggle the ticket's state to "Redeemed" upon a successful scan.<br>**Conflict Resolution:** Use Sui's versioning to ensure that if a ticket is scanned at two gates simultaneously, only the first transaction is committed.<br><br>Deliverable: A real-time, blockchain-synced validation gate that eliminates the possibility of using counterfeit or duplicate tickets. | Not Started |
 
----
 
-### 18.3.2. Feature: Wallet Validation (TS-18.3.2)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.3.2. Feature: Wallet Validation (TS-18.3.2) | User Story: As a security officer, I want to verify that the person presenting the ticket is the actual owner of the wallet containing that ticket, so that I can prevent "phone-passing" or unauthorized ticket sharing at the entrance.<br><br>Actions:<br>**Challenge-Response Handshake:** Generate a unique, time-sensitive nonce in the scanner app and send it to the user's mobile dApp via NFC or QR.<br>**Cryptographic Signing:** Require the user to sign the nonce using their private key (via zkLogin or a hardware wallet).<br>**Signature Verification:** Use the scanner to verify the signature against the public key associated with the ticket's on-chain owner address.<br>**Biometric Integration:** *(Optional)* Trigger a local FaceID/TouchID check on the user's device before the signature is released to the scanner.<br><br>Deliverable: A secure identity-linkage protocol that ensures only the rightful owner of the digital asset can gain entry.<br><br>Note: Biometric Integration is marked optional for MVP 1 - depends on device capabilities and UX requirements. | Not Started |
-
----
-
-### 18.3.3. Feature: Timestamped Verification (TS-18.3.3)
-
-| User Story Title | User Story Body | Status |
-| --- | --- | --- |
-| 18.3.3. Feature: Timestamped Verification (TS-18.3.3) | User Story: As an event auditor, I want every ticket redemption to be anchored to a network-verified timestamp, so that I have a tamper-proof audit trail for capacity monitoring and post-event analytics.<br><br>Actions:<br>**Clock Object Integration:** Use the Sui system `0x6` Clock object as an immutable reference in the redemption Move function.<br>**Precision Logging:** Capture the exact millisecond of entry using `clock::timestamp_ms(clock)` and store it in the ticket's `redemption_info` dynamic field.<br>**Event Emission:** Emit a `CheckInSuccess` event containing the TicketID, GateID, and the network-verified timestamp for real-time indexing.<br>**Data Persistence:** Ensure the timestamp remains part of the ticket's permanent on-chain history, even after the event concludes.<br><br>Deliverable: A cryptographically verified "Entry Log" that provides undeniable proof of when each attendee entered the venue. | Not Started |
 
 ---
 
@@ -81,6 +75,7 @@ This document outlines the core ticketing system requirements for the Ticketing 
 |---------|----|----|
 | **18.1 Ticket Management** | | |
 | QR Code Generation | TS-18.1.1 | Not Started |
+| Digital Signature | TS-18.1.2 | Not Started |
 | Expiration Handling | TS-18.1.3 | Not Started |
 | Transfer Policies | TS-18.1.5 | Not Started |
 | **18.2 Purchase Workflow** | | |
@@ -88,7 +83,3 @@ This document outlines the core ticketing system requirements for the Ticketing 
 | Quantity Selection | TS-18.2.2 | Not Started |
 | **18.3 Ticket Validation** | | |
 | On-Chain Verification | TS-18.3.1 | Not Started |
-| Wallet Validation | TS-18.3.2 | Not Started |
-| Timestamped Verification | TS-18.3.3 | Not Started |
-
-**Module Total:** 226 hours

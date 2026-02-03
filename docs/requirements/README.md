@@ -17,7 +17,7 @@ Centralized index of requirements documents for the Ticketing Platform on Walrus
 | EMS-17 | Event Management System | [mvp_01/07 - Event_Management_System_EMS-17.md](mvp_01/07%20-%20Event_Management_System_EMS-17.md) |
 | TS-08 | Ticketing System | [mvp_01/08 - Ticketing_System_TS-08.md](mvp_01/08%20-%20Ticketing_System_TS-08.md) |
 | FIN-09 | Financial Operations | [mvp_01/09 - Financial_Operations_FIN-09.md](mvp_01/09%20-%20Financial_Operations_FIN-09.md) |
-| PD-05 | Platform Deliverables: Communication | [mvp_01/10 - Platform_Deliverables_Communication_PD-05.md](mvp_01/10%20-%20Platform_Deliverables_Communication_PD-05.md) |
+
 | AR-06 | Analytics & Reporting | [mvp_01/11 - Analytics_and_Reporting_AR-06.md](mvp_01/11%20-%20Analytics_and_Reporting_AR-06.md) |
 
 ## MVP 02 - Optional & Extended Features

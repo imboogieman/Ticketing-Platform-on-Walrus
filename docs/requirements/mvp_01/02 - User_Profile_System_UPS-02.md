@@ -9,9 +9,9 @@ This document defines requirements for user profile creation, authentication flo
 
 ### 2.1.1. Feature: User Registration & Profile Initialization (UPS-02.1.1)
 
-| User Story Title | User Story Body | Estimate |
-| --- | --- | --- |
-| 2.1.1. Feature: User Registration & Profile Initialization (UPS-02.1.1) | User Story: As a new user, I want a seamless registration flow that initializes my on-chain identity, so that I can begin interacting with the marketplace and accumulating event history.<br><br>**Actions:**<br>- Define UserProfile Move struct with required fields (name, email, avatar_blob_id, metadata)<br>- Implement create_profile transaction function<br>- Build "Welcome" onboarding screen component<br>- Connect to wallet context and social login<br>- Avatar storage setup (Walrus integration)<br>- Transaction signing and execution<br>- Error handling and validation<br>- Testing<br><br>**Deliverables:**<br>- Deployed smart contract for UserProfile creation<br>- Registration UI components<br>- Avatar upload integration<br>- Complete onboarding flow | **32-40 hours** |
+| User Story Title | User Story Body |
+| --- | --- |
+| 2.1.1. Feature: User Registration & Profile Initialization (UPS-02.1.1) | User Story: As a new user, I want a seamless registration flow that initializes my on-chain identity, so that I can begin interacting with the marketplace and accumulating event history.<br><br>**Actions:**<br>- Define UserProfile Move struct with required fields (name, email, avatar_blob_id, metadata)<br>- Implement create_profile transaction function<br>- Build "Welcome" onboarding screen component<br>- Connect to wallet context and social login<br>- Avatar storage setup (Walrus integration)<br>- Transaction signing and execution<br>- Error handling and validation<br>- Testing<br><br>**Deliverables:**<br>- Deployed smart contract for UserProfile creation<br>- Registration UI components<br>- Avatar upload integration<br>- Complete onboarding flow |
 
 ---
 
@@ -55,11 +55,9 @@ This document defines requirements for user profile creation, authentication flo
 
 ## Summary of Requirements
 
-| Feature | ID | Estimate | Status |
+| Feature | ID | Status |
 |---------|----|----|---|
-| User Registration & Profile Initialization | UPS-02.1.1 | 32-40 hours | Not Started |
-| Avatar (Optional) | UPS-02.1.3 | 21 hours | Not Started |
-| Attendance History | UPS-02.3.1 | 21 hours | Not Started |
-| Badge System | UPS-02.4.1 | 21 hours | Not Started |
-
-**Total Module Hours**: **95-103 hours**
+| User Registration & Profile Initialization | UPS-02.1.1 | Not Started |
+| Avatar (Optional) | UPS-02.1.3 | Not Started |
+| Attendance History | UPS-02.3.1 | Not Started |
+| Badge System | UPS-02.4.1 | Not Started |
